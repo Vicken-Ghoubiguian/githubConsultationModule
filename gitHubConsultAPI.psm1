@@ -45,73 +45,73 @@ $githubUserRequestsContent
         $this.followingCount = $githubUserRequestsResult.following
     }
 
-    #
+    # 'followingCount' attribute getter
     [int] getFollowingCount()
     {
         return $this.followingCount
     }
 
-    #
+    # 'followersCount' attribute getter
     [int] getFollowersCount()
     {
         return $this.followersCount
     }
 
-    #
+    # 'publicReposCount' attribute getter
     [int] getPublicReposCount()
     {
         return $this.publicReposCount
     }
 
-    #
+    # 'isHireable' attribute getter
     [bool] getIsHireable()
     {
         return $this.isHireable
     }
 
-    #
-    [string] getLocation()
+    # 'id' attribute getter
+    [string] getId()
     {
-        return $this.location
+        return $this.id
     }
 
-    #
+    # 'blogURL' attribute getter
     [string] getBlogURL()
     {
         return $this.blogURL
     }
 
-    #
+    # 'name' attribute getter
     [string] getName()
     {
         return $this.name
     }
 
-    #
+    # 'avatarURL' attribute getter
     [string] getAvatarURL()
     {
         return $this.avatarURL
     }
 
-    #
+    # 'type' attribute getter
     [string] getType()
     {
         return $this.type
     }
 
-    #
+    # 'location' attribute getter
     [string] getLocation()
     {
         return $this.location
     }
 
-    #
+    # 'htmlURL' attribute getter
     [string] getHtmlURL()
     {
         return $this.htmlURL
     }
 
-    #
+    # 'login' attribute getter
     [string] getLogin()
     {
         return $this.login
