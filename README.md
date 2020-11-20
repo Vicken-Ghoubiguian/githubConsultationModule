@@ -1,2 +1,2 @@
-# github_consultation_PS_API
+# githubConsultationPSAPI
 API pour la recherche approfondie et la consultation de GitHub écrite en PowerShell
