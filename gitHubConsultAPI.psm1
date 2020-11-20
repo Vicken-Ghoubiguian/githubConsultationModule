@@ -13,6 +13,8 @@ class User
     hidden [string]$location
     hidden [bool]$isHireable
     hidden [int]$publicReposCount
+    hidden [int]$followersCount
+    hidden [int]$followingCount
 
 
     # User class constructor...
@@ -39,5 +41,7 @@ $githubUserRequestsContent
         $this.location = $githubUserRequestsResult.location
         $this.isHireable = $githubUserRequestsResult.hireable
         $this.publicReposCount = $githubUserRequestsResult.public_repos
+        $this.followersCount = $githubUserRequestsResult.followers
+        $this.followingCount = $githubUserRequestsResult.following
     }
 }
