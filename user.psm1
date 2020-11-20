@@ -1,4 +1,6 @@
-﻿# Definition of the User Powershell class to define a user from the GitHub API...
+﻿Using module .\repository.psm1
+
+# Definition of the User Powershell class to define a user from the GitHub API...
 class User
 {
 
