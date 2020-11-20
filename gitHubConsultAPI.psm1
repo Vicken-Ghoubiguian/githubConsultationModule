@@ -18,10 +18,10 @@ class User
 
 
     # User class constructor...
-    User([string]$login)
+    User([string]$wishedUserLogin)
     {
         # Extract all the data relating to the desired user from the received JSON ...
-        $githubGetUserURL = "https://api.github.com/users/Vicken-Ghoubiguian"
+        $githubGetUserURL = "https://api.github.com/users/" + $wishedUserLogin
         $githubUserRequest = Invoke-WebRequest -Uri $githubGetUserURL -Method Get
         $githubUserRequestsContent = $githubUserRequest.Content
         $githubUserRequestsJSONContent = @"
