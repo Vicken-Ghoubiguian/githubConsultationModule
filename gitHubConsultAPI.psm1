@@ -2,7 +2,7 @@
 class User
 {
 
-    #
+    # All attributes of the User class...
     hidden [string]$login
     hidden [string]$id
     hidden [string]$avatarURL
@@ -18,7 +18,7 @@ class User
     # User class constructor...
     User([string]$login)
     {
-        #
+        # Extract all the data relating to the desired user from the received JSON ...
         $githubGetUserURL = "https://api.github.com/users/Vicken-Ghoubiguian"
         $githubUserRequest = Invoke-WebRequest -Uri $githubGetUserURL -Method Get
         $githubUserRequestsContent = $githubUserRequest.Content
@@ -28,7 +28,7 @@ $githubUserRequestsContent
 "@
         $githubUserRequestsResult = ConvertFrom-Json -InputObject $githubUserRequestsJSONContent
 
-        #
+        # Entering the values ​​for all the attributes of the User class...
         $this.login =$githubUserRequestsResult.login
         $this.id = $githubUserRequestsResult.id
         $this.avatarURL = $githubUserRequestsResult.avatar_url
