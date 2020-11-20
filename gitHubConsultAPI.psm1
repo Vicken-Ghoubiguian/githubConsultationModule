@@ -44,4 +44,76 @@ $githubUserRequestsContent
         $this.followersCount = $githubUserRequestsResult.followers
         $this.followingCount = $githubUserRequestsResult.following
     }
+
+    #
+    [int] getFollowingCount()
+    {
+        return $this.followingCount
+    }
+
+    #
+    [int] getFollowersCount()
+    {
+        return $this.followersCount
+    }
+
+    #
+    [int] getPublicReposCount()
+    {
+        return $this.publicReposCount
+    }
+
+    #
+    [bool] getIsHireable()
+    {
+        return $this.isHireable
+    }
+
+    #
+    [string] getLocation()
+    {
+        return $this.location
+    }
+
+    #
+    [string] getBlogURL()
+    {
+        return $this.blogURL
+    }
+
+    #
+    [string] getName()
+    {
+        return $this.name
+    }
+
+    #
+    [string] getAvatarURL()
+    {
+        return $this.avatarURL
+    }
+
+    #
+    [string] getType()
+    {
+        return $this.type
+    }
+
+    #
+    [string] getLocation()
+    {
+        return $this.location
+    }
+
+    #
+    [string] getHtmlURL()
+    {
+        return $this.htmlURL
+    }
+
+    #
+    [string] getLogin()
+    {
+        return $this.login
+    }
 }
