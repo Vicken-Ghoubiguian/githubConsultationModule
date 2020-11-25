@@ -47,6 +47,18 @@ $githubUserRequestsContent
         $this.followingCount = $githubUserRequestsResult.following
     }
 
+    # Returns the User current instance as String...
+    [string] ToString()
+    {
+        return ""
+    }
+
+    # Returns, as a boolean, the result of the comparison between 2 instances of the 'User' class...
+    [bool] Equals([User] $otherUser)
+    {
+        return False
+    }
+
     # 'followingCount' attribute getter...
     [int] getFollowingCount()
     {

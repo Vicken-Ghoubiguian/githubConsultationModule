@@ -14,7 +14,7 @@ function getUserFromLogin {
         [string]$wishedLogin
     )
 
-    # Return the instance of the newly created User class from the login... 
+    # Returns the instance of the newly created User class from the login... 
     return [User]::new($wishedLogin)
 }
 
