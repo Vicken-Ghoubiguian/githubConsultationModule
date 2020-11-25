@@ -10,7 +10,6 @@ class User
     hidden [string]$avatarURL
     hidden [string]$htmlURL
     hidden [string]$type
-    hidden [System.Collections.ArrayList]$reposArrayList
     hidden [string]$name
     hidden [string]$blogURL
     hidden [string]$location
@@ -39,7 +38,6 @@ $githubUserRequestsContent
         $this.avatarURL = $githubUserRequestsResult.avatar_url
         $this.htmlURL = $githubUserRequestsResult.html_url
         $this.type = $githubUserRequestsResult.type
-        $this.reposArrayList = @()
         $this.name = $githubUserRequestsResult.name
         $this.blogURL = $githubUserRequestsResult.blog
         $this.location = $githubUserRequestsResult.location
