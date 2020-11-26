@@ -6,7 +6,7 @@ class User
 
     # All attributes of the User class...
     hidden [string]$login
-    hidden [string]$id
+    hidden [int]$id
     hidden [string]$avatar
     hidden [string]$profile
     hidden [string]$type
@@ -106,7 +106,7 @@ $githubUserRequestsContent
     }
 
     # 'id' attribute getter...
-    [string] getId()
+    [int] getId()
     {
         return $this.id
     }
