@@ -1,4 +1,6 @@
-﻿# Definition of the Repository Powershell class to define a repository from the GitHub API...
+﻿Using module .\license.psm1
+
+# Definition of the Repository Powershell class to define a repository from the GitHub API...
 class Repository
 {
 
@@ -16,6 +18,7 @@ class Repository
     hidden [System.Array]$forks
     hidden [System.Array]$contributors
     hidden [System.Array]$subscribers
+    hidden [License]$license
 
     hidden [string]$mainLanguage
     hidden [System.Array]$allLanguages
