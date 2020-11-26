@@ -56,7 +56,16 @@ $githubUserRequestsContent
     # Returns, as a boolean, the result of the comparison between 2 instances of the 'User' class...
     [bool] Equals([User] $otherUser)
     {
-        return False
+        If(($this.id -eq $otherUser.id) -and
+           ($this.login -eq $otherUser.login) -and
+           ($this.name -eq $otherUser.name)) {
+
+            return True
+
+        } Else {
+         
+            return False
+        }
     }
 
     # 'followingCount' attribute getter...
