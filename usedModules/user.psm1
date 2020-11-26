@@ -7,11 +7,11 @@ class User
     # All attributes of the User class...
     hidden [string]$login
     hidden [string]$id
-    hidden [string]$avatarURL
-    hidden [string]$htmlURL
+    hidden [string]$avatar
+    hidden [string]$profile
     hidden [string]$type
     hidden [string]$name
-    hidden [string]$blogURL
+    hidden [string]$blog
     hidden [string]$location
     hidden [bool]$isHireable
     hidden [int]$publicReposCount
@@ -35,11 +35,11 @@ $githubUserRequestsContent
         # Entering the values ​​for all the attributes of the User class...
         $this.login =$githubUserRequestsResult.login
         $this.id = $githubUserRequestsResult.id
-        $this.avatarURL = $githubUserRequestsResult.avatar_url
-        $this.htmlURL = $githubUserRequestsResult.html_url
+        $this.avatar = $githubUserRequestsResult.avatar_url
+        $this.profile = $githubUserRequestsResult.html_url
         $this.type = $githubUserRequestsResult.type
         $this.name = $githubUserRequestsResult.name
-        $this.blogURL = $githubUserRequestsResult.blog
+        $this.blog = $githubUserRequestsResult.blog
         $this.location = $githubUserRequestsResult.location
         $this.isHireable = $githubUserRequestsResult.hireable
         $this.publicReposCount = $githubUserRequestsResult.public_repos
@@ -53,11 +53,11 @@ $githubUserRequestsContent
         return "(" + 
                    "login: " + $this.login + ", " +
                    "id: " + $this.id + ", " +
-                   "avatar: " + $this.avatarURL + ", " +
-                   "profile: " + $this.htmlURL + ", " +
+                   "avatar: " + $this.avatar + ", " +
+                   "profile: " + $this.profile + ", " +
                    "type: " + $this.type + ", " +
                    "name: " + $this.name + ", " +
-                   "blog: " + $this.blogURL + ", " +
+                   "blog: " + $this.blog + ", " +
                    "location: " + $this.location + ", " +
                    "is hireable: " + $this.isHireable + ", " +
                    "public repos count: " + $this.publicReposCount + ", " +
@@ -112,9 +112,9 @@ $githubUserRequestsContent
     }
 
     # 'blogURL' attribute getter...
-    [string] getBlogURL()
+    [string] getBlog()
     {
-        return $this.blogURL
+        return $this.blog
     }
 
     # 'name' attribute getter...
@@ -124,9 +124,9 @@ $githubUserRequestsContent
     }
 
     # 'avatarURL' attribute getter...
-    [string] getAvatarURL()
+    [string] getAvatar()
     {
-        return $this.avatarURL
+        return $this.avatar
     }
 
     # 'type' attribute getter...
@@ -141,10 +141,10 @@ $githubUserRequestsContent
         return $this.location
     }
 
-    # 'htmlURL' attribute getter...
-    [string] getHtmlURL()
+    # 'profile' attribute getter...
+    [string] getProfile()
     {
-        return $this.htmlURL
+        return $this.profile
     }
 
     # 'login' attribute getter...
