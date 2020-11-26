@@ -50,7 +50,20 @@ $githubUserRequestsContent
     # Returns the User current instance as String...
     [string] ToString()
     {
-        return ""
+        return "(" + 
+                   "login: " + $this.login + ", " +
+                   "id: " + $this.id + ", " +
+                   "avatar: " + $this.avatarURL + ", " +
+                   "profile: " + $this.htmlURL + ", " +
+                   "type: " + $this.type + ", " +
+                   "name: " + $this.name + ", " +
+                   "blog: " + $this.blogURL + ", " +
+                   "location: " + $this.location + ", " +
+                   "is hireable: " + $this.isHireable + ", " +
+                   "public repos count: " + $this.publicReposCount + ", " +
+                   "followers count: " + $this.followersCount + ", " +
+                   "following count: " + $this.followingCount +  
+                ")"
     }
 
     # Returns, as a boolean, the result of the comparison between 2 instances of the 'User' class...
