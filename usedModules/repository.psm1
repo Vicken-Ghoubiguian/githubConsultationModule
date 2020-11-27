@@ -29,96 +29,97 @@ class Repository
         
     }
 
-    #
+    # 'id' attribute getter...
     [int] getId()
     {
         return $this.id
     }
 
-    #
+    # 'nodeID' attribute getter...
     [string] getNodeID()
     {
         return $this.nodeID
     }
 
-    #
+    # 'name' attribute getter...
     [string] getName()
     {
         return $this.name
     }
 
-    #
+    # 'fullName' attribute getter...
     [string] getFullName()
     {
         return $this.fullName
     }
 
+    # 'isPrivate' attribute getter...
     [bool] getIsPrivate()
     {
         return $this.isPrivate
     }
 
-    #
+    # 'ownerID' attribute getter...
     [string] getOwnerID()
     {
         return $this.ownerID
     }
 
-    #
+    # 'ownerLogin' attribute getter...
     [string] getOwnerLogin()
     {
         return $this.ownerLogin
     }
 
-    #
+    # 'page' attribute getter...
     [string] getPage()
     {
         return $this.page
     }
 
-    #
+    # 'description' attribute getter...
     [string] getDescription()
     {
         return $this.description
     }
 
-    #
+    # 'isFork' attribute getter...
     [bool] getIsFork()
     {
         return $this.isFork
     }
 
-    #
+    # 'forks' attribute getter...
     [System.Array] getForks()
     {
         return $this.forks
     }
 
-    #
+    # 'contributors' attribute getter...
     [System.Array] getContributors()
     {
         return $this.contributors
     }
 
-    #
+    # 'subscribers' attribute getter...
     [System.Array] getSubscribers()
     {
         return $this.subscribers
     }
 
-    #
+    # 'license' attribute getter...
     [License] getLicense()
     {
         return $this.license
     }
 
-    #
+    # 'mainLanguage' attribute getter...
     [string] getMainLanguage()
     {
         return $this.mainLanguage
     }
 
-    #
+    # 'allLanguages' attribute getter...
     [System.Array] getAllLanguages()
     {
         return $this.allLanguages
