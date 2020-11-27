@@ -1,4 +1,5 @@
 ﻿Using module .\license.psm1
+Using module .\user.psm1
 
 # Definition of the Repository Powershell class to define a repository from the GitHub API...
 class Repository
@@ -27,6 +28,18 @@ class Repository
     Repository([string]$wishedUserLogin, [string]$wishedRepositoryName)
     {
         
+    }
+
+    # Definition of a static function to put all repositories of a user identified as a User class instance inside an array...
+    static [System.Array] listAllRepositoriesFromOwner([User]$owner)
+    {
+        return @()
+    }
+
+    # Definition of a static function to put all repositories of a user identified by its login inside an array...
+    static [System.Array] listAllRepositoriesFromLogin([string]$login)
+    {
+        return @()
     }
 
     # 'id' attribute getter...
