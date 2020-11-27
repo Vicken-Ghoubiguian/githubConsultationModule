@@ -33,12 +33,32 @@ class Repository
     # Definition of a static function to put all repositories of a user identified as a User class instance inside an array...
     static [System.Array] listAllRepositoriesFromOwner([User]$owner)
     {
+        # Extract all the data relating to all the repositories of the desired user from the received JSON ...
+        $githubGetReposURL = "https://api.github.com/users/" + $owner.getLogin() + "/repos"
+        $githubReposRequest = Invoke-WebRequest -Uri $githubGetReposURL -Method Get
+        $githubReposRequestsContent = $githubReposRequest.Content
+        $githubReposRequestsJSONContent = @"
+               
+$githubReposRequestsContent
+"@
+        $githubReposRequestsResult = ConvertFrom-Json -InputObject $githubReposRequestsJSONContent
+
         return @()
     }
 
     # Definition of a static function to put all repositories of a user identified by its login inside an array...
     static [System.Array] listAllRepositoriesFromLogin([string]$login)
     {
+        # Extract all the data relating to all the repositories of the desired user from the received JSON ...
+        $githubGetReposURL = "https://api.github.com/users/" + $login + "/repos"
+        $githubReposRequest = Invoke-WebRequest -Uri $githubGetReposURL -Method Get
+        $githubReposRequestsContent = $githubReposRequest.Content
+        $githubReposRequestsJSONContent = @"
+               
+$githubReposRequestsContent
+"@
+        $githubReposRequestsResult = ConvertFrom-Json -InputObject $githubReposRequestsJSONContent
+
         return @()
     }
 
