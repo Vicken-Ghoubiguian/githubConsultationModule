@@ -46,3 +46,22 @@ $githubReposRequestsContent
 "@
     $githubReposRequestsResult = ConvertFrom-Json -InputObject $githubReposRequestsJSONContent
 }
+
+#
+function getAllReposFromOwner {
+
+    #
+    param (
+        [user]$owner
+    )
+
+    # Extract all the data relating to all the repositories of the desired user from the received JSON ...
+    $githubGetReposURL = "https://api.github.com/users/" + $wishedUserLogin + "/repos"
+    $githubReposRequest = Invoke-WebRequest -Uri $githubGetReposURL -Method Get
+    $githubReposRequestsContent = $githubReposRequest.Content
+    $githubReposRequestsJSONContent = @"
+               
+$githubReposRequestsContent
+"@
+    $githubReposRequestsResult = ConvertFrom-Json -InputObject $githubReposRequestsJSONContent
+}
