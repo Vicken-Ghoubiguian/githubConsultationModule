@@ -28,4 +28,99 @@ class Repository
     {
         
     }
+
+    #
+    [int] getId()
+    {
+        return $this.id
+    }
+
+    #
+    [string] getNodeID()
+    {
+        return $this.nodeID
+    }
+
+    #
+    [string] getName()
+    {
+        return $this.name
+    }
+
+    #
+    [string] getFullName()
+    {
+        return $this.fullName
+    }
+
+    [bool] getIsPrivate()
+    {
+        return $this.isPrivate
+    }
+
+    #
+    [string] getOwnerID()
+    {
+        return $this.ownerID
+    }
+
+    #
+    [string] getOwnerLogin()
+    {
+        return $this.ownerLogin
+    }
+
+    #
+    [string] getPage()
+    {
+        return $this.page
+    }
+
+    #
+    [string] getDescription()
+    {
+        return $this.description
+    }
+
+    #
+    [bool] getIsFork()
+    {
+        return $this.isFork
+    }
+
+    #
+    [System.Array] getForks()
+    {
+        return $this.forks
+    }
+
+    #
+    [System.Array] getContributors()
+    {
+        return $this.contributors
+    }
+
+    #
+    [System.Array] getSubscribers()
+    {
+        return $this.subscribers
+    }
+
+    #
+    [License] getLicense()
+    {
+        return $this.license
+    }
+
+    #
+    [string] getMainLanguage()
+    {
+        return $this.mainLanguage
+    }
+
+    #
+    [System.Array] getAllLanguages()
+    {
+        return $this.allLanguages
+    }
 }
