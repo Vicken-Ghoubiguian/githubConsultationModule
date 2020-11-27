@@ -23,8 +23,8 @@ class Repository
     hidden [string]$mainLanguage
     hidden [System.Array]$allLanguages
 
-    # Repository class constructor...
-    Repository([string]$wishedUserLogin)
+    # Repository class constructor with user login and repository name...
+    Repository([string]$wishedUserLogin, [string]$wishedRepositoryName)
     {
         
     }
