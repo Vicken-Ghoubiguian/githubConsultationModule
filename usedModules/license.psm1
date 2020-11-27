@@ -18,4 +18,34 @@ class License
         $this.licenseURL = $collectedLicense
         $this.nodeID = $collectedNodeID
     }
+
+    # 'key' attribute getter...
+    [string] getKey()
+    {
+        return $this.key
+    }
+
+    # 'name' attribute getter...
+    [string] getName()
+    {
+        return $this.name
+    }
+
+    # 'spdxID' attribute getter...
+    [string] getSpdxID()
+    {
+        return $this.spdxID
+    }
+
+    # 'licenseURL' attribute getter...
+    [string] getLicenseURL()
+    {
+        return $this.licenseURL
+    }
+
+    # 'nodeID' attribute getter...
+    [string] getNodeID()
+    {
+        return $this.nodeID
+    }
 }
