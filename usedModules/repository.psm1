@@ -25,15 +25,81 @@ class Repository
     hidden [string]$sshURL
     hidden [string]$cloneURL
     hidden [string]$svnURL
+    hidden [string]$archiveURL
     hidden [string]$homePage
-    hidden [bool]$archived
+    hidden [bool]$isArchived
     hidden [string]$mainLanguage
     hidden [System.Array]$allLanguages
 
     # Repository class constructor with user login and repository name...
     Repository([string]$wishedUserLogin, [string]$wishedRepositoryName)
     {
+        # Create an HTTP request to take the GitHub repository identified by its name and its owner's login...
+        $githubGetReposURL = "https://api.github.com/repos/" + $wishedUserLogin + "/" + $wishedRepositoryName
+
+        # Bloc we wish execute to get all informations about the wished repository...
+        try {
         
+            #
+            $githubReposRequest = Invoke-WebRequest -Uri $githubGetReposURL -Method Get
+            $githubReposRequestsContent = $githubReposRequest.Content
+            $githubReposRequestsJSONContent = @"
+               
+$githubReposRequestsContent
+"@
+            $githubReposRequestsResult = ConvertFrom-Json -InputObject $githubReposRequestsJSONContent
+
+            #
+            $this.id = $githubReposRequestsResult.id
+            $this.nodeID = $githubReposRequestsResult.node_id
+            $this.name = $githubReposRequestsResult.name
+            $this.fullName = $githubReposRequestsResult.full_name
+            $this.isPrivate = $githubReposRequestsResult.private
+            $this.ownerLogin = $githubReposRequestsResult.owner.login
+            $this.ownerID = $githubReposRequestsResult.owner.id
+            $this.page = $githubReposRequestsResult.html_url
+            $this.description = $githubReposRequestsResult.description
+            $this.isFork = $githubReposRequestsResult.fork
+            
+            #
+            $this.forks = @()
+
+            #
+            $this.forksCount = $githubReposRequestsResult.forks_count
+
+            #
+            $this.contributors = @()
+
+            #
+            $this.subscribers = @()
+
+            #
+            If(!$githubReposRequestsResult.license) {
+
+                $this.license = [License]::new($githubReposRequestsResult.license.key, $githubReposRequestsResult.license.name, $githubReposRequestsResult.license.spdx_id, $githubReposRequestsResult.license.node_id)
+
+            } Else {
+
+                $this.license = null
+            }
+
+            #
+            $this.gitURL = $githubReposRequestsResult.git_url
+            $this.sshURL = $githubReposRequestsResult.ssh_url
+            $this.cloneURL = $githubReposRequestsResult.clone_url
+            $this.svnURL = $githubReposRequestsResult.svn_url
+            $this.archiveURL = $githubReposRequestsResult.archive_url
+            $this.homePage = $githubReposRequestsResult.homepage
+            $this.isArchived = $githubReposRequestsResult.archived
+            $this.mainLanguage = $githubReposRequestsResult.language
+
+            #
+            $this.allLanguages = @()
+
+        # Bloc to execute if an System.Net.WebException is encountered...
+        } catch [System.Net.WebException] {
+
+        }
     }
 
     # Definition of a static function to put all repositories of a user identified as a User class instance inside an array...
@@ -182,6 +248,12 @@ $githubReposRequestsContent
         return $this.svnURL
     }
 
+    # 'archiveURL' attribute getter...
+    [string] getArchiveURL()
+    {
+        return $this.archiveURL
+    }
+
     # 'homePage' attribute getter...
     [string] getHomePage()
     {
@@ -189,9 +261,9 @@ $githubReposRequestsContent
     }
 
     # 'archived' attribute getter...
-    [bool] getArchived()
+    [bool] getIsArchived()
     {
-        return $this.archived
+        return $this.isArchived
     }
 
     # 'mainLanguage' attribute getter...

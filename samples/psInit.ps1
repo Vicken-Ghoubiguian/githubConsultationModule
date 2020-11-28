@@ -44,3 +44,18 @@ $githubReposRequestsContent
 "@
 
 $githubReposRequestsResult = ConvertFrom-Json -InputObject $githubReposRequestsJSONContent
+
+Write-Host -NoNewLine "------------------------------------------------------"
+
+$githubGetReposURL = "https://api.github.com/repos/Vicken-Ghoubiguian/opencv"
+
+$githubReposRequest = Invoke-WebRequest -Uri $githubGetReposURL -Method Get
+
+$githubReposRequestsContent = $githubReposRequest.Content
+        
+$githubReposRequestsJSONContent = @"
+               
+$githubReposRequestsContent
+"@
+
+$githubReposRequestsResult = ConvertFrom-Json -InputObject $githubReposRequestsJSONContent
