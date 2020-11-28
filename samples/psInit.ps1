@@ -2,7 +2,7 @@
 
 #>
 
-$githubGetUserURL = "https://api.github.com/users/Vicken-Ghoubiguian"
+<# $githubGetUserURL = "https://api.github.com/users/Vicken-Ghoubiguian"
 
 $githubUserRequest = Invoke-WebRequest -Uri $githubGetUserURL -Method Get
 
@@ -43,20 +43,18 @@ $githubReposRequestsJSONContent = @"
 $githubReposRequestsContent
 "@
 
-$githubReposRequestsResult = ConvertFrom-Json -InputObject $githubReposRequestsJSONContent
+$githubReposRequestsResult = ConvertFrom-Json -InputObject $githubReposRequestsJSONContent #>
 
 Write-Host -NoNewLine "------------------------------------------------------"
 
-$githubGetReposURL = "https://api.github.com/repos/Vicken-Ghoubiguian/weathermodule/languages"
+$githubGetReposURL = "https://api.github.com/repos/Vicken-Ghoubiguian/opencv/languages"
 
 $githubReposRequest = Invoke-WebRequest -Uri $githubGetReposURL -Method Get
 
-$githubReposRequestsContent = $githubReposRequest.Content
-
-$jsonObj = ConvertFrom-Json $githubReposRequestsContent
+$jsonObj = ConvertFrom-Json $githubReposRequest.Content
 
 $hash = @{}
-
+$finalHash = @{}
 foreach($property in $jsonObj.PSObject.Properties) {
 
     $hash[$property.Name] = $property.Value
@@ -66,6 +64,11 @@ $totalValue = 0
 foreach($value in $hash.Values) {
 
     $totalValue = $totalValue + $value
+}
 
-    Write-Host $value
+foreach($key in $hash.Keys) {
+
+    $percentage = ($hash[$key] * 100)/$totalValue
+
+    $finalHash.Add($key, [Math]::Round($percentage, 1))
 }
