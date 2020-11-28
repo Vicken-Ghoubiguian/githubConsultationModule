@@ -17,10 +17,16 @@ class Repository
     hidden [string]$description
     hidden [bool]$isFork
     hidden [System.Array]$forks
+    hidden [int]$forksCount
     hidden [System.Array]$contributors
     hidden [System.Array]$subscribers
     hidden [License]$license
-
+    hidden [string]$gitURL
+    hidden [string]$sshURL
+    hidden [string]$cloneURL
+    hidden [string]$svnURL
+    hidden [string]$homePage
+    hidden [bool]$archived
     hidden [string]$mainLanguage
     hidden [System.Array]$allLanguages
 
@@ -128,6 +134,12 @@ $githubReposRequestsContent
         return $this.forks
     }
 
+    # 'forksCount' attribute getter...
+    [int] getForksCount()
+    {
+        return $this.forksCount
+    }
+
     # 'contributors' attribute getter...
     [System.Array] getContributors()
     {
@@ -144,6 +156,42 @@ $githubReposRequestsContent
     [License] getLicense()
     {
         return $this.license
+    }
+
+    # 'gitURL' attribute getter...
+    [string] getGitURL()
+    {
+        return $this.gitURL
+    }
+
+    # 'sshURL' attribute getter...
+    [string] getSshURL()
+    {
+        return $this.sshURL
+    }
+
+    # 'cloneURL' attribute getter...
+    [string] getCloneURL()
+    {
+        return $this.cloneURL
+    }
+
+    # 'svnURL' attribute getter...
+    [string] getSvnURL()
+    {
+        return $this.svnURL
+    }
+
+    # 'homePage' attribute getter...
+    [string] getHomePage()
+    {
+        return $this.homePage
+    }
+
+    # 'archived' attribute getter...
+    [bool] getArchived()
+    {
+        return $this.archived
     }
 
     # 'mainLanguage' attribute getter...

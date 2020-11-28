@@ -29,3 +29,18 @@ $githubReposRequestsContent
 "@
 
 $githubReposRequestsResult = ConvertFrom-Json -InputObject $githubReposRequestsJSONContent
+
+Write-Host -NoNewLine "------------------------------------------------------"
+
+$githubGetReposURL = "https://api.github.com/users/Vicken-Ghoubiguian/repos"
+
+$githubReposRequest = Invoke-WebRequest -Uri $githubGetReposURL -Method Get
+
+$githubReposRequestsContent = $githubReposRequest.Content
+        
+$githubReposRequestsJSONContent = @"
+               
+$githubReposRequestsContent
+"@
+
+$githubReposRequestsResult = ConvertFrom-Json -InputObject $githubReposRequestsJSONContent
