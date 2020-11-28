@@ -29,7 +29,7 @@ class Repository
     hidden [string]$homePage
     hidden [bool]$isArchived
     hidden [string]$mainLanguage
-    hidden [System.Array]$allLanguages
+    hidden [System.Collections.Hashtable]$allLanguages
 
     # Repository class constructor with user login and repository name...
     Repository([string]$wishedUserLogin, [string]$wishedRepositoryName)
@@ -94,7 +94,7 @@ $githubReposRequestsContent
             $this.mainLanguage = $githubReposRequestsResult.language
 
             #
-            $this.allLanguages = @()
+            $this.allLanguages = @{}
 
         # Bloc to execute if an System.Net.WebException is encountered...
         } catch [System.Net.WebException] {
@@ -273,7 +273,7 @@ $githubReposRequestsContent
     }
 
     # 'allLanguages' attribute getter...
-    [System.Array] getAllLanguages()
+    [System.Collections.Hashtable] getAllLanguages()
     {
         return $this.allLanguages
     }

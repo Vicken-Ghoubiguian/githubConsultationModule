@@ -47,15 +47,25 @@ $githubReposRequestsResult = ConvertFrom-Json -InputObject $githubReposRequestsJ
 
 Write-Host -NoNewLine "------------------------------------------------------"
 
-$githubGetReposURL = "https://api.github.com/repos/Vicken-Ghoubiguian/opencv"
+$githubGetReposURL = "https://api.github.com/repos/Vicken-Ghoubiguian/weathermodule/languages"
 
 $githubReposRequest = Invoke-WebRequest -Uri $githubGetReposURL -Method Get
 
 $githubReposRequestsContent = $githubReposRequest.Content
-        
-$githubReposRequestsJSONContent = @"
-               
-$githubReposRequestsContent
-"@
 
-$githubReposRequestsResult = ConvertFrom-Json -InputObject $githubReposRequestsJSONContent
+$jsonObj = ConvertFrom-Json $githubReposRequestsContent
+
+$hash = @{}
+
+foreach($property in $jsonObj.PSObject.Properties) {
+
+    $hash[$property.Name] = $property.Value
+}
+
+$totalValue = 0
+foreach($value in $hash.Values) {
+
+    $totalValue = $totalValue + $value
+
+    Write-Host $value
+}
