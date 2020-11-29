@@ -10,12 +10,12 @@ class License
     hidden [string]$nodeID
 
     # License class constructor...
-    License([string]$collectedKey, [string]$collectedName, [string]$collectedSpdxID, [string]$collectedLicense, [string]$collectedNodeID)
+    License([string]$collectedKey, [string]$collectedName, [string]$collectedSpdxID, [string]$collectedLicenseURL, [string]$collectedNodeID)
     {
         $this.key = $collectedKey
         $this.name = $collectedName
         $this.spdxID = $collectedSpdxID
-        $this.licenseURL = $collectedLicense
+        $this.licenseURL = $collectedLicenseURL
         $this.nodeID = $collectedNodeID
     }
 
