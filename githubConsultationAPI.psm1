@@ -47,5 +47,5 @@ function getAllReposFromOwner {
         [user]$owner
     )
 
-    return [Repository]::listAllRepositoriesFromOwner($owner)
+    return [Repository]::listAllRepositoriesFromOwner($owner.getLogin())
 }
