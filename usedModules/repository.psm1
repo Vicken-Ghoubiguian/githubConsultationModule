@@ -1,5 +1,5 @@
 ﻿Using module .\license.psm1
-Using module .\user.psm1
+#Using module .\user.psm1
 
 # Definition of the Repository Powershell class to define a repository from the GitHub API...
 class Repository
@@ -29,7 +29,7 @@ class Repository
     hidden [string]$homePage
     hidden [bool]$isArchived
     hidden [string]$mainLanguage
-    hidden [System.Collections.Hashtable]$allLanguages
+    hidden [System.Collections.Hashtable]$allLanguages = @{}
 
     # Repository class constructor with user login and repository name...
     Repository([string]$wishedUserLogin, [string]$wishedRepositoryName)
@@ -88,13 +88,13 @@ $githubReposRequestsContent
             $this.subscribers = @()
 
             #
-            If(!$githubReposRequestsResult.license) {
+            If($githubReposRequestsResult.license) {
 
                 $this.license = [License]::new($githubReposRequestsResult.license.key, $githubReposRequestsResult.license.name, $githubReposRequestsResult.license.spdx_id, $githubReposRequestsResult.license.node_id)
 
             } Else {
 
-                $this.license = null
+                $this.license = $null
             }
 
             #
@@ -122,7 +122,7 @@ $githubReposRequestsContent
     }
 
     # Definition of a static function to put all repositories of a user identified as a User class instance inside an array...
-    static [System.Array] listAllRepositoriesFromOwner([User]$owner)
+    <#static [System.Array] listAllRepositoriesFromOwner([User]$owner)
     {
         # Extract all the data relating to all the repositories of the desired user from the received JSON ...
         $githubGetReposURL = "https://api.github.com/users/" + $owner.getLogin() + "/repos"
@@ -135,7 +135,7 @@ $githubReposRequestsContent
         $githubReposRequestsResult = ConvertFrom-Json -InputObject $githubReposRequestsJSONContent
 
         return @()
-    }
+    }#>
 
     # Definition of a static function to put all repositories of a user identified by its login inside an array...
     static [System.Array] listAllRepositoriesFromLogin([string]$login)
