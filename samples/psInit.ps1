@@ -2,7 +2,7 @@
 
 #>
 
-<# $githubGetUserURL = "https://api.github.com/users/Vicken-Ghoubiguian"
+$githubGetUserURL = "https://api.github.com/users/Vicken-Ghoubiguian"
 
 $githubUserRequest = Invoke-WebRequest -Uri $githubGetUserURL -Method Get
 
@@ -43,7 +43,7 @@ $githubReposRequestsJSONContent = @"
 $githubReposRequestsContent
 "@
 
-$githubReposRequestsResult = ConvertFrom-Json -InputObject $githubReposRequestsJSONContent #>
+$githubReposRequestsResult = ConvertFrom-Json -InputObject $githubReposRequestsJSONContent
 
 Write-Host -NoNewLine "------------------------------------------------------"
 
@@ -55,15 +55,11 @@ $jsonObj = ConvertFrom-Json $githubReposRequest.Content
 
 $hash = @{}
 $finalHash = @{}
+$totalValue = 0
 foreach($property in $jsonObj.PSObject.Properties) {
 
     $hash[$property.Name] = $property.Value
-}
-
-$totalValue = 0
-foreach($value in $hash.Values) {
-
-    $totalValue = $totalValue + $value
+    $totalValue = $totalValue + $property.Value
 }
 
 foreach($key in $hash.Keys) {

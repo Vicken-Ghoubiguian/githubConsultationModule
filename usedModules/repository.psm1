@@ -37,6 +37,9 @@ class Repository
         # Create an HTTP request to take the GitHub repository identified by its name and its owner's login...
         $githubGetReposURL = "https://api.github.com/repos/" + $wishedUserLogin + "/" + $wishedRepositoryName
 
+        # Create an HTTP request to take all the languages and their respective proportions used in the GitHub repository identified by its name and its owner's login...
+        $githubGetLanguagesReposURL = "https://api.github.com/repos/" + $wishedUserLogin + "/" + $wishedRepositoryName + "/languages"
+
         # Bloc we wish execute to get all informations about the wished repository...
         try {
         
@@ -49,6 +52,19 @@ $githubReposRequestsContent
 "@
             $githubReposRequestsResult = ConvertFrom-Json -InputObject $githubReposRequestsJSONContent
 
+            <#
+
+            #>
+            $githubLanguagesReposRequest = Invoke-WebRequest -Uri $githubGetLanguagesReposURL -Method Get
+            $languagesJSONObj = ConvertFrom-Json $githubLanguagesReposRequest.Content
+            $languagesHash = @{}
+            $totalValue = 0
+            foreach($property in $languagesJSONObj.PSObject.Properties) {
+
+                $languagesHash[$property.Name] = $property.Value
+                $totalValue = $totalValue + $property.Value
+            }
+
             #
             $this.id = $githubReposRequestsResult.id
             $this.nodeID = $githubReposRequestsResult.node_id
@@ -60,12 +76,10 @@ $githubReposRequestsContent
             $this.page = $githubReposRequestsResult.html_url
             $this.description = $githubReposRequestsResult.description
             $this.isFork = $githubReposRequestsResult.fork
+            $this.forksCount = $githubReposRequestsResult.forks_count
             
             #
             $this.forks = @()
-
-            #
-            $this.forksCount = $githubReposRequestsResult.forks_count
 
             #
             $this.contributors = @()
@@ -94,7 +108,12 @@ $githubReposRequestsContent
             $this.mainLanguage = $githubReposRequestsResult.language
 
             #
-            $this.allLanguages = @{}
+            foreach($key in $languagesHash.Keys) {
+
+                $percentage = ($languagesHash[$key] * 100)/$totalValue
+
+                $this.allLanguages.Add($key, [Math]::Round($percentage, 1))
+            }
 
         # Bloc to execute if an System.Net.WebException is encountered...
         } catch [System.Net.WebException] {
