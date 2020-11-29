@@ -1,5 +1,4 @@
 ﻿Using module .\license.psm1
-#Using module .\user.psm1
 
 # Definition of the Repository Powershell class to define a repository from the GitHub API...
 class Repository
@@ -90,7 +89,7 @@ $githubReposRequestsContent
             #
             If($githubReposRequestsResult.license) {
 
-                $this.license = [License]::new($githubReposRequestsResult.license.key, $githubReposRequestsResult.license.name, $githubReposRequestsResult.license.spdx_id, $githubReposRequestsResult.license.node_id)
+                $this.license = [License]::new($githubReposRequestsResult.license.key, $githubReposRequestsResult.license.name, $githubReposRequestsResult.license.spdx_id, $githubReposRequestsResult.license.url, $githubReposRequestsResult.license.node_id)
 
             } Else {
 
@@ -120,22 +119,6 @@ $githubReposRequestsContent
 
         }
     }
-
-    # Definition of a static function to put all repositories of a user identified as a User class instance inside an array...
-    <#static [System.Array] listAllRepositoriesFromOwner([User]$owner)
-    {
-        # Extract all the data relating to all the repositories of the desired user from the received JSON ...
-        $githubGetReposURL = "https://api.github.com/users/" + $owner.getLogin() + "/repos"
-        $githubReposRequest = Invoke-WebRequest -Uri $githubGetReposURL -Method Get
-        $githubReposRequestsContent = $githubReposRequest.Content
-        $githubReposRequestsJSONContent = @"
-               
-$githubReposRequestsContent
-"@
-        $githubReposRequestsResult = ConvertFrom-Json -InputObject $githubReposRequestsJSONContent
-
-        return @()
-    }#>
 
     # Definition of a static function to put all repositories of a user identified by its login inside an array...
     static [System.Array] listAllRepositoriesFromLogin([string]$login)
