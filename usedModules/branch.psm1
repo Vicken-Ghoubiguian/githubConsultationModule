@@ -15,6 +15,15 @@ class Branch {
         $this.lastCommitURL = $collectedLastCommitURL
         $this.isProtected = $collectedIsProtected
     }
+    
+    # Definition of a static function to put all branches from a user and a repository identified respectively by its login and its name inside an array...
+    Static [System.Array] listAllBranches([string]$wishedLogin, [string]$wishedRepos)
+    {
+        #
+        $githubGetBranchesURL = "https://api.github.com/repos/" + $wishedLogin + "/" + $wishedRepos + "/branches"
+
+        return @()
+    }
 
     # 'name' attribute getter...
     [string] getName()
