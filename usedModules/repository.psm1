@@ -147,6 +147,57 @@ $githubReposRequestsContent
         return @()
     }
 
+    #
+    [String] ToString()
+    {
+        $returningString =  "-----------------" + "Presentation" + "-----------------" + "`n" +
+               "Id: " + $this.id + "`n" +
+               "Node Id: " + $this.nodeID + "`n" +
+               "Name: " + $this.name + "`n" +
+               "Full name: " + $this.fullName + "`n" +
+               "Page: " + $this.page + "`n" +
+               "Is it private ? " + $this.isPrivate + "`n" +
+               "Is it a fork ? " + $this.isFork + "`n" +
+               "Is it archived ? " + $this.isArchived + "`n" + "`n" +
+
+                "-----------------" + "Owner" + "-----------------" + "`n" +
+
+                "Owner ID: " + $this.ownerID + "`n" +
+                "Owner login: " + $this.ownerLogin + "`n" + "`n" +
+
+                "-----------------" + "Languages" + "-----------------" + "`n" +
+
+                "Main language: " + $this.mainLanguage + "`n" + "`n"
+
+                foreach($language in $this.allLanguages.Keys) {
+
+                    $returningString += $language + ": " + $this.allLanguages[$language] + "%" + "`n"
+                }
+
+                $returningString += "`n"
+
+                $returningString += "-----------------" + "License" + "-----------------" + "`n" +
+
+                "Name: " + $this.license.getName() + "`n" +
+                "SPDX Id: " + $this.license.getSpdxID() + "`n" +
+                "License URL: " + $this.license.getLicenseURL() + "`n" +
+                "Key: " + $this.license.getKey() + "`n" +
+                "Node Id: " + $this.license.getNodeID() + "`n" + "`n" +
+
+                "-----------------" + "Contributors" + "-----------------" + "`n" + "`n" +
+
+                "-----------------" + "Subscribers" + "-----------------" + "`n" + "`n" +
+
+                "-----------------" + "Links" + "-----------------" + "`n" +
+
+                "Git URL: " + $this.gitURL + "`n" +
+                "ssh URL: " + $this.sshURL + "`n" +
+                "svn URL: " + $this.svnURL + "`n" +
+                "home page: " + $this.homePage + "`n" + "`n"
+
+                return $returningString
+    }
+
     # 'id' attribute getter...
     [int] getId()
     {
