@@ -1,5 +1,6 @@
 ﻿Using module .\license.psm1
 Using module .\branch.psm1
+Using module .\gitHubError.psm1
 
 # Definition of the Repository Powershell class to define a repository from the GitHub API...
 class Repository
@@ -31,6 +32,7 @@ class Repository
     hidden [bool]$isArchived
     hidden [string]$mainLanguage
     hidden [System.Collections.Hashtable]$allLanguages = @{}
+    hidden [GitHubError]$error
 
     # Repository class constructor with user login and repository name...
     Repository([string]$wishedUserLogin, [string]$wishedRepositoryName)
@@ -119,6 +121,13 @@ $githubReposRequestsContent
         # Bloc to execute if an System.Net.WebException is encountered...
         } catch [System.Net.WebException] {
 
+            $errorType = $_.Exception.GetType().Name
+
+            $errorMessage = $_.Exception.Message
+
+            $errorStackTrace = $_.Exception.StackTrace
+
+            $this.error = [GitHubError]::new($errorType, $errorMessage, $errorStackTrace)
         }
     }
 
@@ -280,5 +289,11 @@ $githubReposRequestsContent
     [System.Collections.Hashtable] getAllLanguages()
     {
         return $this.allLanguages
+    }
+
+    # 'error' attribute getter...
+    [GitHubError] getGitHubError()
+    {
+        return $this.error
     }
 }
