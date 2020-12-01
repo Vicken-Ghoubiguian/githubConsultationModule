@@ -150,52 +150,59 @@ $githubReposRequestsContent
     #
     [String] ToString()
     {
-        $returningString =  "-----------------" + "Presentation" + "-----------------" + "`n" +
-               "Id: " + $this.id + "`n" +
-               "Node Id: " + $this.nodeID + "`n" +
-               "Name: " + $this.name + "`n" +
-               "Full name: " + $this.fullName + "`n" +
-               "Page: " + $this.page + "`n" +
-               "Is it private ? " + $this.isPrivate + "`n" +
-               "Is it a fork ? " + $this.isFork + "`n" +
-               "Is it archived ? " + $this.isArchived + "`n" + "`n" +
+        If(!$this.error) {
 
-                "-----------------" + "Owner" + "-----------------" + "`n" +
+            $returningString =  "`n" + "-----------------" + "Presentation" + "-----------------" + "`n" +
+                   "Id: " + $this.id + "`n" +
+                   "Node Id: " + $this.nodeID + "`n" +
+                   "Name: " + $this.name + "`n" +
+                   "Full name: " + $this.fullName + "`n" +
+                   "Page: " + $this.page + "`n" +
+                   "Is it private ? " + $this.isPrivate + "`n" +
+                   "Is it a fork ? " + $this.isFork + "`n" +
+                   "Is it archived ? " + $this.isArchived + "`n" + "`n" +
 
-                "Owner ID: " + $this.ownerID + "`n" +
-                "Owner login: " + $this.ownerLogin + "`n" + "`n" +
+                    "-----------------" + "Owner" + "-----------------" + "`n" +
 
-                "-----------------" + "Languages" + "-----------------" + "`n" +
+                    "Owner ID: " + $this.ownerID + "`n" +
+                    "Owner login: " + $this.ownerLogin + "`n" + "`n" +
 
-                "Main language: " + $this.mainLanguage + "`n" + "`n"
+                    "-----------------" + "Languages" + "-----------------" + "`n" +
 
-                foreach($language in $this.allLanguages.Keys) {
+                    "Main language: " + $this.mainLanguage + "`n" + "`n"
 
-                    $returningString += $language + ": " + $this.allLanguages[$language] + "%" + "`n"
-                }
+                    foreach($language in $this.allLanguages.Keys) {
 
-                $returningString += "`n"
+                        $returningString += $language + ": " + $this.allLanguages[$language] + "%" + "`n"
+                    }
 
-                $returningString += "-----------------" + "License" + "-----------------" + "`n" +
+                    $returningString += "`n"
 
-                "Name: " + $this.license.getName() + "`n" +
-                "SPDX Id: " + $this.license.getSpdxID() + "`n" +
-                "License URL: " + $this.license.getLicenseURL() + "`n" +
-                "Key: " + $this.license.getKey() + "`n" +
-                "Node Id: " + $this.license.getNodeID() + "`n" + "`n" +
+                    $returningString += "-----------------" + "License" + "-----------------" + "`n" +
 
-                "-----------------" + "Contributors" + "-----------------" + "`n" + "`n" +
+                    "Name: " + $this.license.getName() + "`n" +
+                    "SPDX Id: " + $this.license.getSpdxID() + "`n" +
+                    "License URL: " + $this.license.getLicenseURL() + "`n" +
+                    "Key: " + $this.license.getKey() + "`n" +
+                    "Node Id: " + $this.license.getNodeID() + "`n" + "`n" +
 
-                "-----------------" + "Subscribers" + "-----------------" + "`n" + "`n" +
+                    "-----------------" + "Contributors" + "-----------------" + "`n" + "`n" +
 
-                "-----------------" + "Links" + "-----------------" + "`n" +
+                    "-----------------" + "Subscribers" + "-----------------" + "`n" + "`n" +
 
-                "Git URL: " + $this.gitURL + "`n" +
-                "ssh URL: " + $this.sshURL + "`n" +
-                "svn URL: " + $this.svnURL + "`n" +
-                "home page: " + $this.homePage + "`n" + "`n"
+                    "-----------------" + "Links" + "-----------------" + "`n" +
 
-                return $returningString
+                    "Git URL: " + $this.gitURL + "`n" +
+                    "ssh URL: " + $this.sshURL + "`n" +
+                    "svn URL: " + $this.svnURL + "`n" +
+                    "home page: " + $this.homePage + "`n"
+
+          } Else {
+
+                    $returningString = $this.error.ToString()
+          }
+
+          return $returningString
     }
 
     # 'id' attribute getter...

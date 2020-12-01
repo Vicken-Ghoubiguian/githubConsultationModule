@@ -13,6 +13,15 @@ class GitHubError
         $this.stackTrace = $stackTrace
     }
 
+    #
+    [String] ToString()
+    {
+        return "`n" + "-----------------" + "Error" + "-----------------" + "`n" +
+               "Error type: " + $this.type + "`n" +
+               "Error message: " + $this.message + "`n" +
+               "Error stackTrace: " + $this.stackTrace + "`n"
+    }
+
     # 'type' attribute getter
     [string] getType()
     {
