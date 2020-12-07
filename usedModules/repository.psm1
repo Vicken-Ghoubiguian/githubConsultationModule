@@ -140,12 +140,27 @@ $githubReposRequestsContent
         # Definition of the 'repositoriesArray' array which will contain all repositories of the wished the wished 'userLogin' user...
         $repositoriesArray = [System.Collections.ArrayList]::new()
 
-        # Create an HTTP request to take all repositories informations from the GitHub user identified by its login...
-        $githubGetReposURL = "https://api.github.com/users/" + $userLogin + "/repos"
+        # Bloc we wish execute to get all informations about repositories...
+        try {
 
-        # Retrieving and extracting all repositories received from the URL...
-        $githubReposRequest = Invoke-WebRequest -Uri $githubGetReposURL -Method Get
-        $reposJSONObj = ConvertFrom-Json $githubReposRequest.Content
+            # Create an HTTP request to take all repositories informations from the GitHub user identified by its login...
+            $githubGetReposURL = "https://api.github.com/users/" + $userLogin + "/repos"
+
+            # Retrieving and extracting all repositories received from the URL...
+            $githubReposRequest = Invoke-WebRequest -Uri $githubGetReposURL -Method Get
+            $reposJSONObj = ConvertFrom-Json $githubReposRequest.Content
+
+        # Bloc to execute if an System.Net.WebException is encountered...
+        } catch [System.Net.WebException] {
+        
+            $errorType = $_.Exception.GetType().Name
+
+            $errorMessage = $_.Exception.Message
+
+            $errorStackTrace = $_.Exception.StackTrace
+
+            $repositoriesArray.Add([GitHubError]::new($errorType, $errorMessage, $errorStackTrace))
+        }
 
         # Returning the '$repositoriesArray' array...
         return $repositoriesArray
