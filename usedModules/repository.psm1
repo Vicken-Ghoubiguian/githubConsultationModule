@@ -135,7 +135,7 @@ $githubReposRequestsContent
     }
 
     # Definition of a static function to put all repositories of a user identified by its login inside an array...
-    static [System.Array] listAllRepositoriesFromLogin([string]$userLogin)
+    static [System.Array] listAllRepositories([string]$userLogin)
     {
         # Definition of the 'repositoriesArray' array which will contain all repositories of the wished the wished 'userLogin' user...
         $repositoriesArray = [System.Collections.ArrayList]::new()
