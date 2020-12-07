@@ -134,6 +134,36 @@ $githubReposRequestsContent
         }
     }
 
+    # Repository class constructor with all class attributes in parameter...
+    Repository([int]$id, [string]$nodeID, [string]$name, [string]$fullName, [bool]$isPrivate, [string]$ownerID, [string]$ownerLogin, [string]$page, [string]$description, [bool]$isFork, [System.Array]$forks, [int]$forksCount, [System.Array]$contributors, [System.Array]$subscribers, [System.Array]$branches, [License]$license, [string]$gitURL, [string]$sshURL, [string]$cloneURL, [string]$svnURL, [string]$archiveURL, [string]$homePage, [bool]$isArchived, [string]$mainLanguage, [System.Collections.Hashtable]$allLanguages)
+    {
+        $this.id = $id
+        $this.nodeID = $nodeID
+        $this.name = $name
+        $this.fullName = $fullName
+        $this.isPrivate = $isPrivate
+        $this.ownerID = $ownerID
+        $this.ownerLogin = $ownerLogin
+        $this.page = $page
+        $this.description = $description
+        $this.isFork = $isFork
+        $this.forks = $forks
+        $this.forksCount = $forksCount
+        $this.contributors = $contributors
+        $this.subscribers = $subscribers
+        $this.branches = $branches
+        $this.license = $license
+        $this.gitURL = $gitURL
+        $this.sshURL = $sshURL
+        $this.cloneURL = $cloneURL
+        $this.svnURL = $svnURL
+        $this.archiveURL = $archiveURL
+        $this.homePage = $homePage
+        $this.isArchived = $isArchived
+        $this.mainLanguage = $mainLanguage
+        $this.allLanguages = $allLanguages
+    }
+
     # Definition of a static function to put all repositories of a user identified by its login inside an array...
     static [System.Array] listAllRepositories([string]$userLogin)
     {
