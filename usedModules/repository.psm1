@@ -21,7 +21,7 @@ class Repository
     hidden [int]$forksCount
     hidden [System.Array]$contributors
     hidden [System.Array]$subscribers
-    hidden [System.Array]$branches
+    hidden [System.Array]$branches = @()
     hidden [License]$license
     hidden [string]$gitURL
     hidden [string]$sshURL
@@ -80,6 +80,9 @@ $githubReposRequestsContent
             $this.description = $githubReposRequestsResult.description
             $this.isFork = $githubReposRequestsResult.fork
             $this.forksCount = $githubReposRequestsResult.forks_count
+
+            #
+            $this.branches = [Branch]::listAllBranches($this.ownerLogin, $this.name)
             
             #
             $this.forks = @()

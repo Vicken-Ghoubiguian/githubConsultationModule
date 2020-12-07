@@ -22,7 +22,7 @@ class Branch {
         #
         $githubGetBranchesURL = "https://api.github.com/repos/" + $wishedLogin + "/" + $wishedRepos + "/branches"
 
-        return @()
+        return @("Ok", "Testy", "Testou")
     }
 
     # 'name' attribute getter...
