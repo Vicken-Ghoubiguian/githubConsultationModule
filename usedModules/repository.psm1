@@ -135,19 +135,20 @@ $githubReposRequestsContent
     }
 
     # Definition of a static function to put all repositories of a user identified by its login inside an array...
-    static [System.Array] listAllRepositoriesFromLogin([string]$login)
+    static [System.Array] listAllRepositoriesFromLogin([string]$userLogin)
     {
-        # Extract all the data relating to all the repositories of the desired user from the received JSON ...
-        $githubGetReposURL = "https://api.github.com/users/" + $login + "/repos"
-        $githubReposRequest = Invoke-WebRequest -Uri $githubGetReposURL -Method Get
-        $githubReposRequestsContent = $githubReposRequest.Content
-        $githubReposRequestsJSONContent = @"
-               
-$githubReposRequestsContent
-"@
-        $githubReposRequestsResult = ConvertFrom-Json -InputObject $githubReposRequestsJSONContent
+        # Definition of the 'repositoriesArray' array which will contain all repositories of the wished the wished 'userLogin' user...
+        $repositoriesArray = [System.Collections.ArrayList]::new()
 
-        return @()
+        # Create an HTTP request to take all repositories informations from the GitHub user identified by its login...
+        $githubGetReposURL = "https://api.github.com/users/" + $userLogin + "/repos"
+
+        # Retrieving and extracting all repositories received from the URL...
+        $githubReposRequest = Invoke-WebRequest -Uri $githubGetReposURL -Method Get
+        $reposJSONObj = ConvertFrom-Json $githubReposRequest.Content
+
+        # Returning the '$repositoriesArray' array...
+        return $repositoriesArray
     }
 
     #
