@@ -352,6 +352,12 @@ $githubReposRequestsContent
         return $this.allLanguages
     }
 
+    # 'branches' attribute getter...
+    [System.Array] getBranches()
+    {
+        return $this.branches
+    } 
+
     # 'error' attribute getter...
     [GitHubError] getGitHubError()
     {
