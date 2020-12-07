@@ -81,7 +81,7 @@ $githubReposRequestsContent
             $this.isFork = $githubReposRequestsResult.fork
             $this.forksCount = $githubReposRequestsResult.forks_count
 
-            #
+            # Call of the static function 'listAllBranches' of the PowerShell class 'Branch' to obtain all the branches of the repo...
             $this.branches = [Branch]::listAllBranches($this.ownerLogin, $this.name)
             
             #
