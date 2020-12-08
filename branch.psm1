@@ -1,4 +1,4 @@
-﻿Using module .\gitHubError.psm1
+﻿Using module .\usefulClassesAndObjects\gitHubError.psm1
 
 # Definition of the Branch Powershell class to define a license from the GitHub API...
 class Branch {

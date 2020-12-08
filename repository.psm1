@@ -1,6 +1,6 @@
-﻿Using module .\license.psm1
+﻿Using module .\usefulClassesAndObjects\license.psm1
 Using module .\branch.psm1
-Using module .\gitHubError.psm1
+Using module .\usefulClassesAndObjects\gitHubError.psm1
 
 # Definition of the Repository Powershell class to define a repository from the GitHub API...
 class Repository
