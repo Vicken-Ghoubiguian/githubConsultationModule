@@ -9,3 +9,10 @@ param (
 
 # 
 $branchesArray = [Branch]::listAllBranches($ownerLogin, $repositoryName)
+
+#
+foreach($branch in $this.branches) {
+
+    #
+    $branch.ToString()
+}
