@@ -227,14 +227,11 @@ $githubReposRequestsContent
 
                     $returningString += "`n"
 
-                    $returningString += "-----------------" + "Branches" + "-----------------" + "`n"
+                    $returningString += "-----------------" + "Branches" + "-----------------"
 
                     foreach($branch in $this.branches) {
-                        
-                        $returningString += "Name: " + $branch.getName() + "`n"
-                        $returningString += "Last commit SHA: " + $branch.getLasCommitSha() + "`n"
-                        $returningString += "Last commit URL: " + $branch.getLastCommitURL() + "`n"
-                        $returningString += "Is is protected ? " + $branch.getIsProtected() + "`n" + "`n"
+
+                        $returningString += $branch.ToString()
                     }
 
                     $returningString += "`n"

@@ -56,6 +56,18 @@ class Branch {
         return $branchesArray
     }
 
+    #
+    [String] ToString()
+    {
+        $returningString = "`n"
+        $returningString +=  "Name: " + $this.getName() + "`n"
+        $returningString += "Last commit SHA: " + $this.getLasCommitSha() + "`n"
+        $returningString += "Last commit URL: " + $this.getLastCommitURL() + "`n"
+        $returningString += "Is is protected ? " + $this.getIsProtected() + "`n"
+
+        return $returningString
+    }
+
     # 'name' attribute getter...
     [string] getName()
     {
