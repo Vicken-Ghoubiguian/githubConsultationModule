@@ -14,6 +14,16 @@ class Language {
         $this.totalValue = $totalValue
     }
 
+    # Definition of a static function to put all languages from a user and a repository identified respectively by its login and its name inside an array...
+    static [System.Array] listAllLanguages([string]$wishedLogin, [string]$wishedRepos)
+    {
+        # Definition of the 'languagesArray' array which will contain all languages of the wished 'wishedRepos' repo from the wished 'wishedLogin' user...
+        $languagesArray = [System.Collections.ArrayList]::new()
+
+        # Returning the '$languagesArray' array...
+        return $languagesArray
+    }
+
     # 'name' attribute getter...
     [string] getName()
     {

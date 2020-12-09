@@ -19,7 +19,7 @@ class Branch {
     }
     
     # Definition of a static function to put all branches from a user and a repository identified respectively by its login and its name inside an array...
-    Static [System.Array] listAllBranches([string]$wishedLogin, [string]$wishedRepos)
+    static [System.Array] listAllBranches([string]$wishedLogin, [string]$wishedRepos)
     {
         # Definition of the 'branchesArray' array which will contain all branches of the wished 'wishedRepos' repo from the wished 'wishedLogin' user...
         $branchesArray = [System.Collections.ArrayList]::new()
