@@ -6,6 +6,14 @@ class Language {
     hidden [int]$value
     hidden [int]$totalValue
 
+    # Language class constructor with all required parameters for all class attributes...
+    Language([string]$name, [int]$value, [int]$totalValue)
+    {
+        $this.name = $name
+        $this.value = $value
+        $this.totalValue = $totalValue
+    }
+
     # 'name' attribute getter...
     [string] getName()
     {
