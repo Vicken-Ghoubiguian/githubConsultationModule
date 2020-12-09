@@ -236,13 +236,11 @@ $githubReposRequestsContent
 
                     $returningString += "`n"
 
-                    $returningString += "-----------------" + "License" + "-----------------" + "`n" +
+                    $returningString += "-----------------" + "License" + "-----------------"
 
-                    "Name: " + $this.license.getName() + "`n" +
-                    "SPDX Id: " + $this.license.getSpdxID() + "`n" +
-                    "License URL: " + $this.license.getLicenseURL() + "`n" +
-                    "Key: " + $this.license.getKey() + "`n" +
-                    "Node Id: " + $this.license.getNodeID() + "`n" + "`n" +
+                    $returningString += $this.license.ToString()
+
+                    $returningString += "`n"
 
                     "-----------------" + "Contributors" + "-----------------" + "`n" + "`n" +
 

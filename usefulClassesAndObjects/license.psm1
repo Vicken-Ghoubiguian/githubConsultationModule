@@ -19,6 +19,19 @@ class License
         $this.nodeID = $collectedNodeID
     }
 
+    #
+    [String] ToString()
+    {
+        $returningString = "`n"
+        $returningString += "Name: " + $this.name + "`n"
+        $returningString += "SPDX Id: " + $this.spdxID + "`n"
+        $returningString += "License URL: " + $this.licenseURL + "`n"
+        $returningString += "Key: " + $this.key + "`n"
+        $returningString += "Node Id: " + $this.nodeID + "`n"
+
+        return $returningString
+    }
+
     # 'key' attribute getter...
     [string] getKey()
     {
