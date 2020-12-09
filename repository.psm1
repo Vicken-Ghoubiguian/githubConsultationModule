@@ -17,10 +17,10 @@ class Repository
     hidden [string]$page
     hidden [string]$description
     hidden [bool]$isFork
-    hidden [System.Array]$forks
+    hidden [System.Array]$forks = @()
     hidden [int]$forksCount
-    hidden [System.Array]$contributors
-    hidden [System.Array]$subscribers
+    hidden [System.Array]$contributors = @()
+    hidden [System.Array]$subscribers = @()
     hidden [System.Array]$branches = @()
     hidden [License]$license
     hidden [string]$gitURL
@@ -135,7 +135,7 @@ $githubReposRequestsContent
     }
 
     # Repository class constructor with all class attributes in parameter...
-    Repository([int]$id, [string]$nodeID, [string]$name, [string]$fullName, [bool]$isPrivate, [string]$ownerID, [string]$ownerLogin, [string]$page, [string]$description, [bool]$isFork, [System.Array]$forks, [int]$forksCount, [System.Array]$contributors, [System.Array]$subscribers, [System.Array]$branches, [License]$license, [string]$gitURL, [string]$sshURL, [string]$cloneURL, [string]$svnURL, [string]$archiveURL, [string]$homePage, [bool]$isArchived, [string]$mainLanguage, [System.Collections.Hashtable]$allLanguages)
+    Repository([int]$id, [string]$nodeID, [string]$name, [string]$fullName, [bool]$isPrivate, [string]$ownerID, [string]$ownerLogin, [string]$page, [string]$description, [bool]$isFork, [int]$forksCount, [License]$license, [string]$gitURL, [string]$sshURL, [string]$cloneURL, [string]$svnURL, [string]$archiveURL, [string]$homePage, [bool]$isArchived, [string]$mainLanguage, [System.Collections.Hashtable]$allLanguages)
     {
         $this.id = $id
         $this.nodeID = $nodeID
@@ -147,11 +147,11 @@ $githubReposRequestsContent
         $this.page = $page
         $this.description = $description
         $this.isFork = $isFork
-        $this.forks = $forks
+        $this.forks = @()
         $this.forksCount = $forksCount
-        $this.contributors = $contributors
-        $this.subscribers = $subscribers
-        $this.branches = $branches
+        $this.contributors = @()
+        $this.subscribers = @()
+        $this.branches = [Branch]::listAllBranches($ownerLogin, $name)
         $this.license = $license
         $this.gitURL = $gitURL
         $this.sshURL = $sshURL
