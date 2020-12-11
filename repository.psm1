@@ -18,11 +18,11 @@ class Repository
     hidden [string]$page
     hidden [string]$description
     hidden [bool]$isFork
-    hidden [System.Array]$forks = @()
+    hidden [System.Array]$forks
     hidden [int]$forksCount
-    hidden [System.Array]$contributors = @()
-    hidden [System.Array]$subscribers = @()
-    hidden [System.Array]$branches = @()
+    hidden [System.Array]$contributors
+    hidden [System.Array]$subscribers
+    hidden [System.Array]$branches
     hidden [License]$license
     hidden [string]$gitURL
     hidden [string]$sshURL
@@ -32,7 +32,7 @@ class Repository
     hidden [string]$homePage
     hidden [bool]$isArchived
     hidden [string]$mainLanguage
-    hidden [System.Array]$languages = @()
+    hidden [System.Array]$languages
     hidden [GitHubError]$error
 
     # Repository class constructor with user login and repository name...
@@ -179,6 +179,7 @@ $githubReposRequestsContent
     #
     [String] ToString()
     {
+        # If no error occurs...
         If(!$this.error) {
 
             $returningString =  "`n" + "-----------------" + "Presentation" + "-----------------" + "`n" +
@@ -233,6 +234,7 @@ $githubReposRequestsContent
                     "svn URL: " + $this.svnURL + "`n" +
                     "home page: " + $this.homePage + "`n"
 
+          # Else (an error occurs)...
           } Else {
 
                     $returningString = $this.error.ToString()
