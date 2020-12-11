@@ -8,10 +8,10 @@ param (
 )
 
 # 
-$branchesArray = [Branch]::listAllBranches($ownerLogin, $repositoryName)
+$branchesArray = [Branch]::listAllBranches($ownerLogin.ToString(), $repositoryName.ToString())
 
 #
-foreach($branch in $this.branches) {
+foreach($branch in $branchesArray) {
 
     #
     $branch.ToString()

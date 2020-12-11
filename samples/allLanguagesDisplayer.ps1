@@ -8,7 +8,7 @@ param (
 )
 
 #
-$languagesArray = [Language]::listAllLanguages($ownerLogin, $repositoryName)
+$languagesArray = [Language]::listAllLanguages($ownerLogin.ToString(), $repositoryName.ToString())
 
 #
 foreach($language in $languagesArray) {
