@@ -32,7 +32,7 @@ class Repository
     hidden [string]$homePage
     hidden [bool]$isArchived
     hidden [string]$mainLanguage
-    hidden [System.Array]$allLanguages = @()
+    hidden [System.Array]$languages = @()
     hidden [GitHubError]$error
 
     # Repository class constructor with user login and repository name...
@@ -70,7 +70,7 @@ $githubReposRequestsContent
             $this.branches = [Branch]::listAllBranches($this.ownerLogin, $this.name)
 
             # Call of the static function 'listAllLanguage' of the PowerShell class 'Language' to obtain all the languages of the repo...
-            $this.allLanguages = [Language]::listAllLanguages($this.ownerLogin, $this.name)
+            $this.languages = [Language]::listAllLanguages($this.ownerLogin, $this.name)
             
             #
             $this.forks = @()
@@ -115,7 +115,7 @@ $githubReposRequestsContent
     }
 
     # Repository class constructor with all class attributes in parameter...
-    Repository([int]$id, [string]$nodeID, [string]$name, [string]$fullName, [bool]$isPrivate, [string]$ownerID, [string]$ownerLogin, [string]$page, [string]$description, [bool]$isFork, [int]$forksCount, [License]$license, [string]$gitURL, [string]$sshURL, [string]$cloneURL, [string]$svnURL, [string]$archiveURL, [string]$homePage, [bool]$isArchived, [string]$mainLanguage, [System.Collections.Hashtable]$allLanguages)
+    Repository([int]$id, [string]$nodeID, [string]$name, [string]$fullName, [bool]$isPrivate, [string]$ownerID, [string]$ownerLogin, [string]$page, [string]$description, [bool]$isFork, [int]$forksCount, [License]$license, [string]$gitURL, [string]$sshURL, [string]$cloneURL, [string]$svnURL, [string]$archiveURL, [string]$homePage, [bool]$isArchived, [string]$mainLanguage, [System.Collections.Hashtable]$languages)
     {
         $this.id = $id
         $this.nodeID = $nodeID
@@ -141,7 +141,7 @@ $githubReposRequestsContent
         $this.homePage = $homePage
         $this.isArchived = $isArchived
         $this.mainLanguage = $mainLanguage
-        $this.allLanguages = $allLanguages
+        $this.allLanguages = $languages
     }
 
     # Definition of a static function to put all repositories of a user identified by its login inside an array...
@@ -200,7 +200,7 @@ $githubReposRequestsContent
 
                     "Main language: " + $this.mainLanguage + "`n" + "`n"
 
-                    foreach($language in $this.allLanguages) {
+                    foreach($language in $this.languages) {
 
                         $returningString += $language.ToString()
                     }
@@ -380,9 +380,9 @@ $githubReposRequestsContent
     }
 
     # 'allLanguages' attribute getter...
-    [System.Collections.Hashtable] getAllLanguages()
+    [System.Collections.Hashtable] getLanguages()
     {
-        return $this.allLanguages
+        return $this.languages
     }
 
     # 'branches' attribute getter...
