@@ -7,12 +7,11 @@ param (
     [string]$repositoryName
 )
 
-# 
+# Get all branches from the whished repository owned by the user identified by its login and put them in the "branchesArray" array...
 $branchesArray = [Branch]::listAllBranches($ownerLogin.ToString(), $repositoryName.ToString())
 
-#
+# Browse the array implemented previously and display each branch...
 foreach($branch in $branchesArray) {
 
-    #
     $branch.ToString()
 }

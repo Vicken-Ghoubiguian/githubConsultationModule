@@ -7,12 +7,11 @@ param (
     [string]$repositoryName
 )
 
-#
+# Get all languages from the whished repository owned by the user identified by its login and put them in the "languagesArray" array...
 $languagesArray = [Language]::listAllLanguages($ownerLogin.ToString(), $repositoryName.ToString())
 
-#
+# Browse the array implemented previously and display each language...
 foreach($language in $languagesArray) {
 
-    #
     $language.ToString()
 }
