@@ -1,10 +1,13 @@
-﻿# Definition of the Language Powershell class to define the current language in a repository from the GitHub API...
+﻿Using module .\usefulClassesAndObjects\gitHubError.psm1
+
+# Definition of the Language Powershell class to define the current language in a repository from the GitHub API...
 class Language {
 
     # All attributes of the Language class...
     hidden [string]$name
     hidden [int]$value
     hidden [int]$totalValue
+    hidden [float]$percentage
 
     # Language class constructor with all required parameters for all class attributes...
     Language([string]$name, [int]$value, [int]$totalValue)
@@ -12,6 +15,8 @@ class Language {
         $this.name = $name
         $this.value = $value
         $this.totalValue = $totalValue
+
+        $this.percentage = ($value * 100)/$totalValue
     }
 
     # Definition of a static function to put all languages from a user and a repository identified respectively by its login and its name inside an array...
@@ -39,7 +44,7 @@ class Language {
     # 'percentage' calculator getter...
     [float] getPercentage()
     {
-        return ($this.value * 100)/$this.totalValue
+        return $this.percentage
     }
 
     # 'totalValue' attribute getter...
