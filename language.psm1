@@ -25,6 +25,21 @@ class Language {
         # Definition of the 'languagesArray' array which will contain all languages of the wished 'wishedRepos' repo from the wished 'wishedLogin' user...
         $languagesArray = [System.Collections.ArrayList]::new()
 
+        # Bloc we wish execute to get all informations about langauges...
+        try {
+
+        # Bloc to execute if an System.Net.WebException is encountered...
+        } catch [System.Net.WebException] {
+
+            $errorType = $_.Exception.GetType().Name
+
+            $errorMessage = $_.Exception.Message
+
+            $errorStackTrace = $_.Exception.StackTrace
+
+            $languagesArray.Add([GitHubError]::new($errorType, $errorMessage, $errorStackTrace))
+        }
+
         # Returning the '$languagesArray' array...
         return $languagesArray
     }
