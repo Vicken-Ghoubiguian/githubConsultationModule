@@ -1,5 +1,6 @@
 ﻿Using module .\usefulClassesAndObjects\license.psm1
 Using module .\branch.psm1
+using module .\language.psm1
 Using module .\usefulClassesAndObjects\gitHubError.psm1
 
 # Definition of the Repository Powershell class to define a repository from the GitHub API...
@@ -31,7 +32,7 @@ class Repository
     hidden [string]$homePage
     hidden [bool]$isArchived
     hidden [string]$mainLanguage
-    hidden [System.Collections.Hashtable]$allLanguages = @{}
+    hidden [System.Array]$allLanguages = @()
     hidden [GitHubError]$error
 
     # Repository class constructor with user login and repository name...
@@ -39,9 +40,6 @@ class Repository
     {
         # Create an HTTP request to take the GitHub repository identified by its name and its owner's login...
         $githubGetReposURL = "https://api.github.com/repos/" + $wishedUserLogin + "/" + $wishedRepositoryName
-
-        # Create an HTTP request to take all the languages and their respective proportions used in the GitHub repository identified by its name and its owner's login...
-        $githubGetLanguagesReposURL = "https://api.github.com/repos/" + $wishedUserLogin + "/" + $wishedRepositoryName + "/languages"
 
         # Bloc we wish execute to get all informations about the wished repository...
         try {
@@ -54,19 +52,6 @@ class Repository
 $githubReposRequestsContent
 "@
             $githubReposRequestsResult = ConvertFrom-Json -InputObject $githubReposRequestsJSONContent
-
-            <#
-
-            #>
-            $githubLanguagesReposRequest = Invoke-WebRequest -Uri $githubGetLanguagesReposURL -Method Get
-            $languagesJSONObj = ConvertFrom-Json $githubLanguagesReposRequest.Content
-            $languagesHash = @{}
-            $totalValue = 0
-            foreach($property in $languagesJSONObj.PSObject.Properties) {
-
-                $languagesHash[$property.Name] = $property.Value
-                $totalValue = $totalValue + $property.Value
-            }
 
             #
             $this.id = $githubReposRequestsResult.id
@@ -83,6 +68,9 @@ $githubReposRequestsContent
 
             # Call of the static function 'listAllBranches' of the PowerShell class 'Branch' to obtain all the branches of the repo...
             $this.branches = [Branch]::listAllBranches($this.ownerLogin, $this.name)
+
+            # Call of the static function 'listAllLanguage' of the PowerShell class 'Language' to obtain all the languages of the repo...
+            $this.allLanguages = [Language]::listAllLanguages($this.ownerLogin, $this.name)
             
             #
             $this.forks = @()
@@ -112,14 +100,6 @@ $githubReposRequestsContent
             $this.homePage = $githubReposRequestsResult.homepage
             $this.isArchived = $githubReposRequestsResult.archived
             $this.mainLanguage = $githubReposRequestsResult.language
-
-            #
-            foreach($key in $languagesHash.Keys) {
-
-                $percentage = ($languagesHash[$key] * 100)/$totalValue
-
-                $this.allLanguages.Add($key, [Math]::Round($percentage, 1))
-            }
 
         # Bloc to execute if an System.Net.WebException is encountered...
         } catch [System.Net.WebException] {
@@ -220,9 +200,9 @@ $githubReposRequestsContent
 
                     "Main language: " + $this.mainLanguage + "`n" + "`n"
 
-                    foreach($language in $this.allLanguages.Keys) {
+                    foreach($language in $this.allLanguages) {
 
-                        $returningString += $language + ": " + $this.allLanguages[$language] + "%" + "`n"
+                        $returningString += $language.ToString()
                     }
 
                     $returningString += "`n"
