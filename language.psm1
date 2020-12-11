@@ -28,6 +28,26 @@ class Language {
         # Bloc we wish execute to get all informations about langauges...
         try {
 
+            # Create an HTTP request to take all the languages and their respective proportions used in the GitHub repository identified by its name and its owner's login...
+            $githubGetLanguagesReposURL = "https://api.github.com/repos/" + $wishedLogin + "/" + $wishedRepos + "/languages"
+
+            # Retrieving and extracting all languages received from the URL...
+            $githubLanguagesReposRequest = Invoke-WebRequest -Uri $githubGetLanguagesReposURL -Method Get
+            $languagesJSONObj = ConvertFrom-Json $githubLanguagesReposRequest.Content
+
+            # 
+            $totalSumValue = 0
+            foreach($language in $languagesJSONObj.PSObject.Properties) {
+
+                $totalSumValue = $totalSumValue + $language.Value
+            }
+
+            #
+            foreach($language in $languagesJSONObj.PSObject.Properties) {
+
+                $languagesArray.add([Language]::new($language.Name, $language.Value, $totalSumValue))
+            }
+
         # Bloc to execute if an System.Net.WebException is encountered...
         } catch [System.Net.WebException] {
 
