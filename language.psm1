@@ -44,6 +44,15 @@ class Language {
         return $languagesArray
     }
 
+    #
+    [String] ToString()
+    {
+        $returningString = "`n"
+        $returningString +=  $this.name + ": " + $this.percentage + "%" + "`n"
+
+        return $returningString
+    }
+
     # 'name' attribute getter...
     [string] getName()
     {
