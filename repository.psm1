@@ -143,7 +143,7 @@ $githubReposRequestsContent
         $this.homePage = $homePage
         $this.isArchived = $isArchived
         $this.mainLanguage = $mainLanguage
-        $this.allLanguages = [Language]::listAllLanguages($ownerLogin, $name)
+        $this.languages = [Language]::listAllLanguages($ownerLogin, $name)
     }
 
     # Definition of a static function to put all repositories of a user identified by its login inside an array...
@@ -166,7 +166,7 @@ $githubReposRequestsContent
             foreach($repos in $reposJSONObj) {
 
                 $repositoriesArray.Add([Repository]::new($repos.id, 
-                                                         $repos.node_id, 
+                                                         $repos.node_id,
                                                          $repos.name, 
                                                          $repos.full_name,
                                                          $repos.private,
@@ -176,7 +176,7 @@ $githubReposRequestsContent
                                                          $repos.description,
                                                          $repos.isFork,
                                                          $repos.forksCount,
-                                                         [License]::new($repos.license.key, $repos.license.spdx_id, $repos.license.url, $repos.license.node_id),
+                                                         [License]::new($repos.license.key, $repos.license.name, $repos.license.spdx_id, $repos.license.url, $repos.license.node_id),
                                                          $repos.git_url,
                                                          $repos.ssh_url,
                                                          $repos.clone_url,
