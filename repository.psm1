@@ -115,7 +115,9 @@ $githubReposRequestsContent
     }
 
     # Repository class constructor with all class attributes in parameter...
-    Repository([int]$id, [string]$nodeID, [string]$name, [string]$fullName, [bool]$isPrivate, [string]$ownerID, [string]$ownerLogin, [string]$page, [string]$description, [bool]$isFork, [int]$forksCount, [License]$license, [string]$gitURL, [string]$sshURL, [string]$cloneURL, [string]$svnURL, [string]$archiveURL, [string]$homePage, [bool]$isArchived, [string]$mainLanguage, [System.Collections.Hashtable]$languages)
+    Repository([int]$id, [string]$nodeID, [string]$name, [string]$fullName, [bool]$isPrivate, [string]$ownerID, [string]$ownerLogin, 
+               [string]$page, [string]$description, [bool]$isFork, [int]$forksCount, [License]$license, [string]$gitURL, [string]$sshURL, 
+               [string]$cloneURL, [string]$svnURL, [string]$archiveURL, [string]$homePage, [bool]$isArchived, [string]$mainLanguage)
     {
         $this.id = $id
         $this.nodeID = $nodeID
@@ -141,7 +143,7 @@ $githubReposRequestsContent
         $this.homePage = $homePage
         $this.isArchived = $isArchived
         $this.mainLanguage = $mainLanguage
-        $this.allLanguages = $languages
+        $this.allLanguages = [Language]::listAllLanguages($ownerLogin, $name)
     }
 
     # Definition of a static function to put all repositories of a user identified by its login inside an array...
@@ -159,6 +161,32 @@ $githubReposRequestsContent
             # Retrieving and extracting all repositories received from the URL...
             $githubReposRequest = Invoke-WebRequest -Uri $githubGetReposURL -Method Get
             $reposJSONObj = ConvertFrom-Json $githubReposRequest.Content
+
+            # Browse all the repos contained in the received JSON and create all the instances of the Powershell class 'Repository' from this data and add them to the array 'repositoriesArray'...
+            foreach($repos in $reposJSONObj) {
+
+                $repositoriesArray.Add([Repository]::new($repos.id, 
+                                                         $repos.node_id, 
+                                                         $repos.name, 
+                                                         $repos.full_name,
+                                                         $repos.private,
+                                                         $repos.owner.id,
+                                                         $repos.owner.login,
+                                                         $repos.html_url,
+                                                         $repos.description,
+                                                         $repos.isFork,
+                                                         $repos.forksCount,
+                                                         [License]::new($repos.license.key, $repos.license.spdx_id, $repos.license.url, $repos.license.node_id),
+                                                         $repos.git_url,
+                                                         $repos.ssh_url,
+                                                         $repos.clone_url,
+                                                         $repos.svn_url,
+                                                         $repos.archive_url,
+                                                         $repos.homepage,
+                                                         $repos.archived,
+                                                         $repos.language
+                                                         ))
+            }
 
         # Bloc to execute if an System.Net.WebException is encountered...
         } catch [System.Net.WebException] {
