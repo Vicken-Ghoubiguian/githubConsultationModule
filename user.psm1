@@ -48,6 +48,7 @@ $githubUserRequestsContent
         $this.blog = $githubUserRequestsResult.blog
         $this.location = $githubUserRequestsResult.location
         $this.isHireable = $githubUserRequestsResult.hireable
+        $this.company = $githubUserRequestsResult.company
         $this.publicReposCount = $githubUserRequestsResult.public_repos
         $this.followersCount = $githubUserRequestsResult.followers
         $this.followingCount = $githubUserRequestsResult.following
@@ -68,6 +69,7 @@ $githubUserRequestsContent
                    "blog: " + $this.blog + ", " +
                    "location: " + $this.location + ", " +
                    "is hireable: " + $this.isHireable + ", " +
+                   "Company: " + $this.company + ", " +
                    "public repos count: " + $this.publicReposCount + ", " +
                    "followers count: " + $this.followersCount + ", " +
                    "following count: " + $this.followingCount +  
