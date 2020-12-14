@@ -17,8 +17,13 @@ class User
     hidden [int]$publicReposCount
     hidden [int]$followersCount
     hidden [int]$followingCount
-    hidden [System.Array]$repositories
+    hidden [string]$company
 
+    hidden [System.Array]$repositories
+    hidden [System.Array]$following
+    hidden [System.Array]$followers
+    hidden [System.Array]$organizations
+    hidden [System.Array]$events
 
     # User class constructor...
     User([string]$wishedUserLogin)
