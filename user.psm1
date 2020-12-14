@@ -1,4 +1,5 @@
 ﻿Using module .\repository.psm1
+Using module .\usefulClassesAndObjects\gitHubError.psm1
 
 # Definition of the User Powershell class to define a user from the GitHub API...
 class User
@@ -18,6 +19,7 @@ class User
     hidden [int]$followersCount
     hidden [int]$followingCount
     hidden [string]$company
+    hidden [GitHubError]$error
 
     hidden [System.Array]$repositories
     hidden [System.Array]$following
@@ -30,30 +32,47 @@ class User
     {
         # Extract all the data relating to the desired user from the received JSON ...
         $githubGetUserURL = "https://api.github.com/users/" + $wishedUserLogin
-        $githubUserRequest = Invoke-WebRequest -Uri $githubGetUserURL -Method Get
-        $githubUserRequestsContent = $githubUserRequest.Content
-        $githubUserRequestsJSONContent = @"
+
+        # Bloc we wish execute to get all informations about the wished repository...
+        try {
+
+            #
+            $githubUserRequest = Invoke-WebRequest -Uri $githubGetUserURL -Method Get
+            $githubUserRequestsContent = $githubUserRequest.Content
+            $githubUserRequestsJSONContent = @"
                        
 $githubUserRequestsContent
 "@
-        $githubUserRequestsResult = ConvertFrom-Json -InputObject $githubUserRequestsJSONContent
+            $githubUserRequestsResult = ConvertFrom-Json -InputObject $githubUserRequestsJSONContent
 
-        # Entering the values ​​for all the attributes of the User class...
-        $this.login = $githubUserRequestsResult.login
-        $this.id = $githubUserRequestsResult.id
-        $this.avatar = $githubUserRequestsResult.avatar_url
-        $this.profile = $githubUserRequestsResult.html_url
-        $this.type = $githubUserRequestsResult.type
-        $this.name = $githubUserRequestsResult.name
-        $this.blog = $githubUserRequestsResult.blog
-        $this.location = $githubUserRequestsResult.location
-        $this.isHireable = $githubUserRequestsResult.hireable
-        $this.company = $githubUserRequestsResult.company
-        $this.publicReposCount = $githubUserRequestsResult.public_repos
-        $this.followersCount = $githubUserRequestsResult.followers
-        $this.followingCount = $githubUserRequestsResult.following
+            # Entering the values ​​for all the attributes of the User class...
+            $this.login = $githubUserRequestsResult.login
+            $this.id = $githubUserRequestsResult.id
+            $this.avatar = $githubUserRequestsResult.avatar_url
+            $this.profile = $githubUserRequestsResult.html_url
+            $this.type = $githubUserRequestsResult.type
+            $this.name = $githubUserRequestsResult.name
+            $this.blog = $githubUserRequestsResult.blog
+            $this.location = $githubUserRequestsResult.location
+            $this.isHireable = $githubUserRequestsResult.hireable
+            $this.company = $githubUserRequestsResult.company
+            $this.publicReposCount = $githubUserRequestsResult.public_repos
+            $this.followersCount = $githubUserRequestsResult.followers
+            $this.followingCount = $githubUserRequestsResult.following
 
-        $this.repositories = [Repository]::listAllRepositories($githubUserRequestsResult.login)
+            $this.repositories = [Repository]::listAllRepositories($githubUserRequestsResult.login)
+
+        # Bloc to execute if an System.Net.WebException is encountered...
+        } catch [System.Net.WebException] {
+
+            $errorType = $_.Exception.GetType().Name
+
+            $errorMessage = $_.Exception.Message
+
+            $errorStackTrace = $_.Exception.StackTrace
+
+            $this.error = [GitHubError]::new($errorType, $errorMessage, $errorStackTrace)
+        }
     }
 
     # Returns the User current instance as String...
