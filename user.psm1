@@ -181,4 +181,10 @@ $githubUserRequestsContent
     {
         return $this.login
     }
+
+    # 'error' attribute getter...
+    [GitHubError] getGitHubError()
+    {
+        return $this.error
+    }
 }

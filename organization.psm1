@@ -26,4 +26,10 @@ class Organization {
             $this.error = [GitHubError]::new($errorType, $errorMessage, $errorStackTrace)
         }
     }
+
+    # 'error' attribute getter...
+    [GitHubError] getGitHubError()
+    {
+        return $this.error
+    }
 }
