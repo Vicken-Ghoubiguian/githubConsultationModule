@@ -10,4 +10,4 @@ param (
 $currentUser = New-Object -TypeName User -ArgumentList $userLogin
 
 # Display all collected informations about the wished user in the Powershell console...
-$currentRepository.ToString()
+$currentUser.ToString()

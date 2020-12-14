@@ -1,4 +1,4 @@
-﻿Using module .\repository.psm1
+﻿Using module .\Repository.psm1
 Using module .\usefulClassesAndObjects\gitHubError.psm1
 
 # Definition of the User Powershell class to define a user from the GitHub API...
@@ -93,21 +93,6 @@ $githubUserRequestsContent
                    "followers count: " + $this.followersCount + ", " +
                    "following count: " + $this.followingCount +  
                 ")"
-    }
-
-    # Returns, as a boolean, the result of the comparison between 2 instances of the 'User' class...
-    [bool] Equals([User] $otherUser)
-    {
-        If(($this.id -eq $otherUser.id) -and
-           ($this.login -eq $otherUser.login) -and
-           ($this.name -eq $otherUser.name)) {
-
-            return True
-
-        } Else {
-         
-            return False
-        }
     }
 
     # 'followingCount' attribute getter...
