@@ -17,6 +17,7 @@ class User
     hidden [int]$publicReposCount
     hidden [int]$followersCount
     hidden [int]$followingCount
+    hidden [System.Array]$repositories
 
 
     # User class constructor...
@@ -33,7 +34,7 @@ $githubUserRequestsContent
         $githubUserRequestsResult = ConvertFrom-Json -InputObject $githubUserRequestsJSONContent
 
         # Entering the values ​​for all the attributes of the User class...
-        $this.login =$githubUserRequestsResult.login
+        $this.login = $githubUserRequestsResult.login
         $this.id = $githubUserRequestsResult.id
         $this.avatar = $githubUserRequestsResult.avatar_url
         $this.profile = $githubUserRequestsResult.html_url
@@ -45,6 +46,8 @@ $githubUserRequestsContent
         $this.publicReposCount = $githubUserRequestsResult.public_repos
         $this.followersCount = $githubUserRequestsResult.followers
         $this.followingCount = $githubUserRequestsResult.following
+
+        $this.repositories = [Repository]::listAllRepositories($githubUserRequestsResult.login)
     }
 
     # Returns the User current instance as String...
