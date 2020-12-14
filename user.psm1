@@ -172,4 +172,10 @@ $githubUserRequestsContent
     {
         return $this.error
     }
+
+    # 'repositories' attribute getter...
+    [System.Array] getRepositories()
+    {
+        return $this.repositories
+    }
 }
