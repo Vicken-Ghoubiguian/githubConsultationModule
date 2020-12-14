@@ -78,21 +78,32 @@ $githubUserRequestsContent
     # Returns the User current instance as String...
     [string] ToString()
     {
-        return "(" + 
-                   "login: " + $this.login + ", " +
-                   "id: " + $this.id + ", " +
-                   "avatar: " + $this.avatar + ", " +
-                   "profile: " + $this.profile + ", " +
-                   "type: " + $this.type + ", " +
-                   "name: " + $this.name + ", " +
-                   "blog: " + $this.blog + ", " +
-                   "location: " + $this.location + ", " +
-                   "is hireable: " + $this.isHireable + ", " +
-                   "Company: " + $this.company + ", " +
-                   "public repos count: " + $this.publicReposCount + ", " +
-                   "followers count: " + $this.followersCount + ", " +
-                   "following count: " + $this.followingCount +  
-                ")"
+        # If no error occurs...
+        If(!$this.error) {
+
+            $returningString = "(" + 
+                       "login: " + $this.login + ", " +
+                       "id: " + $this.id + ", " +
+                       "avatar: " + $this.avatar + ", " +
+                       "profile: " + $this.profile + ", " +
+                       "type: " + $this.type + ", " +
+                       "name: " + $this.name + ", " +
+                       "blog: " + $this.blog + ", " +
+                       "location: " + $this.location + ", " +
+                       "is hireable: " + $this.isHireable + ", " +
+                       "Company: " + $this.company + ", " +
+                       "public repos count: " + $this.publicReposCount + ", " +
+                       "followers count: " + $this.followersCount + ", " +
+                       "following count: " + $this.followingCount +  
+                    ")"
+
+        # Else (an error occurs)...
+        } Else {
+
+            $returningString = $this.error.ToString()
+        }
+
+        return $returningString
     }
 
     # 'followingCount' attribute getter...
