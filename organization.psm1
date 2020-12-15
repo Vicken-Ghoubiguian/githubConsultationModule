@@ -16,6 +16,7 @@ class Organization
     hidden [string]$location
     hidden [string]$email
     hidden [string]$profile
+    hidden [string]$type
 
     hidden [int]$followersCount
     hidden [int]$followingCount

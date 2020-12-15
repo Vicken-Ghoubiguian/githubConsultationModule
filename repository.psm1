@@ -15,6 +15,7 @@ class Repository
     hidden [bool]$isPrivate
     hidden [string]$ownerID
     hidden [string]$ownerLogin
+    hidden [string]$ownerType
     hidden [string]$page
     hidden [string]$description
     hidden [bool]$isFork
@@ -61,6 +62,7 @@ $githubReposRequestsContent
             $this.isPrivate = $githubReposRequestsResult.private
             $this.ownerLogin = $githubReposRequestsResult.owner.login
             $this.ownerID = $githubReposRequestsResult.owner.id
+            $this.ownerType = $githubReposRequestsResult.owner.type
             $this.page = $githubReposRequestsResult.html_url
             $this.description = $githubReposRequestsResult.description
             $this.isFork = $githubReposRequestsResult.fork
@@ -115,7 +117,7 @@ $githubReposRequestsContent
     }
 
     # Repository class constructor with all class attributes in parameter...
-    Repository([int]$id, [string]$nodeID, [string]$name, [string]$fullName, [bool]$isPrivate, [string]$ownerID, [string]$ownerLogin, 
+    Repository([int]$id, [string]$nodeID, [string]$name, [string]$fullName, [bool]$isPrivate, [string]$ownerID, [string]$ownerLogin, [string]$ownerType, 
                [string]$page, [string]$description, [bool]$isFork, [int]$forksCount, [License]$license, [string]$gitURL, [string]$sshURL, 
                [string]$cloneURL, [string]$svnURL, [string]$archiveURL, [string]$homePage, [bool]$isArchived, [string]$mainLanguage)
     {
@@ -126,6 +128,7 @@ $githubReposRequestsContent
         $this.isPrivate = $isPrivate
         $this.ownerID = $ownerID
         $this.ownerLogin = $ownerLogin
+        $this.ownerType = $ownerType
         $this.page = $page
         $this.description = $description
         $this.isFork = $isFork
@@ -172,6 +175,7 @@ $githubReposRequestsContent
                                                          $repos.private,
                                                          $repos.owner.id,
                                                          $repos.owner.login,
+                                                         $repos.owner.type,
                                                          $repos.html_url,
                                                          $repos.description,
                                                          $repos.isFork,
@@ -223,7 +227,8 @@ $githubReposRequestsContent
                     "-----------------" + "Owner" + "-----------------" + "`n" +
 
                     "Owner ID: " + $this.ownerID + "`n" +
-                    "Owner login: " + $this.ownerLogin + "`n" + "`n" +
+                    "Owner login: " + $this.ownerLogin + "`n" +
+                    "Owner type: " + $this.ownerType + "`n" + "`n" +
 
                     "-----------------" + "Languages" + "-----------------" + "`n" +
 
@@ -311,6 +316,12 @@ $githubReposRequestsContent
     [string] getOwnerLogin()
     {
         return $this.ownerLogin
+    }
+
+    # 'ownerType' attribute getter...
+    [string] getOwnerType()
+    {
+        return $this.ownerType
     }
 
     # 'page' attribute getter...
