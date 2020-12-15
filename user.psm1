@@ -22,6 +22,7 @@ class User
     hidden [string]$company
     hidden [string]$email
     hidden [string]$bio
+    hidden [string]$twitter
     hidden [GitHubError]$error
 
     hidden [System.Array]$repositories
@@ -65,6 +66,7 @@ $githubUserRequestsContent
             $this.publicReposCount = $githubUserRequestsResult.public_repos
             $this.followersCount = $githubUserRequestsResult.followers
             $this.followingCount = $githubUserRequestsResult.following
+            $this.twitter = $githubUserRequestsResult.twitter_username
 
             $this.repositories = [Repository]::listAllRepositories($githubUserRequestsResult.login)
 
@@ -231,6 +233,12 @@ $githubUserRequestsContent
     [string] getBio()
     {
         return $this.bio
+    }
+
+    # 'twitter' attribute getter...
+    [string] getTwitter()
+    {
+        return $this.twitter
     }
 
     # 'repositories' attribute getter...

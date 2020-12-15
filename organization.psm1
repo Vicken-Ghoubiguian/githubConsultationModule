@@ -17,8 +17,13 @@ class Organization
     hidden [string]$email
     hidden [string]$profile
 
+    hidden [int]$followersCount
+    hidden [int]$followingCount
     hidden [string]$type
+    hidden [string]$twitter
     hidden [GitHubError]$error
+
+    hidden [System.Array]$repositories 
 
     # Repository class constructor with organization login...
     Organization([string]$organizationLogin)
