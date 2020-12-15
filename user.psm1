@@ -8,6 +8,7 @@ class User
     # All attributes of the User class...
     hidden [string]$login
     hidden [int]$id
+    hidden [string]$nodeId
     hidden [string]$avatar
     hidden [string]$profile
     hidden [string]$type
@@ -48,6 +49,7 @@ $githubUserRequestsContent
             # Entering the values ​​for all the attributes of the User class...
             $this.login = $githubUserRequestsResult.login
             $this.id = $githubUserRequestsResult.id
+            $this.nodeId = $githubUserRequestsResult.node_id
             $this.avatar = $githubUserRequestsResult.avatar_url
             $this.profile = $githubUserRequestsResult.html_url
             $this.type = $githubUserRequestsResult.type
@@ -81,21 +83,38 @@ $githubUserRequestsContent
         # If no error occurs...
         If(!$this.error) {
 
-            $returningString = "(" + 
-                       "login: " + $this.login + ", " +
-                       "id: " + $this.id + ", " +
-                       "avatar: " + $this.avatar + ", " +
-                       "profile: " + $this.profile + ", " +
-                       "type: " + $this.type + ", " +
-                       "name: " + $this.name + ", " +
-                       "blog: " + $this.blog + ", " +
-                       "location: " + $this.location + ", " +
-                       "is hireable: " + $this.isHireable + ", " +
-                       "Company: " + $this.company + ", " +
-                       "public repos count: " + $this.publicReposCount + ", " +
-                       "followers count: " + $this.followersCount + ", " +
-                       "following count: " + $this.followingCount +  
-                    ")"
+            $returningString = "-----------------" + "Presentation" + "-----------------" + "`n" +
+                               "Id: " + $this.id + "`n" +
+                               "Login: " + $this.login + "`n" +
+                               "NodeId: " + $this.nodeId + "`n" +
+                               "Avatar: " + $this.avatar + "`n" +
+                               "Profile: " + $this.profile + "`n" +
+                               "Type: " + $this.type + "`n" +
+                               "Name: " + $this.name + "`n" +
+                               "Blog: " +  $this.blog + "`n" +
+                               "Location: " +  $this.location + "`n" +
+                               "Is hireable ? " + $this.isHireable + "`n" +
+                               "Company: " + $this.company + "`n" +
+                               "Public repos count: " + $this.publicReposCount + "`n" +
+                               "Followers count: " + $this.followersCount + "`n" +
+                               "Following count: " + $this.followingCount + "`n" + "`n" +
+
+                               + "-----------------" + "Repositories" + "-----------------" + "`n"
+
+                               foreach($repository in $this.repositories) {
+
+                                    $returningString += $repository.ToString() 
+                               }
+
+                               + "-----------------" + "Followers" + "-----------------" + "`n"
+
+                               + "-----------------" + "Following" + "-----------------" + "`n"
+
+                               + "-----------------" + "Organizations" + "-----------------" + "`n"
+
+                               + "-----------------" + "Events" + "-----------------" + "`n"
+
+                               $returningString += "`n"
 
         # Else (an error occurs)...
         } Else {
@@ -134,6 +153,12 @@ $githubUserRequestsContent
     [int] getId()
     {
         return $this.id
+    }
+
+    # 'nodeId' attribute getter...
+    [string] getNodeId()
+    {
+        return $this.nodeId
     }
 
     # 'blogURL' attribute getter...
@@ -182,6 +207,12 @@ $githubUserRequestsContent
     [GitHubError] getGitHubError()
     {
         return $this.error
+    }
+
+    # 'company' attribute getter...
+    [string] getCompany()
+    {
+        return $this.company
     }
 
     # 'repositories' attribute getter...
