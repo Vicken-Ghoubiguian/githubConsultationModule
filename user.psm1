@@ -68,7 +68,7 @@ $githubUserRequestsContent
             $this.followingCount = $githubUserRequestsResult.following
             $this.twitter = $githubUserRequestsResult.twitter_username
 
-            $this.repositories = [Repository]::listAllRepositories($githubUserRequestsResult.login)
+            $this.repositories = [Repository]::listAllRepositories($githubUserRequestsResult.login, $true, $true)
 
         # Bloc to execute if an System.Net.WebException is encountered...
         } catch [System.Net.WebException] {

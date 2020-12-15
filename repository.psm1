@@ -3,6 +3,8 @@ Using module .\branch.psm1
 using module .\language.psm1
 Using module .\usefulClassesAndObjects\gitHubError.psm1
 
+Add-Type -AssemblyName PresentationFramework
+
 # Definition of the Repository Powershell class to define a repository from the GitHub API...
 class Repository
 {
@@ -68,11 +70,25 @@ $githubReposRequestsContent
             $this.isFork = $githubReposRequestsResult.fork
             $this.forksCount = $githubReposRequestsResult.forks_count
 
-            # Call of the static function 'listAllBranches' of the PowerShell class 'Branch' to obtain all the branches of the repo...
-            $this.branches = [Branch]::listAllBranches($this.ownerLogin, $this.name)
+            #
+            $branchesBoxResponse = [System.Windows.MessageBox]::Show("The constructor of the 'Repository' class now tries to get all branches. Do you want them ?", "Confirmation", "YesNo", "info")
 
-            # Call of the static function 'listAllLanguage' of the PowerShell class 'Language' to obtain all the languages of the repo...
-            $this.languages = [Language]::listAllLanguages($this.ownerLogin, $this.name)
+            #
+            If ($branchesBoxResponse -eq "Yes"){
+
+                # Call of the static function 'listAllBranches' of the PowerShell class 'Branch' to obtain all the branches of the repo...
+                $this.branches = [Branch]::listAllBranches($this.ownerLogin, $this.name)
+            }
+
+            #
+            $languagesBoxResponse = [System.Windows.MessageBox]::Show("The constructor of the 'Repository' class now tries to get its hands on all languages. Do you want them ?", "Confirmation", "YesNo", "info")
+
+            #
+            If ($languagesBoxResponse -eq "Yes"){
+
+                # Call of the static function 'listAllLanguage' of the PowerShell class 'Language' to obtain all the languages of the repo...
+                $this.languages = [Language]::listAllLanguages($this.ownerLogin, $this.name)
+            }
             
             #
             $this.forks = @()
@@ -119,7 +135,7 @@ $githubReposRequestsContent
     # Repository class constructor with all class attributes in parameter...
     Repository([int]$id, [string]$nodeID, [string]$name, [string]$fullName, [bool]$isPrivate, [string]$ownerID, [string]$ownerLogin, [string]$ownerType, 
                [string]$page, [string]$description, [bool]$isFork, [int]$forksCount, [License]$license, [string]$gitURL, [string]$sshURL, 
-               [string]$cloneURL, [string]$svnURL, [string]$archiveURL, [string]$homePage, [bool]$isArchived, [string]$mainLanguage)
+               [string]$cloneURL, [string]$svnURL, [string]$archiveURL, [string]$homePage, [bool]$isArchived, [string]$mainLanguage, [bool]$wantBranches, [bool]$wantLanguages)
     {
         $this.id = $id
         $this.nodeID = $nodeID
@@ -136,7 +152,6 @@ $githubReposRequestsContent
         $this.forksCount = $forksCount
         $this.contributors = @()
         $this.subscribers = @()
-        $this.branches = [Branch]::listAllBranches($ownerLogin, $name)
         $this.license = $license
         $this.gitURL = $gitURL
         $this.sshURL = $sshURL
@@ -146,11 +161,20 @@ $githubReposRequestsContent
         $this.homePage = $homePage
         $this.isArchived = $isArchived
         $this.mainLanguage = $mainLanguage
-        $this.languages = [Language]::listAllLanguages($ownerLogin, $name)
+
+        If($wantBranches) {
+
+            $this.branches = [Branch]::listAllBranches($ownerLogin, $name)
+        }
+
+        If($wantLanguages) {
+
+            $this.languages = [Language]::listAllLanguages($ownerLogin, $name)
+        }
     }
 
     # Definition of a static function to put all repositories of a user identified by its login inside an array...
-    static [System.Array] listAllRepositories([string]$userLogin)
+    static [System.Array] listAllRepositories([string]$userLogin, [bool]$wantBranches, [bool]$wantLanguages)
     {
         # Definition of the 'repositoriesArray' array which will contain all repositories of the wished the wished 'userLogin' user...
         $repositoriesArray = [System.Collections.ArrayList]::new()
@@ -188,7 +212,9 @@ $githubReposRequestsContent
                                                          $repos.archive_url,
                                                          $repos.homepage,
                                                          $repos.archived,
-                                                         $repos.language
+                                                         $repos.language,
+                                                         $wantBranches,
+                                                         $wantLanguages
                                                          ))
             }
 

@@ -7,7 +7,7 @@ param (
 )
 
 # Get all repositories from the whished user identified by its login and put them in the "repositoriesArray" array...
-$repositoriesArray = [Repository]::listAllRepositories($ownerLogin.ToString())
+$repositoriesArray = [Repository]::listAllRepositories($ownerLogin.ToString(), $true, $true)
 
 # Browse the array implemented previously and display each repos...
 foreach($repos in $repositoriesArray) {
