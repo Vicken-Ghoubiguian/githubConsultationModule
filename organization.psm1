@@ -1,8 +1,23 @@
 ﻿Using module .\usefulClassesAndObjects\gitHubError.psm1
+Using module .\Repository.psm1
 
 # Definition of the User Powershell class to define a user from the GitHub API...
-class Organization {
+class Organization 
+{
 
+    hidden [string]$login
+    hidden [string]$id
+    hidden [string]$nodeId
+    hidden [string]$avatar
+    hidden [string]$name
+    hidden [string]$description
+    hidden [string]$company
+    hidden [string]$blog
+    hidden [string]$location
+    hidden [string]$email
+    hidden [string]$url
+
+    hidden [string]$type
     hidden [GitHubError]$error
 
     # Repository class constructor with organization login...

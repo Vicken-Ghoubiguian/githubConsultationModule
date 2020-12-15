@@ -20,6 +20,8 @@ class User
     hidden [int]$followersCount
     hidden [int]$followingCount
     hidden [string]$company
+    hidden [string]$email
+    hidden [string]$bio
     hidden [GitHubError]$error
 
     hidden [System.Array]$repositories
@@ -58,6 +60,8 @@ $githubUserRequestsContent
             $this.location = $githubUserRequestsResult.location
             $this.isHireable = $githubUserRequestsResult.hireable
             $this.company = $githubUserRequestsResult.company
+            $this.email = $githubUserRequestsResult.email
+            $this.bio = $githubUserRequestsResult.bio
             $this.publicReposCount = $githubUserRequestsResult.public_repos
             $this.followersCount = $githubUserRequestsResult.followers
             $this.followingCount = $githubUserRequestsResult.following
@@ -88,6 +92,8 @@ $githubUserRequestsContent
                                "Login: " + $this.login + "`n" +
                                "NodeId: " + $this.nodeId + "`n" +
                                "Avatar: " + $this.avatar + "`n" +
+                               "Email: " + $this.email + "`n" +
+                               "Bio: " + $this.bio + "`n" +
                                "Profile: " + $this.profile + "`n" +
                                "Type: " + $this.type + "`n" +
                                "Name: " + $this.name + "`n" +
@@ -213,6 +219,18 @@ $githubUserRequestsContent
     [string] getCompany()
     {
         return $this.company
+    }
+
+    # 'email' attribute getter...
+    [string] getEmail()
+    {
+        return $this.email
+    }
+
+    # 'bio' attribute getter...
+    [string] getBio()
+    {
+        return $this.bio
     }
 
     # 'repositories' attribute getter...
