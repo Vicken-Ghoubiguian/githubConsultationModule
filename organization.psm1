@@ -15,7 +15,7 @@ class Organization
     hidden [string]$blog
     hidden [string]$location
     hidden [string]$email
-    hidden [string]$url
+    hidden [string]$profile
 
     hidden [string]$type
     hidden [GitHubError]$error
