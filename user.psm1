@@ -4,7 +4,6 @@ Using module .\usefulClassesAndObjects\gitHubError.psm1
 # Definition of the User Powershell class to define a user from the GitHub API...
 class User
 {
-
     # All attributes of the User class...
     hidden [string]$login
     hidden [int]$id
@@ -68,7 +67,36 @@ $githubUserRequestsContent
             $this.followingCount = $githubUserRequestsResult.following
             $this.twitter = $githubUserRequestsResult.twitter_username
 
-            $this.repositories = [Repository]::listAllRepositories($githubUserRequestsResult.login, $true, $true)
+            #
+            $branchesBoxResponse = [System.Windows.MessageBox]::Show("The constructor of the 'Repository' class now tries to get all branches. Do you want them ?", "Confirmation", "YesNo", "info")
+
+            #
+            If($branchesBoxResponse -eq "Yes") {
+
+                $withBranches = $true
+
+            # 
+            } Else {
+
+                $withBranches = $false
+            }
+
+            #
+            $languagesBoxResponse = [System.Windows.MessageBox]::Show("The constructor of the 'Repository' class now tries to get its hands on all languages. Do you want them ?", "Confirmation", "YesNo", "info")
+
+            #
+            If($languagesBoxResponse -eq "Yes") {
+
+                $withLanguages = $true
+
+            # 
+            } Else {
+
+                $withLanguages = $false
+            }
+
+            #
+            $this.repositories = [Repository]::listAllRepositories($githubUserRequestsResult.login, $withBranches, $withLanguages)
 
         # Bloc to execute if an System.Net.WebException is encountered...
         } catch [System.Net.WebException] {
