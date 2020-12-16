@@ -30,7 +30,7 @@ class Organization
     Organization([string]$organizationLogin)
     {
         # Create an HTTP request to take the GitHub organization identified by its name and its owner's login...
-        $githubGetReposURL = "https://api.github.com/orgs/" + $organizationLogin
+        $githubGetOrganizationURL = "https://api.github.com/orgs/" + $organizationLogin
 
         # Bloc we wish execute to get all informations about the wished organization...
         try {
@@ -46,6 +46,15 @@ class Organization
 
             $this.error = [GitHubError]::new($errorType, $errorMessage, $errorStackTrace)
         }
+    }
+
+    # Definition of a static function to put all repositories of a user identified by its login inside an array...
+    static [System.Array] listAllOrganization([string]$userLogin)
+    {
+        # Create an HTTP request to take all organizations informations from the GitHub user identified by its login...
+        $githubGetOrgsURL = "https://api.github.com/users/" + $userLogin + "/orgs"
+
+        return @()
     }
 
     # 'error' attribute getter...
