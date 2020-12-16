@@ -68,35 +68,43 @@ $githubUserRequestsContent
             $this.twitter = $githubUserRequestsResult.twitter_username
 
             #
-            $branchesBoxResponse = [System.Windows.MessageBox]::Show("The constructor of the 'Repository' class now tries to get all branches. Do you want them ?", "Confirmation", "YesNo", "info")
+            $repositoriesBoxResponse = [System.Windows.MessageBox]::Show("The constructor of the 'Repository' class now tries to get all repositories. Do you want them ?", "Confirmation", "YesNo", "info")
 
             #
-            If($branchesBoxResponse -eq "Yes") {
+            If($repositoriesBoxResponse -eq "Yes") {
 
-                $withBranches = $true
+                #
+                $branchesBoxResponse = [System.Windows.MessageBox]::Show("The constructor of the 'Repository' class now tries to get all branches. Do you want them ?", "Confirmation", "YesNo", "info")
 
-            # 
-            } Else {
+                #
+                If($branchesBoxResponse -eq "Yes") {
 
-                $withBranches = $false
+                    $withBranches = $true
+
+                # 
+                } Else {
+
+                    $withBranches = $false
+                }
+
+                #
+                $languagesBoxResponse = [System.Windows.MessageBox]::Show("The constructor of the 'Repository' class now tries to get its hands on all languages. Do you want them ?", "Confirmation", "YesNo", "info")
+
+                #
+                If($languagesBoxResponse -eq "Yes") {
+
+                    $withLanguages = $true
+
+                # 
+                } Else {
+
+                    $withLanguages = $false
+                }
+
+                #
+                $this.repositories = [Repository]::listAllRepositories($githubUserRequestsResult.login, $withBranches, $withLanguages)
+
             }
-
-            #
-            $languagesBoxResponse = [System.Windows.MessageBox]::Show("The constructor of the 'Repository' class now tries to get its hands on all languages. Do you want them ?", "Confirmation", "YesNo", "info")
-
-            #
-            If($languagesBoxResponse -eq "Yes") {
-
-                $withLanguages = $true
-
-            # 
-            } Else {
-
-                $withLanguages = $false
-            }
-
-            #
-            $this.repositories = [Repository]::listAllRepositories($githubUserRequestsResult.login, $withBranches, $withLanguages)
 
         # Bloc to execute if an System.Net.WebException is encountered...
         } catch [System.Net.WebException] {
