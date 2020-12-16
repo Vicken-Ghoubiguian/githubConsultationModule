@@ -70,20 +70,20 @@ $githubReposRequestsContent
             $this.isFork = $githubReposRequestsResult.fork
             $this.forksCount = $githubReposRequestsResult.forks_count
 
-            #
+            # Implementation of a message box that asks a very specific question...
             $branchesBoxResponse = [System.Windows.MessageBox]::Show("The constructor of the 'Repository' class now tries to get all branches. Do you want them ?", "Confirmation", "YesNo", "info")
 
-            #
+            # If the response from previous message box is "Yes"...
             If ($branchesBoxResponse -eq "Yes"){
 
                 # Call of the static function 'listAllBranches' of the PowerShell class 'Branch' to obtain all the branches of the repo...
                 $this.branches = [Branch]::listAllBranches($this.ownerLogin, $this.name)
             }
 
-            #
+            # Implementation of a message box that asks a very specific question...
             $languagesBoxResponse = [System.Windows.MessageBox]::Show("The constructor of the 'Repository' class now tries to get its hands on all languages. Do you want them ?", "Confirmation", "YesNo", "info")
 
-            #
+            # If the response from previous message box is "Yes"...
             If ($languagesBoxResponse -eq "Yes"){
 
                 # Call of the static function 'listAllLanguage' of the PowerShell class 'Language' to obtain all the languages of the repo...
@@ -99,13 +99,16 @@ $githubReposRequestsContent
             #
             $this.subscribers = @()
 
-            #
+            # If the 'license' element exists in the JSON datas received from the previous request...
             If($githubReposRequestsResult.license) {
 
+                # An object of 'License' class is created and affected to the 'license' class attribute...
                 $this.license = [License]::new($githubReposRequestsResult.license.key, $githubReposRequestsResult.license.name, $githubReposRequestsResult.license.spdx_id, $githubReposRequestsResult.license.url, $githubReposRequestsResult.license.node_id)
 
+            # Else...
             } Else {
 
+                # The value of 'license' class attribute is set to 'null'...
                 $this.license = $null
             }
 
@@ -162,13 +165,17 @@ $githubReposRequestsContent
         $this.isArchived = $isArchived
         $this.mainLanguage = $mainLanguage
 
+        # If the 'wantBranches' variable is 'true'...
         If($wantBranches) {
 
+            # We will get all branches used in the repos in the 'branches' class attribute...
             $this.branches = [Branch]::listAllBranches($ownerLogin, $name)
         }
 
+        # If the 'wantLanguages' variable is 'true'...
         If($wantLanguages) {
 
+            # We will get all languages used in the repos in the 'languages' class attribute...
             $this.languages = [Language]::listAllLanguages($ownerLogin, $name)
         }
     }
