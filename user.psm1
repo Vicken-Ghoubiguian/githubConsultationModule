@@ -68,13 +68,13 @@ $githubUserRequestsContent
             $this.twitter = $githubUserRequestsResult.twitter_username
 
             #
-            $repositoriesBoxResponse = [System.Windows.MessageBox]::Show("The constructor of the 'Repository' class now tries to get all repositories. Do you want them ?", "Confirmation", "YesNo", "info")
+            $repositoriesBoxResponse = [System.Windows.MessageBox]::Show("The constructor of the 'User' class now tries to get all repositories. Do you want them ?", "Confirmation", "YesNo", "info")
 
             #
             If($repositoriesBoxResponse -eq "Yes") {
 
                 #
-                $branchesBoxResponse = [System.Windows.MessageBox]::Show("The constructor of the 'Repository' class now tries to get all branches. Do you want them ?", "Confirmation", "YesNo", "info")
+                $branchesBoxResponse = [System.Windows.MessageBox]::Show("The constructor of the 'User' class now tries to get all branches of the current repository. Do you want them ?", "Confirmation", "YesNo", "info")
 
                 #
                 If($branchesBoxResponse -eq "Yes") {
@@ -88,7 +88,7 @@ $githubUserRequestsContent
                 }
 
                 #
-                $languagesBoxResponse = [System.Windows.MessageBox]::Show("The constructor of the 'Repository' class now tries to get its hands on all languages. Do you want them ?", "Confirmation", "YesNo", "info")
+                $languagesBoxResponse = [System.Windows.MessageBox]::Show("The constructor of the 'User' class now tries to get its hands on all languages used in the current repository. Do you want them ?", "Confirmation", "YesNo", "info")
 
                 #
                 If($languagesBoxResponse -eq "Yes") {
