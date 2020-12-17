@@ -81,12 +81,12 @@ $githubReposRequestsContent
             }
 
             # Implementation of a message box that asks a very specific question...
-            $languagesBoxResponse = [System.Windows.MessageBox]::Show("The constructor of the 'Repository' class now tries to get its hands on all languages. Do you want them ?", "Confirmation", "YesNo", "info")
+            $languagesBoxResponse = [System.Windows.MessageBox]::Show("The constructor of the 'Repository' class now tries to get its hands on all languages with details. Do you want them ?", "Confirmation", "YesNo", "info")
 
             # If the response from previous message box is "Yes"...
             If ($languagesBoxResponse -eq "Yes"){
 
-                # Call of the static function 'listAllLanguage' of the PowerShell class 'Language' to obtain all the languages of the repo...
+                # Call of the static function 'listAllLanguage' of the PowerShell class 'Language' to obtain all the languages with details of the repo...
                 $this.languages = [Language]::listAllLanguages($this.ownerLogin, $this.name)
             }
             

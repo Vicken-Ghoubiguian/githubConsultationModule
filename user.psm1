@@ -88,7 +88,7 @@ $githubUserRequestsContent
                 }
 
                 # Implementation of a message box that asks a very specific question...
-                $languagesBoxResponse = [System.Windows.MessageBox]::Show("The constructor of the 'User' class now tries to get its hands on all languages used in the current repository. Do you want them ?", "Confirmation", "YesNo", "info")
+                $languagesBoxResponse = [System.Windows.MessageBox]::Show("The constructor of the 'User' class now tries to get its hands on all languages with details used in the current repository. Do you want them ?", "Confirmation", "YesNo", "info")
 
                 # If the response from previous message box is "Yes", 'withLanguages' variable is set at 'true"...
                 If($languagesBoxResponse -eq "Yes") {
