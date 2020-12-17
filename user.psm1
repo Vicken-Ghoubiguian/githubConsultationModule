@@ -124,7 +124,8 @@ $githubUserRequestsContent
         # If no error occurs...
         If(!$this.error) {
 
-            $returningString = "-----------------" + "Presentation" + "-----------------" + "`n" +
+            $returningString = ""
+            <# $returningString = "-----------------" + "Presentation" + "-----------------" + "`n" +
                                "Id: " + $this.id + "`n" +
                                "Login: " + $this.login + "`n" +
                                "NodeId: " + $this.nodeId + "`n" +
@@ -157,7 +158,7 @@ $githubUserRequestsContent
 
                                + "-----------------" + "Events" + "-----------------" + "`n"
 
-                               $returningString += "`n"
+                               $returningString += "`n" #>
 
         # Else (an error occurs)...
         } Else {
