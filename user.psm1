@@ -148,41 +148,6 @@ $githubUserRequestsContent
 
                                $returningString += "`n"
 
-            <# $returningString = "-----------------" + "Presentation" + "-----------------" + "`n" +
-                               "Id: " + $this.id + "`n" +
-                               "Login: " + $this.login + "`n" +
-                               "NodeId: " + $this.nodeId + "`n" +
-                               "Avatar: " + $this.avatar + "`n" +
-                               "Email: " + $this.email + "`n" +
-                               "Bio: " + $this.bio + "`n" +
-                               "Profile: " + $this.profile + "`n" +
-                               "Type: " + $this.type + "`n" +
-                               "Name: " + $this.name + "`n" +
-                               "Blog: " +  $this.blog + "`n" +
-                               "Location: " +  $this.location + "`n" +
-                               "Is hireable ? " + $this.isHireable + "`n" +
-                               "Company: " + $this.company + "`n" +
-                               "Public repos count: " + $this.publicReposCount + "`n" +
-                               "Followers count: " + $this.followersCount + "`n" +
-                               "Following count: " + $this.followingCount + "`n" + "`n" +
-
-                               + "-----------------" + "Repositories" + "-----------------" + "`n"
-
-                               foreach($repository in $this.repositories) {
-
-                                    $returningString += $repository.ToString() 
-                               }
-
-                               + "-----------------" + "Followers" + "-----------------" + "`n"
-
-                               + "-----------------" + "Following" + "-----------------" + "`n"
-
-                               + "-----------------" + "Organizations" + "-----------------" + "`n"
-
-                               + "-----------------" + "Events" + "-----------------" + "`n"
-
-                               $returningString += "`n" #>
-
         # Else (an error occurs)...
         } Else {
 
