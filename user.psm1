@@ -141,10 +141,20 @@ $githubUserRequestsContent
                                "Followers count: " + $this.followersCount + "`n" +
                                "Following count: " + $this.followingCount + "`n" + "`n"
 
+                               $returningString += "-----------------" + "Repositories" + "-----------------" + "`n"
+
                                foreach($repository in $this.repositories) {
 
                                     $returningString += $repository.ToString() 
                                }
+
+                               $returningString += "-----------------" + "Followers" + "-----------------" + "`n"
+
+                               $returningString += "-----------------" + "Following" + "-----------------" + "`n"
+
+                               $returningString += "-----------------" + "Organizations" + "-----------------" + "`n"
+
+                               $returningString += "-----------------" + "Events" + "-----------------" + "`n"
 
                                $returningString += "`n"
 
