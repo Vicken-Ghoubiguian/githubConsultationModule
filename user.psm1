@@ -124,7 +124,8 @@ $githubUserRequestsContent
         # If no error occurs...
         If(!$this.error) {
 
-            $returningString = "`n" + "Id: " + $this.id + "`n" +
+            $returningString = "-----------------" + "Presentation" + "-----------------"
+            $returningString += "`n" + "Id: " + $this.id + "`n" +
                                "Login: " + $this.login + "`n" +
                                "NodeId: " + $this.nodeId + "`n" +
                                "Avatar: " + $this.avatar + "`n" +
