@@ -267,7 +267,7 @@ $githubReposRequestsContent
 
                     "Main language: " + $this.mainLanguage + "`n" +
                     
-                    "__________________________" + "`n"
+                    "--------------------------" + "`n"
 
                     foreach($language in $this.languages) {
 
@@ -293,6 +293,8 @@ $githubReposRequestsContent
                     "ssh URL: " + $this.sshURL + "`n" +
                     "svn URL: " + $this.svnURL + "`n" +
                     "home page: " + $this.homePage + "`n"
+
+                    $returningString += "@@@@@@@@@@@@@@@@@@@@@@@@@@"
 
           # Else (an error occurs)...
           } Else {
