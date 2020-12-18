@@ -124,8 +124,11 @@ $githubUserRequestsContent
         # If no error occurs...
         If(!$this.error) {
 
-            $returningString = "-----------------" + "Presentation" + "-----------------"
-            $returningString += "`n" + "Id: " + $this.id + "`n" +
+            $returningString = "`n"
+            $returningString += "Presentation:" + "`n"
+            $returningString += "===============" + "`n"
+
+            $returningString += "Id: " + $this.id + "`n" +
                                "Login: " + $this.login + "`n" +
                                "NodeId: " + $this.nodeId + "`n" +
                                "Avatar: " + $this.avatar + "`n" +
@@ -140,24 +143,18 @@ $githubUserRequestsContent
                                "Company: " + $this.company + "`n" +
                                "Public repos count: " + $this.publicReposCount + "`n" +
                                "Followers count: " + $this.followersCount + "`n" +
-                               "Following count: " + $this.followingCount + "`n" + "`n"
+                               "Following count: " + $this.followingCount + "`n"
 
-                               $returningString += "-----------------" + "Repositories" + "-----------------" + "`n"
+                               $returningString += "`n"
+                               $returningString += "Repositories:" + "`n"
+                               $returningString += "===============" + "`n"
 
                                foreach($repository in $this.repositories) {
 
                                     $returningString += $repository.ToString() 
                                }
 
-                               $returningString += "-----------------" + "Followers" + "-----------------" + "`n"
-
-                               $returningString += "-----------------" + "Following" + "-----------------" + "`n"
-
-                               $returningString += "-----------------" + "Organizations" + "-----------------" + "`n"
-
-                               $returningString += "-----------------" + "Events" + "-----------------" + "`n"
-
-                               $returningString += "`n"
+                               $returningString += ""
 
         # Else (an error occurs)...
         } Else {
