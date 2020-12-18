@@ -247,7 +247,7 @@ $githubReposRequestsContent
         # If no error occurs...
         If(!$this.error) {
 
-            $returningString =  "`n" + "-----------------" + "Presentation" + "-----------------" + "`n" +
+            $returningString =  "`n" + "@@@@@@@@@@@@@@@@@@@@@@@@@@" + "`n" +
                    "Id: " + $this.id + "`n" +
                    "Node Id: " + $this.nodeID + "`n" +
                    "Name: " + $this.name + "`n" +
@@ -255,45 +255,39 @@ $githubReposRequestsContent
                    "Page: " + $this.page + "`n" +
                    "Is it private ? " + $this.isPrivate + "`n" +
                    "Is it a fork ? " + $this.isFork + "`n" +
-                   "Is it archived ? " + $this.isArchived + "`n" + "`n" +
+                   "Is it archived ? " + $this.isArchived + "`n" +
 
-                    "-----------------" + "Owner" + "-----------------" + "`n" +
+                    "@@@@@@@@@@@@@@@@@@@@@@@@@@" + "`n" +
 
                     "Owner ID: " + $this.ownerID + "`n" +
                     "Owner login: " + $this.ownerLogin + "`n" +
-                    "Owner type: " + $this.ownerType + "`n" + "`n" +
+                    "Owner type: " + $this.ownerType + "`n" +
 
-                    "-----------------" + "Languages" + "-----------------" + "`n" +
+                    "@@@@@@@@@@@@@@@@@@@@@@@@@@" + "`n" +
 
-                    "Main language: " + $this.mainLanguage + "`n" + "`n"
+                    "Main language: " + $this.mainLanguage + "`n" +
+                    
+                    "__________________________" + "`n"
 
                     foreach($language in $this.languages) {
 
                         $returningString += $language.ToString()
                     }
 
-                    $returningString += "`n"
-
-                    $returningString += "-----------------" + "Branches" + "-----------------"
+                    $returningString += "@@@@@@@@@@@@@@@@@@@@@@@@@@"
 
                     foreach($branch in $this.branches) {
 
                         $returningString += $branch.ToString()
                     }
 
-                    $returningString += "`n"
-
-                    $returningString += "-----------------" + "License" + "-----------------"
+                    $returningString += "@@@@@@@@@@@@@@@@@@@@@@@@@@"
 
                     $returningString += $this.license.ToString()
 
                     $returningString += "`n"
 
-                    "-----------------" + "Contributors" + "-----------------" + "`n" + "`n" +
-
-                    "-----------------" + "Subscribers" + "-----------------" + "`n" + "`n" +
-
-                    "-----------------" + "Links" + "-----------------" + "`n" +
+                    "@@@@@@@@@@@@@@@@@@@@@@@@@@" + "`n" +
 
                     "Git URL: " + $this.gitURL + "`n" +
                     "ssh URL: " + $this.sshURL + "`n" +

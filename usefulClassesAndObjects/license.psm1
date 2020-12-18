@@ -23,11 +23,11 @@ class License
     [String] ToString()
     {
         $returningString = "`n"
-        $returningString += "Name: " + $this.name + "`n"
-        $returningString += "SPDX Id: " + $this.spdxID + "`n"
-        $returningString += "License URL: " + $this.licenseURL + "`n"
-        $returningString += "Key: " + $this.key + "`n"
-        $returningString += "Node Id: " + $this.nodeID + "`n"
+        $returningString += "License's name: " + $this.name + "`n"
+        $returningString += "SPDX Id of license: " + $this.spdxID + "`n"
+        $returningString += "License's URL: " + $this.licenseURL + "`n"
+        $returningString += "License's key: " + $this.key + "`n"
+        $returningString += "Node Id of license: " + $this.nodeID + "`n"
 
         return $returningString
     }
