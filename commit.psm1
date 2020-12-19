@@ -33,4 +33,46 @@ class Commit
         # Create an HTTP request to take all commits of the GitHub repository identified by its name and its owner's login...
         $githubGetCommitsReposURL = "https://api.github.com/repos/" + $wishedUserLogin + "/" + $wishedRepositoryName + "/commits"
     }
+
+    # 'sha' attribute getter...
+    [string] getSha()
+    {
+        return $this.sha
+    }
+
+    # 'nodeId' attribute getter...
+    [string] getNodeId()
+    {
+        return $this.nodeId
+    }
+
+    # 'message' attribute getter...
+    [string] getMessage()
+    {
+        return $this.message
+    }
+
+    # 'total' attribute getter...
+    [int] getTotal()
+    {
+        return $this.total
+    }
+
+    # 'additions' attribute getter...
+    [int] getAdditions()
+    {
+        return $this.additions
+    }
+
+    # 'deletions' attribute getter...
+    [int] getDeletions()
+    {
+        return $this.deletions
+    }
+
+    # 'files' attribute getter...
+    [System.Array] getFiles()
+    {
+        return $this.files
+    }
 }
