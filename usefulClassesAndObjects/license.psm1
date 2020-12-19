@@ -11,6 +11,16 @@ class License
     hidden [string]$licenseURL
     hidden [string]$nodeID
 
+    hidden [System.Array]$permissions
+    hidden [System.Array]$conditions
+    hidden [System.Array]$limitations
+
+    hidden [string]$description
+    hidden [string]$body
+    hidden [bool]$isFeatured
+    hidden [string]$implementation
+    hidden [string]$chooseALicenseURL
+
     # License class constructor with license key...
     License([string]$wishedKey)
     {
