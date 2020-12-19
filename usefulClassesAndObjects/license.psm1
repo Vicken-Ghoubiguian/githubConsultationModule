@@ -1,4 +1,6 @@
-﻿# Definition of the License Powershell class to define a license from the GitHub API...
+﻿Using module .\gitHubError.psm1
+
+# Definition of the License Powershell class to define a license from the GitHub API...
 class License
 {
     
@@ -29,10 +31,39 @@ class License
     # Create an HTTP request to take all defined licenses from the GitHub...
     static [System.Array] listAllDefinedLicenses()
     {
-        # Create an HTTP request to take all licenses defined on GitHub...
-        $githubGetLicensesURL = "https://api.github.com/licenses"
+        # Definition of the 'licensesArray' array which will contain all licenses...
+        $licensesArray = [System.Collections.ArrayList]::new()
 
-        return @()
+        # Bloc we wish execute to get all informations about licenses...
+        try {
+
+            # Create an HTTP request to take all licenses defined on GitHub...
+            $githubGetLicensesURL = "https://api.github.com/licenses"
+
+            # Retrieving and extracting all licenses received from the URL...
+            $githubLicensessRequest = Invoke-WebRequest -Uri $githubGetLicensesURL -Method Get
+            $licensesJSONObj = ConvertFrom-Json $githubLicensessRequest.Content
+
+            # Browse all the licenses contained in the received JSON and create all the instances of the Powershell class 'License' from this data and add them to the array 'licensesArray'...
+            foreach($license in $licensesJSONObj) {
+
+                $licensesArray.Add([License]::new($license.key, $license.name, $license.spdx_id, $license.url, $license.node_id))
+            }
+
+        # Bloc to execute if an System.Net.WebException is encountered...
+        } catch [System.Net.WebException] {
+
+            $errorType = $_.Exception.GetType().Name
+
+            $errorMessage = $_.Exception.Message
+
+            $errorStackTrace = $_.Exception.StackTrace
+
+            $licensesArray.Add([GitHubError]::new($errorType, $errorMessage, $errorStackTrace))
+        }
+
+        # Returning the 'licensesArray' array...
+        return $licensesArray
     }
 
     #
