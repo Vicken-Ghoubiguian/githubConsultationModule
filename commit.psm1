@@ -104,7 +104,41 @@ class Commit
         return $this.typeAuthor
     }
 
+    # 'loginCommitter' attribute getter...
+    [string] getLoginCommitter()
+    {
+        return $this.loginCommitter
+    }
 
+    # 'idCommitter' attribute getter...
+    [string] getIdCommitter()
+    {
+        return $this.idCommitter
+    }
+
+    # 'nodeIdCommitter' attribute getter...
+    [string] getNodeIdCommitter()
+    {
+        return $this.nodeIdCommitter
+    }
+
+    # 'avatarCommitter' attribute getter...
+    [string] getAvatarCommitter()
+    {
+        return $this.avatarCommitter
+    }
+
+    # 'profileCommitter' attribute getter...
+    [string] getProfileCommitter()
+    {
+        return $this.profileCommitter
+    }
+
+    # 'typeCommitter' attribute getter...
+    [string] getTypeCommitter()
+    {
+        return $this.typeCommitter
+    }
 
     # 'total' attribute getter...
     [int] getTotal()
