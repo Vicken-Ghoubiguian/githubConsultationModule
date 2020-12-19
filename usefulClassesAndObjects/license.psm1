@@ -9,7 +9,14 @@ class License
     hidden [string]$licenseURL
     hidden [string]$nodeID
 
-    # License class constructor...
+    # License class constructor with license key...
+    License([string]$wishedKey)
+    {
+        # Create an HTTP request to take the GitHub license identified by the 'wishedKey' wished key...
+        $githubGetLicenseURL = "https://api.github.com/licenses/" + $wishedKey
+    }
+
+    # License class constructor with all required parameters for all class attributes...
     License([string]$collectedKey, [string]$collectedName, [string]$collectedSpdxID, [string]$collectedLicenseURL, [string]$collectedNodeID)
     {
         $this.key = $collectedKey
@@ -17,6 +24,15 @@ class License
         $this.spdxID = $collectedSpdxID
         $this.licenseURL = $collectedLicenseURL
         $this.nodeID = $collectedNodeID
+    }
+
+    # Create an HTTP request to take all defined licenses from the GitHub...
+    static [System.Array] listAllDefinedLicenses()
+    {
+        # Create an HTTP request to take all licenses defined on GitHub...
+        $githubGetLicensesURL = "https://api.github.com/licenses"
+
+        return @()
     }
 
     #
