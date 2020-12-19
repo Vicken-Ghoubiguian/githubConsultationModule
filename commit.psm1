@@ -9,16 +9,16 @@ class Commit
     hidden [string]$message
 
     hidden [string]$loginAuthor
-    hidden [string]$loginIdAuthor
-    hidden [string]$loginNodeIdAuthor
-    hidden [string]$loginAvatarAuthor
+    hidden [string]$idAuthor
+    hidden [string]$nodeIdAuthor
+    hidden [string]$avatarAuthor
     hidden [string]$profileAuthor
     hidden [string]$typeAuthor
 
     hidden [string]$loginCommitter
-    hidden [string]$loginIdCommitter
-    hidden [string]$loginNodeIdCommitter
-    hidden [string]$loginAvatarCommitter
+    hidden [string]$idCommitter
+    hidden [string]$nodeIdCommitter
+    hidden [string]$avatarCommitter
     hidden [string]$profileCommitter
     hidden [string]$typeCommitter
 
@@ -67,6 +67,44 @@ class Commit
     {
         return $this.message
     }
+
+    # 'loginAuthor' attribute getter...
+    [string] getLoginAuthor()
+    {
+        return $this.loginAuthor
+    }
+
+    # 'idAuthor' attribute getter...
+    [string] getIdAuthor()
+    {
+        return $this.idAuthor
+    }
+
+    # 'nodeIdAuthor' attribute getter...
+    [string] getNodeIdAuthor()
+    {
+        return $this.nodeIdAuthor
+    }
+
+    # 'avatarAuthor' attribute getter...
+    [string] getAvatarAuthor()
+    {
+        return $this.avatarAuthor
+    }
+
+    # 'profileAuthor' attribute getter...
+    [string] getProfileAuthor()
+    {
+        return $this.profileAuthor
+    }
+
+    # 'typeAuthor' attribute getter...
+    [string] getTypeAuthor()
+    {
+        return $this.typeAuthor
+    }
+
+
 
     # 'total' attribute getter...
     [int] getTotal()
