@@ -27,11 +27,17 @@ class Commit
     hidden [int]$deletions
     hidden [System.Array]$files
 
-    # Commit class constructor...
+    # Commit class constructor with user login, repository name and sha...
     Commit([string]$wishedUserLogin, [string]$wishedRepositoryName, [string]$wishedSha)
     {
         # Extract all the data relating to the desired commit identified by the desired user login, the desired repository name and desired sha from the received JSON ...
         $githubGetCommitURL = "https://api.github.com/repos/" + $wishedUserLogin + "/" + $wishedRepositoryName + "/commits/" + $wishedSha
+    }
+
+    # Commit class constructor with all class attributes in parameter...
+    Commit()
+    {
+
     }
 
     # Definition of a static function to put all commits from a user and a repository identified respectively by its login and its name inside an array...
