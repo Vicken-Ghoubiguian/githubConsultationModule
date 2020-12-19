@@ -28,10 +28,20 @@ class Commit
     hidden [System.Array]$files
 
     # Commit class constructor...
-    Commit([string]$wishedUserLogin, [string]$wishedRepositoryName)
+    Commit([string]$wishedUserLogin, [string]$wishedRepositoryName, [string]$wishedSha)
+    {
+        # Extract all the data relating to the desired commit identified by the desired user login, the desired repository name and desired sha from the received JSON ...
+        $githubGetCommitURL = "https://api.github.com/repos/" + $wishedUserLogin + "/" + $wishedRepositoryName + "/commits/" + $wishedSha
+    }
+
+    # Definition of a static function to put all commits from a user and a repository identified respectively by its login and its name inside an array...
+    static [System.Array] listAllCommits([string]$wishedUserLogin, [string]$wishedRepositoryName)
     {
         # Create an HTTP request to take all commits of the GitHub repository identified by its name and its owner's login...
         $githubGetCommitsReposURL = "https://api.github.com/repos/" + $wishedUserLogin + "/" + $wishedRepositoryName + "/commits"
+
+        #
+        return @()
     }
 
     # 'sha' attribute getter...
