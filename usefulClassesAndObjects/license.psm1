@@ -86,6 +86,38 @@ class License
         $returningString += "License's key: " + $this.key + "`n"
         $returningString += "Node Id of license: " + $this.nodeID + "`n"
 
+        If(!$this.permissions) {
+        } Else {
+        }
+
+        If(!$this.conditions){
+        } Else {
+        }
+
+        If(!$this.limitations){
+        } Else {
+        }
+
+        If(!$this.description){
+        } Else {
+        }
+
+        If(!$this.body){
+        } Else {
+        }
+
+        If(!$this.isFeatured){
+        } Else {
+        }
+
+        If(!$this.implementation){
+        } Else {
+        }
+
+        If(!$this.chooseALicenseURL){
+        } Else {
+        }
+
         return $returningString
     }
 
