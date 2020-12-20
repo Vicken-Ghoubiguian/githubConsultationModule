@@ -118,4 +118,52 @@ class License
     {
         return $this.nodeID
     }
+
+    # 'permissions' attribute getter...
+    [System.Array] getPermissions()
+    {
+        return $this.permissions
+    }
+
+    # 'conditions' attribute getter...
+    [System.Array] getConditions()
+    {
+        return $this.conditions
+    }
+
+    # 'limitations' attribute getter...
+    [System.Array] getLimitations()
+    {
+        return $this.limitations
+    }
+
+    # 'description' attribute getter...
+    [string] getDescription()
+    {
+        return $this.description
+    }
+
+    # 'body' attribute getter...
+    [string] getBody()
+    {
+        return $this.body
+    }
+
+    # 'isFeatured' attribute getter...
+    [bool] getISFeatured()
+    {
+        return $this.isFeatured
+    }
+
+    # 'implementation' attribute getter...
+    [string] getImplementation()
+    {
+        return $this.implementation
+    }
+
+    # 'chooseALicenseURL' attribute getter...
+    [string] getChooseALicenseURL()
+    {
+        return $this.chooseALicenseURL
+    }
 }
