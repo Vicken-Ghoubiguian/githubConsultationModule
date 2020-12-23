@@ -117,6 +117,32 @@ $githubLicenseRequestsContent
     }
 
     #
+    [void] completeAllDatas()
+    {
+        # Create an HTTP request to take the GitHub license identified by the License current key...
+        $githubGetLicenseURL = "https://api.github.com/licenses/" + $this.key
+
+        # 
+        $githubLicenseRequest = Invoke-WebRequest -Uri $githubGetLicenseURL -Method Get
+        $githubLicenseRequestsContent = $githubLicenseRequest.Content
+        $githubLicenseRequestsJSONContent = @"
+               
+$githubLicenseRequestsContent
+"@
+        $githubLicenseRequestsResult = ConvertFrom-Json -InputObject $githubLicenseRequestsJSONContent
+
+        # Complete all the other Powershell class 'License' attributes values...
+        $this.permissions = $githubLicenseRequestsResult.permissions
+        $this.conditions = $githubLicenseRequestsResult.conditions
+        $this.limitations = $githubLicenseRequestsResult.limitations
+        $this.description = $githubLicenseRequestsResult.description
+        $this.body = $githubLicenseRequestsResult.body
+        $this.isFeatured = $githubLicenseRequestsResult.featured
+        $this.implementation = $githubLicenseRequestsResult.implementation
+        $this.chooseALicenseURL = $githubLicenseRequestsResult.html_url
+    }
+
+    #
     [String] ToString()
     {
         $returningString = "`n"
