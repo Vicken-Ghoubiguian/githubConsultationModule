@@ -71,11 +71,11 @@ $githubLicenseRequestsContent
     # License class constructor with all required parameters for all class attributes...
     License([string]$collectedKey, [string]$collectedName, [string]$collectedSpdxID, [string]$collectedLicenseURL, [string]$collectedNodeID)
     {
-        $this.key = $collectedKey.key
-        $this.name = $collectedName.name
-        $this.spdxID = $collectedSpdxID.spdx_id
-        $this.licenseURL = $collectedLicenseURL.url
-        $this.nodeID = $collectedNodeID.node_id
+        $this.key = $collectedKey
+        $this.name = $collectedName
+        $this.spdxID = $collectedSpdxID
+        $this.licenseURL = $collectedLicenseURL
+        $this.nodeID = $collectedNodeID
     }
 
     # Create an HTTP request to take all defined licenses from the GitHub...
