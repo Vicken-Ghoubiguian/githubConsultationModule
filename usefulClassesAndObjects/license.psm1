@@ -152,36 +152,65 @@ $githubLicenseRequestsContent
         $returningString += "License's key: " + $this.key + "`n"
         $returningString += "Node Id of license: " + $this.nodeID + "`n"
 
-        If(!$this.permissions) {
-        } Else {
+        If($this.permissions) {
+
+            $returningString += "Permissions: "
+
+            foreach($permissions in $this.permissions) {
+
+                $returningString += $permissions + ", "
+            }
+
+            $returningString += "`n"
         }
 
-        If(!$this.conditions){
-        } Else {
+        If($this.conditions){
+
+            $returningString += "Conditions: "
+
+            foreach($condition in $this.conditions) {
+
+                $returningString += $condition + ", "
+            }
+
+            $returningString += "`n"
         }
 
-        If(!$this.limitations){
-        } Else {
+        If($this.limitations){
+
+            $returningString += "Limitations: "
+
+            foreach($limitation in $this.limitations) {
+
+                $returningString += $limitation + ", "
+            }
+
+            $returningString += "`n"
         }
 
-        If(!$this.description){
-        } Else {
+        If($this.description){
+
+            $returningString += "Description: " + $this.description + "`n"
         }
 
-        If(!$this.body){
-        } Else {
+        If($this.body){
+
+            $returningString += "Body: " + $this.body + "`n"
         }
 
-        If(!$this.isFeatured){
-        } Else {
+        If($this.isFeatured){
+
+            $returningString += "Is it featured ? " + $this.isFeatured + "`n"
         }
 
-        If(!$this.implementation){
-        } Else {
+        If($this.implementation){
+
+            $returningString += "Implementation: " + $this.implementation + "`n"
         }
 
-        If(!$this.chooseALicenseURL){
-        } Else {
+        If($this.chooseALicenseURL){
+
+            $returningString += "'Choose a license' URL: " + $this.chooseALicenseURL + "`n"
         }
 
         return $returningString
