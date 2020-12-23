@@ -39,6 +39,22 @@ $githubLicenseRequestsContent
 "@
             $githubLicenseRequestsResult = ConvertFrom-Json -InputObject $githubLicenseRequestsJSONContent
 
+            $this.key = $githubLicenseRequestsResult.key
+            $this.name = $githubLicenseRequestsResult.name
+            $this.spdxID = $githubLicenseRequestsResult.spdx_id
+            $this.licenseURL = $githubLicenseRequestsResult.url
+            $this.nodeID = $githubLicenseRequestsResult.node_id
+
+            $this.permissions = $githubLicenseRequestsResult.permissions
+            $this.conditions = $githubLicenseRequestsResult.conditions
+            $this.limitations = $githubLicenseRequestsResult.limitations
+
+            $this.description = $githubLicenseRequestsResult.description
+            $this.body = $githubLicenseRequestsResult.body
+            $this.isFeatured = $githubLicenseRequestsResult.featured
+            $this.implementation = $githubLicenseRequestsResult.implementation
+            $this.chooseALicenseURL = $githubLicenseRequestsResult.html_url
+
         # Bloc to execute if an System.Net.WebException is encountered...
         } catch [System.Net.WebException] {
 
@@ -55,11 +71,11 @@ $githubLicenseRequestsContent
     # License class constructor with all required parameters for all class attributes...
     License([string]$collectedKey, [string]$collectedName, [string]$collectedSpdxID, [string]$collectedLicenseURL, [string]$collectedNodeID)
     {
-        $this.key = $collectedKey
-        $this.name = $collectedName
-        $this.spdxID = $collectedSpdxID
-        $this.licenseURL = $collectedLicenseURL
-        $this.nodeID = $collectedNodeID
+        $this.key = $collectedKey.key
+        $this.name = $collectedName.name
+        $this.spdxID = $collectedSpdxID.spdx_id
+        $this.licenseURL = $collectedLicenseURL.url
+        $this.nodeID = $collectedNodeID.node_id
     }
 
     # Create an HTTP request to take all defined licenses from the GitHub...
