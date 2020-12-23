@@ -5,7 +5,7 @@ Using module ..\usefulClassesAndObjects\license.psm1
 $licensesArray = [License]::listAllDefinedLicenses()
 
 # Implementation of a message box that asks a very specific question...
-$additionalValuesLicenseBoxResponse = [System.Windows.MessageBox]::Show(". Do you want them ?", "Confirmation", "YesNo", "info")
+$additionalValuesLicenseBoxResponse = [System.Windows.MessageBox]::Show("Additional data is available for licenses. Do you want them ?", "Confirmation", "YesNo", "info")
 
 # Browse the array implemented previously and display each branch...
 foreach($license in $licensesArray) {
