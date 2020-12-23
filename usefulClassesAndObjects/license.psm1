@@ -26,6 +26,30 @@ class License
     {
         # Create an HTTP request to take the GitHub license identified by the 'wishedKey' wished key...
         $githubGetLicenseURL = "https://api.github.com/licenses/" + $wishedKey
+
+        # Bloc we wish execute to get all informations about the wished license...
+        try {
+
+            #
+            $githubLicenseRequest = Invoke-WebRequest -Uri $githubGetLicenseURL -Method Get
+            $githubLicenseRequestsContent = $githubLicenseRequest.Content
+            $githubLicenseRequestsJSONContent = @"
+               
+$githubLicenseRequestsContent
+"@
+            $githubLicenseRequestsResult = ConvertFrom-Json -InputObject $githubLicenseRequestsJSONContent
+
+        # Bloc to execute if an System.Net.WebException is encountered...
+        } catch [System.Net.WebException] {
+
+            $errorType = $_.Exception.GetType().Name
+
+            $errorMessage = $_.Exception.Message
+
+            $errorStackTrace = $_.Exception.StackTrace
+
+            $this.error = [GitHubError]::new($errorType, $errorMessage, $errorStackTrace)
+        }
     }
 
     # License class constructor with all required parameters for all class attributes...
