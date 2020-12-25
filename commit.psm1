@@ -56,6 +56,12 @@ class Commit
             $githubCommitsReposRequest = Invoke-WebRequest -Uri $githubGetCommitsReposURL -Method Get
             $commitsJSONObj = ConvertFrom-Json $githubCommitsReposRequest.Content
 
+            # Browse all the commits contained in the received JSON and create all the instances of the Powershell class 'Commit' from this data and add them to the array 'commitsArray'...
+            foreach($commit in $commitsJSONObj) {
+
+                $commitsArray.Add([Commit]::new())
+            }
+
         # Bloc to execute if an System.Net.WebException is encountered...
         } catch [System.Net.WebException] {
 
