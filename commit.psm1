@@ -43,11 +43,29 @@ class Commit
     # Definition of a static function to put all commits from a user and a repository identified respectively by its login and its name inside an array...
     static [System.Array] listAllCommits([string]$wishedUserLogin, [string]$wishedRepositoryName)
     {
-        # Create an HTTP request to take all commits of the GitHub repository identified by its name and its owner's login...
-        $githubGetCommitsReposURL = "https://api.github.com/repos/" + $wishedUserLogin + "/" + $wishedRepositoryName + "/commits"
+        # Definition of the 'commitsArray' array which will contain all commits of the wished 'wishedRepositoryName' repo from the wished 'wishedUserLogin' user...
+        $commitsArray = [System.Collections.ArrayList]::new()
 
-        #
-        return @()
+        # Bloc we wish execute to get all informations about commits...
+        try {
+
+            # Create an HTTP request to take all commits of the GitHub repository identified by its name and its owner's login...
+            $githubGetCommitsReposURL = "https://api.github.com/repos/" + $wishedUserLogin + "/" + $wishedRepositoryName + "/commits"
+
+        # Bloc to execute if an System.Net.WebException is encountered...
+        } catch [System.Net.WebException] {
+
+            $errorType = $_.Exception.GetType().Name
+
+            $errorMessage = $_.Exception.Message
+
+            $errorStackTrace = $_.Exception.StackTrace
+
+            $commitsArray.Add([GitHubError]::new($errorType, $errorMessage, $errorStackTrace))
+        }
+
+        # Returning the '$commitsArray' array...
+        return $commitsArray
     }
 
     # 'sha' attribute getter...
