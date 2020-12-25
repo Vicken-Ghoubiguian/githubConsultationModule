@@ -81,6 +81,18 @@ class Commit
         return $commitsArray
     }
 
+    #
+    [void] completeAllDatas()
+    {
+
+    }
+
+    #
+    [String] ToString()
+    {
+        return ""
+    }
+
     # 'sha' attribute getter...
     [string] getSha()
     {
