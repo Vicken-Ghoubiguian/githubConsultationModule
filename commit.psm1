@@ -52,6 +52,10 @@ class Commit
             # Create an HTTP request to take all commits of the GitHub repository identified by its name and its owner's login...
             $githubGetCommitsReposURL = "https://api.github.com/repos/" + $wishedUserLogin + "/" + $wishedRepositoryName + "/commits"
 
+            # Retrieving and extracting all commits received from the URL...
+            $githubCommitsReposRequest = Invoke-WebRequest -Uri $githubGetCommitsReposURL -Method Get
+            $commitsJSONObj = ConvertFrom-Json $githubCommitsReposRequest.Content
+
         # Bloc to execute if an System.Net.WebException is encountered...
         } catch [System.Net.WebException] {
 
