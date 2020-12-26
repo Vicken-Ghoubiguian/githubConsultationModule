@@ -27,11 +27,28 @@ class Commit
     hidden [int]$deletions
     hidden [System.Array]$files
 
+    hidden [GitHubError]$error
+
     # Commit class constructor with user login, repository name and sha...
     Commit([string]$wishedUserLogin, [string]$wishedRepositoryName, [string]$wishedSha)
     {
         # Extract all the data relating to the desired commit identified by the desired user login, the desired repository name and desired sha from the received JSON ...
         $githubGetCommitURL = "https://api.github.com/repos/" + $wishedUserLogin + "/" + $wishedRepositoryName + "/commits/" + $wishedSha
+
+        # Bloc we wish execute to get all informations about the wished commit...
+        try {
+
+        # Bloc to execute if an System.Net.WebException is encountered...
+        } catch [System.Net.WebException] {
+
+            $errorType = $_.Exception.GetType().Name
+
+            $errorMessage = $_.Exception.Message
+
+            $errorStackTrace = $_.Exception.StackTrace
+
+            $this.error = [GitHubError]::new($errorType, $errorMessage, $errorStackTrace)
+        }
     }
 
     # Commit class constructor with all class attributes in parameter...
@@ -205,5 +222,11 @@ class Commit
     [System.Array] getFiles()
     {
         return $this.files
+    }
+
+    # 'error' attribute getter...
+    [GitHubError] getGitHubError()
+    {
+        return $this.error
     }
 }
