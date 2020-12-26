@@ -40,7 +40,16 @@ class Commit
         # Bloc we wish execute to get all informations about the wished commit...
         try {
 
-            
+            #
+            $githubCommitRequest = Invoke-WebRequest -Uri $githubGetCommitURL -Method Get
+            $githubCommitRequestsContent = $githubCommitRequest.Content
+            $githubCommitRequestsJSONContent = @"
+               
+$githubCommitRequestsContent
+"@
+            $githubCommitRequestsResult = ConvertFrom-Json -InputObject $githubCommitRequestsJSONContent
+
+
 
         # Bloc to execute if an System.Net.WebException is encountered...
         } catch [System.Net.WebException] {
