@@ -38,4 +38,16 @@ class File
         $this.contents = $contents
         $this.patch = $patch
     }
+
+    # Definition of a static function to put all files from a repository owned by a user identified respectively by its login and its name inside an array...
+    static [System.Array] listAllFilesInRepos([string]$wishedUserLogin, [string]$wishedRepositoryName)
+    {
+        # Definition of the 'filesArray' array which will contain all files of the wished 'wishedRepositoryName' repo from the wished 'wishedUserLogin' user...
+        $filesArray = [System.Collections.ArrayList]::new()
+
+        # Create an HTTP request to take all files of the GitHub repository identified by its name and its owner's login...
+        $githubGetFilesFromReposURL = "https://api.github.com/repos/" + $wishedUserLogin + "/" + $wishedRepositoryName + "/contents"
+
+        return $filesArray
+    }
 }
