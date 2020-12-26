@@ -53,6 +53,10 @@ class File
             # Create an HTTP request to take all files of the GitHub repository identified by its name and its owner's login...
             $githubGetFilesFromReposURL = "https://api.github.com/repos/" + $wishedUserLogin + "/" + $wishedRepositoryName + "/contents"
 
+            # Retrieving and extracting all files received from the URL...
+            $githubFilesFromReposRequest = Invoke-WebRequest -Uri $githubGetFilesFromReposURL -Method Get
+            $filesFromReposJSONObj = ConvertFrom-Json $githubFilesFromReposRequest.Content
+
         # Bloc to execute if an System.Net.WebException is encountered...
         } catch [System.Net.WebException] {
 
