@@ -49,7 +49,27 @@ $githubCommitRequestsContent
 "@
             $githubCommitRequestsResult = ConvertFrom-Json -InputObject $githubCommitRequestsJSONContent
 
+            $this.sha = $githubCommitRequestsResult.sha
+            $this.nodeId = $githubCommitRequestsResult.nodeId
+            $this.message = $githubCommitRequestsResult.message
 
+            $this.loginAuthor = $githubCommitRequestsResult.author.login
+            $this.idAuthor = $githubCommitRequestsResult.author.id
+            $this.nodeIdAuthor = $githubCommitRequestsResult.author.node_id
+            $this.avatarAuthor = $githubCommitRequestsResult.author.avatar_url
+            $this.profileAuthor = $githubCommitRequestsResult.author.html_url
+            $this.typeAuthor = $githubCommitRequestsResult.author.type
+
+            $this.loginCommitter = $githubCommitRequestsResult.committer.login
+            $this.idCommitter = $githubCommitRequestsResult.committer.id
+            $this.nodeIdCommitter = $githubCommitRequestsResult.committer.node_id
+            $this.avatarCommitter = $githubCommitRequestsResult.committer.avatar_url
+            $this.profileCommitter = $githubCommitRequestsResult.committer.html_url
+            $this.typeCommitter = $githubCommitRequestsResult.committer.type
+
+            $this.total = $githubCommitRequestsResult.stats.total
+            $this.additions = $githubCommitRequestsResult.stats.additions
+            $this.deletions = $githubCommitRequestsResult.stats.deletions
 
         # Bloc to execute if an System.Net.WebException is encountered...
         } catch [System.Net.WebException] {
