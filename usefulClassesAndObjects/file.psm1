@@ -72,4 +72,64 @@ class File
         # Returning the '$filesArray' array...
         return $filesArray
     }
+
+    # 'sha' attribute getter...
+    [string] getSha()
+    {
+        return $this.sha
+    }
+
+    # 'filename' attribute getter...
+    [string] getFileName()
+    {
+        return $this.filename
+    }
+
+    # 'status' attribute getter...
+    [string] getStatus()
+    {
+        return $this.status
+    }
+
+    # 'changes' attribute getter...
+    [int] getChanges()
+    {
+        return $this.changes
+    }
+
+    # 'additions' attribute getter...
+    [int] getAdditions()
+    {
+        return $this.additions
+    }
+
+    # 'deletions' attribute getter...
+    [int] getDeletions()
+    {
+        return $this.deletions
+    }
+
+    # 'blob' attribute getter...
+    [string] getBlob()
+    {
+        return $this.blob
+    }
+
+    # 'raws' attribute getter...
+    [string] getRaws()
+    {
+        return $this.raws
+    }
+
+    # 'contents' attribute getter...
+    [string] getContents()
+    {
+        return $this.contents
+    }
+
+    # 'patch' attribute getter...
+    [string] getPatch()
+    {
+        return $this.patch
+    }
 }
