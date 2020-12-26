@@ -16,11 +16,16 @@ class GitHubError
     #
     [String] ToString()
     {
-        return "`n" + "-------------------------------------------" + "`n" +
-               "|Error type: " + $this.type + "`n" +
-               "|Error message: " + $this.message + "`n" +
-               "|Error stackTrace: " + $this.stackTrace + "`n" +
-               + "-------------------------------------------" + "`n"
+
+        $returningString = "`n"
+        $returningString += "GitHub Error" + "`n"
+        $returningString += "======================================" + "`n"
+        $returningString += "|Error type: " + $this.type + "`n"
+        $returningString += "|Error message: " + $this.message + "`n"
+        $returningString += "|Error stackTrace: " + $this.stackTrace + "`n"
+        $returningString += "======================================" + "`n"
+
+        return $returningString
     }
 
     # 'type' attribute getter
