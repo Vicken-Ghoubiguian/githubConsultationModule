@@ -22,9 +22,20 @@ class File
         $githubGetFileURL = "https://api.github.com/repos/" + $wishedUserLogin + "/" + $wishedRepositoryName + "/contents/" + $wishedFileName
     }
 
-    # File class constructor with all parameters...
-    File()
+    # File class constructor with all required parameters...
+    File([string]$sha, [string]$filename, [string]$status, [int]$additions, [int]$deletions, [int]$changes, [string]$blob, [string]$raws, [string]$contents, [string]$patch)
     {
+        $this.sha = $sha
+        $this.filename = $filename
+        $this.status = $status
 
+        $this.additions = $additions
+        $this.deletions = $deletions
+        $this.changes = $changes
+
+        $this.blob = $blob
+        $this.raws = $raws
+        $this.contents = $contents
+        $this.patch = $patch
     }
 }
