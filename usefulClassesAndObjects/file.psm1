@@ -1,4 +1,6 @@
-﻿# Definition of the File Powershell class to define a file in a repository from the GitHub API...
+﻿Using module .\gitHubError.psm1
+
+# Definition of the File Powershell class to define a file in a repository from the GitHub API...
 class File
 {
     # All attributes of the File class...
@@ -45,9 +47,25 @@ class File
         # Definition of the 'filesArray' array which will contain all files of the wished 'wishedRepositoryName' repo from the wished 'wishedUserLogin' user...
         $filesArray = [System.Collections.ArrayList]::new()
 
-        # Create an HTTP request to take all files of the GitHub repository identified by its name and its owner's login...
-        $githubGetFilesFromReposURL = "https://api.github.com/repos/" + $wishedUserLogin + "/" + $wishedRepositoryName + "/contents"
+        # Bloc we wish execute to get all informations about commits...
+        try {
 
+            # Create an HTTP request to take all files of the GitHub repository identified by its name and its owner's login...
+            $githubGetFilesFromReposURL = "https://api.github.com/repos/" + $wishedUserLogin + "/" + $wishedRepositoryName + "/contents"
+
+        # Bloc to execute if an System.Net.WebException is encountered...
+        } catch [System.Net.WebException] {
+
+            $errorType = $_.Exception.GetType().Name
+
+            $errorMessage = $_.Exception.Message
+
+            $errorStackTrace = $_.Exception.StackTrace
+
+            $filesArray.Add([GitHubError]::new($errorType, $errorMessage, $errorStackTrace))
+        }
+
+        # Returning the '$filesArray' array...
         return $filesArray
     }
 }
