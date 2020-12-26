@@ -1,5 +1,7 @@
 ﻿Using module .\usefulClassesAndObjects\gitHubError.psm1
 
+Add-Type -AssemblyName PresentationFramework
+
 # Definition of the Commit Powershell class to define a repository's commit from the GitHub API...
 class Commit
 {
@@ -37,6 +39,8 @@ class Commit
 
         # Bloc we wish execute to get all informations about the wished commit...
         try {
+
+            
 
         # Bloc to execute if an System.Net.WebException is encountered...
         } catch [System.Net.WebException] {
