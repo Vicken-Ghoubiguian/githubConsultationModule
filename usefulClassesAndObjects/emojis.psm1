@@ -1,4 +1,4 @@
-﻿Using module .\usefulClassesAndObjects\gitHubError.psm1
+﻿Using module .\gitHubError.psm1
 
 # Definition of a function to get and return all emojis defined in GitHub in an associative array...
 function Get-All-GitHub-Icons {
