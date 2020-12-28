@@ -17,7 +17,7 @@ function Get_All_GitHub_Icons {
         $allGitHubEmojisJSONObj = ConvertFrom-Json $githubAllGitHubEmojisRequest.Content
 
         # Affectation of an associative array to the 'allEmojis' variable...
-        $allEmojis = @()
+        $allEmojis = @{}
 
         # Go through the 'foreach' loop to take all the emojis contained in the 'allGitHubEmojisJSONObj' result ...
         foreach($emoji in $allGitHubEmojisJSONObj.PSObject.Properties) {
