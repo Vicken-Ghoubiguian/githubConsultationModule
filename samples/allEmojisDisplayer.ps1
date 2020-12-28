@@ -4,7 +4,10 @@
 $allEmojis = Get_All_GitHub_Icons
 
 #
+Write-Host "`n"
+
+#
 foreach($emoji in $allEmojis.GetEnumerator()) {
 
-    Write-Host "$($emoji.Name): $($emoji.Value)"
+    Write-Host "$($emoji.Name): $($emoji.Value)" + "`n"
 }
