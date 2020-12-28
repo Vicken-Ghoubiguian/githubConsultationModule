@@ -1,6 +1,7 @@
 ﻿Using module .\usefulClassesAndObjects\license.psm1
 Using module .\branch.psm1
 using module .\language.psm1
+Using module .\commit.psm1
 Using module .\usefulClassesAndObjects\gitHubError.psm1
 
 Add-Type -AssemblyName PresentationFramework
