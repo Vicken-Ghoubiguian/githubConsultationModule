@@ -26,6 +26,7 @@ class Repository
     hidden [System.Array]$contributors
     hidden [System.Array]$subscribers
     hidden [System.Array]$branches
+    hidden [System.Array]$commits
     hidden [License]$license
     hidden [string]$gitURL
     hidden [string]$sshURL
@@ -89,6 +90,9 @@ $githubReposRequestsContent
                 # Call of the static function 'listAllLanguage' of the PowerShell class 'Language' to obtain all the languages with details of the repo...
                 $this.languages = [Language]::listAllLanguages($this.ownerLogin, $this.name)
             }
+
+            #
+            $this.commits = @()
             
             #
             $this.forks = @()
@@ -459,7 +463,13 @@ $githubReposRequestsContent
     [System.Array] getBranches()
     {
         return $this.branches
-    } 
+    }
+
+    # 'commits' attribute getter...
+    [System.Array] getCommits()
+    {
+        return $this.commits
+    }
 
     # 'error' attribute getter...
     [GitHubError] getGitHubError()
