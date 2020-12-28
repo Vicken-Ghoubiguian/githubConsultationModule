@@ -1,9 +1,9 @@
 ﻿Using module .\usefulClassesAndObjects\gitHubError.psm1
 
-#
+# Definition of a function to get and return all emojis defined in GitHub in an associative array...
 function Get-All-GitHub-Icons {
 
-    #
+    # Definition of the 'allEmojis' variable with the default value as 'null'...
     $allEmojis = $null
 
     # Create an HTTP request to take all GitHub emojis...
@@ -16,12 +16,13 @@ function Get-All-GitHub-Icons {
         $githubAllGitHubEmojisRequest = Invoke-WebRequest -Uri $githubGetAllGitHubEmojisURL -Method Get
         $allGitHubEmojisJSONObj = ConvertFrom-Json $githubAllGitHubEmojisRequest.Content
 
-        #
+        # Affectation of an associative array to the 'allEmojis' variable...
         $allEmojis = @()
 
-        #
+        # Go through the 'foreach' loop to take all the emojis contained in the 'allGitHubEmojisJSONObj' result ...
         foreach($emoji in $allGitHubEmojisJSONObj.PSObject.Properties) {
 
+            # Affectation of the current emoji to the 'allEmojis' associative array...
             $allEmojis[$emoji.Name] = $emoji.Value
         }
 
@@ -34,6 +35,7 @@ function Get-All-GitHub-Icons {
 
         $errorStackTrace = $_.Exception.StackTrace
 
+        # Affectation of the newly created GitHubError instance to the 'allEmojis' variable...
         $allEmojis = [GitHubError]::new($errorType, $errorMessage, $errorStackTrace)
     }
 
