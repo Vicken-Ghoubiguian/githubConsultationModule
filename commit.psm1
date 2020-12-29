@@ -12,7 +12,9 @@ class Commit
 
     hidden [string]$loginAuthor
     hidden [string]$idAuthor
+    hidden [string]$nameAuthor
     hidden [string]$emailAuthor
+    hidden [datetime]$dateAuthor
     hidden [string]$nodeIdAuthor
     hidden [string]$avatarAuthor
     hidden [string]$profileAuthor
@@ -20,7 +22,9 @@ class Commit
 
     hidden [string]$loginCommitter
     hidden [string]$idCommitter
+    hidden [string]$nameCommitter
     hidden [string]$emailCommiter
+    hidden [datetime]$dateCommitter
     hidden [string]$nodeIdCommitter
     hidden [string]$avatarCommitter
     hidden [string]$profileCommitter
@@ -57,6 +61,9 @@ $githubCommitRequestsContent
 
             $this.loginAuthor = $githubCommitRequestsResult.author.login
             $this.idAuthor = $githubCommitRequestsResult.author.id
+            $this.nameAuthor = $githubCommitRequestsResult.commit.author.name
+            $this.emailAuthor = $githubCommitRequestsResult.commit.author.email
+            $this.dateAuthor = [Datetime]::ParseExact($githubCommitRequestsResult.commit.author.date, 'yyyy-MM-ddThh:mm:ssZ', $null)
             $this.nodeIdAuthor = $githubCommitRequestsResult.author.node_id
             $this.avatarAuthor = $githubCommitRequestsResult.author.avatar_url
             $this.profileAuthor = $githubCommitRequestsResult.author.html_url
@@ -64,6 +71,9 @@ $githubCommitRequestsContent
 
             $this.loginCommitter = $githubCommitRequestsResult.committer.login
             $this.idCommitter = $githubCommitRequestsResult.committer.id
+            $this.nameCommitter = $githubCommitRequestsResult.commit.committer.name
+            $this.emailCommiter = $githubCommitRequestsResult.commit.committer.email
+            $this.dateCommitter = [Datetime]::ParseExact($githubCommitRequestsResult.commit.committer.date, 'yyyy-MM-ddThh:mm:ssZ', $null)
             $this.nodeIdCommitter = $githubCommitRequestsResult.committer.node_id
             $this.avatarCommitter = $githubCommitRequestsResult.committer.avatar_url
             $this.profileCommitter = $githubCommitRequestsResult.committer.html_url
@@ -175,10 +185,22 @@ $githubCommitRequestsContent
         return $this.idAuthor
     }
 
+    # 'nameAuthor' attribute getter...
+    [string] getNameAuthor()
+    {
+        return $this.nameAuthor
+    }
+
     # 'emailAuthor' attribute getter...
     [string] getEmailAuthor()
     {
         return $this.emailAuthor
+    }
+
+    # 'dateAuthor' attribute getter...
+    [datetime] getDateAuthor()
+    {
+        return $this.dateAuthor
     }
 
     # 'nodeIdAuthor' attribute getter...
@@ -217,10 +239,22 @@ $githubCommitRequestsContent
         return $this.idCommitter
     }
 
+    # 'nameCommitter' attribute getter...
+    [string] getNameCommitter()
+    {
+        return $this.nameCommitter
+    }
+
     # 'emailCommiter' attribute getter...
     [string] getEmailCommiter()
     {
         return $this.emailCommiter
+    }
+
+    # 'dateCommitter' attribute getter...
+    [datetime] getDateCommitter()
+    {
+        return $this.dateCommitter
     }
 
     # 'nodeIdCommitter' attribute getter...
