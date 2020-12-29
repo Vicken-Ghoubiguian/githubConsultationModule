@@ -12,6 +12,7 @@ class Commit
 
     hidden [string]$loginAuthor
     hidden [string]$idAuthor
+    hidden [string]$emailAuthor
     hidden [string]$nodeIdAuthor
     hidden [string]$avatarAuthor
     hidden [string]$profileAuthor
@@ -19,6 +20,7 @@ class Commit
 
     hidden [string]$loginCommitter
     hidden [string]$idCommitter
+    hidden [string]$emailCommiter
     hidden [string]$nodeIdCommitter
     hidden [string]$avatarCommitter
     hidden [string]$profileCommitter
@@ -173,6 +175,12 @@ $githubCommitRequestsContent
         return $this.idAuthor
     }
 
+    # 'emailAuthor' attribute getter...
+    [string] getEmailAuthor()
+    {
+        return $this.emailAuthor
+    }
+
     # 'nodeIdAuthor' attribute getter...
     [string] getNodeIdAuthor()
     {
@@ -207,6 +215,12 @@ $githubCommitRequestsContent
     [string] getIdCommitter()
     {
         return $this.idCommitter
+    }
+
+    # 'emailCommiter' attribute getter...
+    [string] getEmailCommiter()
+    {
+        return $this.emailCommiter
     }
 
     # 'nodeIdCommitter' attribute getter...
