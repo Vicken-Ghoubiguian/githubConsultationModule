@@ -1,4 +1,4 @@
-﻿Using module .\usefulClassesAndObjects\gitHubError.psm1
+﻿Using module .\gitHubError.psm1
 
 Add-Type -AssemblyName PresentationFramework
 

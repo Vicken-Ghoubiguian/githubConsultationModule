@@ -1,4 +1,4 @@
-﻿Using module .\usefulClassesAndObjects\gitHubError.psm1
+﻿Using module .\gitHubError.psm1
 Using module .\Repository.psm1
 
 # Definition of the User Powershell class to define a user from the GitHub API...

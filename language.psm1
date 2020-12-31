@@ -1,4 +1,4 @@
-﻿Using module .\usefulClassesAndObjects\gitHubError.psm1
+﻿Using module .\gitHubError.psm1
 
 # Definition of the Language Powershell class to define the current language in a repository from the GitHub API...
 class Language
