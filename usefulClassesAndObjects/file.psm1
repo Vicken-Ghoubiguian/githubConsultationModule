@@ -10,9 +10,9 @@ class File
     hidden [string]$type
     hidden [string]$htmlURL
     hidden [string]$url
+    hidden [int]$size
 
     hidden [string]$status
-
     hidden [int]$additions
     hidden [int]$deletions
     hidden [int]$changes
@@ -47,11 +47,12 @@ class File
     }
 
     # File class constructor with all required parameters...
-    File([string]$sha, [string]$filename, [string]$path, [string]$type, [string]$htmlURL, [string]$url)
+    File([string]$sha, [string]$filename, [string]$path, [int]$size, [string]$type, [string]$htmlURL, [string]$url)
     {
         $this.sha = $sha
         $this.filename = $filename
         $this.path = $path
+        $this.size = $size
         $this.type = $type
         $this.htmlURL = $htmlURL
         $this.url = $url
@@ -76,7 +77,7 @@ class File
             # Browse all the files contained in the received JSON and create all the instances of the Powershell class 'File' from this data and add them to the array 'filesArray'...
             foreach($file in $filesFromReposJSONObj) {
 
-                $filesArray.Add([File]::new($file.sha, $file.name, $file.type, $file.html_url, $file.url))
+                $filesArray.Add([File]::new($file.sha, $file.name, $file.path, $file.size, $file.type, $file.html_url, $file.url))
             }
 
         # Bloc to execute if an System.Net.WebException is encountered...
@@ -129,6 +130,12 @@ class File
     [string] getUrl()
     {
         return $this.url
+    }
+
+    # 'size' attribute getter...
+    [int] getSize()
+    {
+        return $this.size
     }
 
     # 'status' attribute getter...
