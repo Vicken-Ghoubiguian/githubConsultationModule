@@ -6,6 +6,11 @@ class File
     # All attributes of the File class...
     hidden [string]$sha
     hidden [string]$filename
+    hidden [string]$path
+    hidden [string]$type
+    hidden [string]$htmlURL
+    hidden [string]$url
+
     hidden [string]$status
 
     hidden [int]$additions
@@ -46,6 +51,10 @@ class File
     {
         $this.sha = $sha
         $this.filename = $filename
+        $this.path = $path
+        $this.type = $type
+        $this.htmlURL = $htmlURL
+        $this.url = $url
     }
 
     # Definition of a static function to put all files from a repository owned by a user identified respectively by its login and its name inside an array...
@@ -96,6 +105,30 @@ class File
     [string] getFileName()
     {
         return $this.filename
+    }
+
+    # 'path' attribute getter...
+    [string] getPath()
+    {
+        return $this.path
+    }
+
+    # 'type' attribute getter...
+    [string] getType()
+    {
+        return $this.type
+    }
+
+    # 'htmlURL' attribute getter...
+    [string] getHtmlURL()
+    {
+        return $this.htmlURL
+    }
+
+    # 'url' attribute getter...
+    [string] getUrl()
+    {
+        return $this.url
     }
 
     # 'status' attribute getter...
