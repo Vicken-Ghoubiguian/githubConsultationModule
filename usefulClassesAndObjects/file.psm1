@@ -41,6 +41,13 @@ class File
         $this.patch = $patch
     }
 
+    # File class constructor with all required parameters...
+    File([string]$sha, [string]$filename, [string]$path, [string]$type, [string]$htmlURL, [string]$url)
+    {
+        $this.sha = $sha
+        $this.filename = $filename
+    }
+
     # Definition of a static function to put all files from a repository owned by a user identified respectively by its login and its name inside an array...
     static [System.Array] listAllFilesInRepos([string]$wishedUserLogin, [string]$wishedRepositoryName)
     {
@@ -56,6 +63,12 @@ class File
             # Retrieving and extracting all files received from the URL...
             $githubFilesFromReposRequest = Invoke-WebRequest -Uri $githubGetFilesFromReposURL -Method Get
             $filesFromReposJSONObj = ConvertFrom-Json $githubFilesFromReposRequest.Content
+
+            # Browse all the files contained in the received JSON and create all the instances of the Powershell class 'File' from this data and add them to the array 'filesArray'...
+            foreach($file in $filesFromReposJSONObj) {
+
+                $filesArray.Add([File]::new($file.sha, $file.name, $file.type, $file.html_url, $file.url))
+            }
 
         # Bloc to execute if an System.Net.WebException is encountered...
         } catch [System.Net.WebException] {
