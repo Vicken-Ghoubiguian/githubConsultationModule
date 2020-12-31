@@ -1,5 +1,5 @@
 ﻿# Importation of the 'Repository' module...
-Using module ..\repository.psm1
+Using module ..\..\repository.psm1
 
 # Definition of all parameters : '$ownerLogin' for the wished owner's name, '$branchesExpected' and '$languagesExpected' that are 2 boolean indicators to specifie if we want all branches and languages respectively or not...
 param (

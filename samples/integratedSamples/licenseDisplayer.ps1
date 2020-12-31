@@ -1,5 +1,5 @@
 ﻿# Importation of the 'License' module...
-Using module ..\License.psm1
+Using module ..\..\License.psm1
 
 # Definition of all parameters : '$wishedLicenseKey' for the wished license's key...
 param (

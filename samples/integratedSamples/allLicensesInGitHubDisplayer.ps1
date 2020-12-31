@@ -1,5 +1,5 @@
 ﻿# Importation of the 'License' module...
-Using module ..\license.psm1
+Using module ..\..\license.psm1
 
 # Get all licenses available in GitHub and put them in the "licensesArray" array...
 $licensesArray = [License]::listAllDefinedLicenses()

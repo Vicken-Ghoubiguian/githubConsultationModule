@@ -1,5 +1,5 @@
 ﻿# Importation of the 'User' module...
-Using module ..\User.psm1
+Using module ..\..\User.psm1
 
 # Definition of all parameters : '$userLogin' for the wished user's name...
 param (

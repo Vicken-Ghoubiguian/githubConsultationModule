@@ -1,5 +1,5 @@
 ﻿# Importation of the 'Commit' module...
-Using module ..\commit.psm1
+Using module ..\..\commit.psm1
 
 # Definition of all parameters : '$ownerLogin' for the wished owner's name and '$repositoryName' for the repository name...
 param (

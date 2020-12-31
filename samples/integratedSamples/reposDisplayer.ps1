@@ -1,5 +1,5 @@
 ﻿# Importation of the 'Repository' module...
-Using module ..\Repository.psm1
+Using module ..\..\Repository.psm1
 
 # Definition of all parameters : '$ownerLogin' for the wished owner's name and '$repositoryName' for the wished repository's name...
 param (
