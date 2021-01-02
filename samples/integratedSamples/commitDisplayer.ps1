@@ -10,3 +10,6 @@ param (
 
 # Creation of an instance of the Commit Powershell class with all wished parameters...
 $currentCommit = New-Object -TypeName Commit -ArgumentList $ownerLogin, $repositoryName, $commitSha
+
+# Display all collected informations about the wished commit in the Powershell console...
+$currentCommit.ToString()
