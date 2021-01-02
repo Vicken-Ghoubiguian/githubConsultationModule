@@ -71,11 +71,21 @@ class Branch
     #
     [String] ToString()
     {
-        $returningString = "`n"
-        $returningString +=  "Branch's name: " + $this.getName() + "`n"
-        $returningString += "Last commit SHA on this branch: " + $this.getLasCommitSha() + "`n"
-        $returningString += "Last commit URL on this branch: " + $this.getLastCommitURL() + "`n"
-        $returningString += "Is this branch protected ? " + $this.getIsProtected() + "`n"
+
+         # If no error occurs...
+        If(!$this.error) {
+
+            $returningString = "`n"
+            $returningString +=  "Branch's name: " + $this.getName() + "`n"
+            $returningString += "Last commit SHA on this branch: " + $this.getLasCommitSha() + "`n"
+            $returningString += "Last commit URL on this branch: " + $this.getLastCommitURL() + "`n"
+            $returningString += "Is this branch protected ? " + $this.getIsProtected() + "`n"
+
+        # Else (an error occurs)...
+        } Else {
+
+            $returningString = $this.error.ToString()
+        }
 
         return $returningString
     }

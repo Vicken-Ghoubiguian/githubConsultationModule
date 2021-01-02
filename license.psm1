@@ -147,72 +147,81 @@ $githubLicenseRequestsContent
     #
     [String] ToString()
     {
-        $returningString = "`n"
-        $returningString += "License's name: " + $this.name + "`n"
-        $returningString += "SPDX Id of license: " + $this.spdxID + "`n"
-        $returningString += "License's URL: " + $this.licenseURL + "`n"
-        $returningString += "License's key: " + $this.key + "`n"
-        $returningString += "Node Id of license: " + $this.nodeID + "`n"
+        # If no error occurs...
+        If(!$this.error) {
 
-        If($this.permissions) {
+            $returningString = "`n"
+            $returningString += "License's name: " + $this.name + "`n"
+            $returningString += "SPDX Id of license: " + $this.spdxID + "`n"
+            $returningString += "License's URL: " + $this.licenseURL + "`n"
+            $returningString += "License's key: " + $this.key + "`n"
+            $returningString += "Node Id of license: " + $this.nodeID + "`n"
 
-            $returningString += "Permissions: "
+            If($this.permissions) {
 
-            foreach($permissions in $this.permissions) {
+                $returningString += "Permissions: "
 
-                $returningString += $permissions + ", "
+                foreach($permissions in $this.permissions) {
+
+                    $returningString += $permissions + ", "
+                }
+
+                $returningString += "`n"
             }
 
-            $returningString += "`n"
-        }
+            If($this.conditions){
 
-        If($this.conditions){
+                $returningString += "Conditions: "
 
-            $returningString += "Conditions: "
+                foreach($condition in $this.conditions) {
 
-            foreach($condition in $this.conditions) {
+                    $returningString += $condition + ", "
+                }
 
-                $returningString += $condition + ", "
+                $returningString += "`n"
             }
 
-            $returningString += "`n"
-        }
+            If($this.limitations){
 
-        If($this.limitations){
+                $returningString += "Limitations: "
 
-            $returningString += "Limitations: "
+                foreach($limitation in $this.limitations) {
 
-            foreach($limitation in $this.limitations) {
+                    $returningString += $limitation + ", "
+                }
 
-                $returningString += $limitation + ", "
+                $returningString += "`n"
             }
 
-            $returningString += "`n"
-        }
+            If($this.description){
 
-        If($this.description){
+                $returningString += "Description: " + $this.description + "`n"
+            }
 
-            $returningString += "Description: " + $this.description + "`n"
-        }
+            If($this.body){
 
-        If($this.body){
+                $returningString += "Body: " + $this.body + "`n"
+            }
 
-            $returningString += "Body: " + $this.body + "`n"
-        }
+            If($this.isFeatured){
 
-        If($this.isFeatured){
+                $returningString += "Is it featured ? " + $this.isFeatured + "`n"
+            }
 
-            $returningString += "Is it featured ? " + $this.isFeatured + "`n"
-        }
+            If($this.implementation){
 
-        If($this.implementation){
+                $returningString += "Implementation: " + $this.implementation + "`n"
+            }
 
-            $returningString += "Implementation: " + $this.implementation + "`n"
-        }
+            If($this.chooseALicenseURL){
 
-        If($this.chooseALicenseURL){
+                $returningString += "'Choose a license' URL: " + $this.chooseALicenseURL + "`n"
+            }
 
-            $returningString += "'Choose a license' URL: " + $this.chooseALicenseURL + "`n"
+        # Else (an error occurs)...
+        } Else {
+
+            $returningString = $this.error.ToString()
         }
 
         return $returningString
