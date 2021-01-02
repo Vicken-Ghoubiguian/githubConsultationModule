@@ -91,6 +91,9 @@ class File
             $githubFilesFromReposRequest = Invoke-WebRequest -Uri $githubGetFilesFromReposURL -Method Get
             $filesFromReposJSONObj = ConvertFrom-Json $githubFilesFromReposRequest.Content
 
+            # Implementation of a message box that asks a very specific question...
+            $filesBoxResponse = [System.Windows.MessageBox]::Show("The static function 'listAllFilesInRepos' of the 'File' class tries to get all files even in all folders. Do you want them ?", "Confirmation", "YesNo", "info")
+
             # Browse all the files contained in the received JSON and create all the instances of the Powershell class 'File' from this data and add them to the array 'filesArray'...
             foreach($file in $filesFromReposJSONObj) {
 
