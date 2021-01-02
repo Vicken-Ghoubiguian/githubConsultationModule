@@ -22,11 +22,28 @@ class File
     hidden [string]$contents
     hidden [string]$patch
 
+    hidden [GitHubError]$error
+
     # File class constructor with user login, repository name and file's name... 
     File([string]$wishedUserLogin, [string]$wishedRepositoryName, [string]$wishedFileName)
     {
         # Extract all the data relating to the desired file identified by the desired user login, the desired repository name and desired file's name...
         $githubGetFileURL = "https://api.github.com/repos/" + $wishedUserLogin + "/" + $wishedRepositoryName + "/contents/" + $wishedFileName
+
+        # Bloc we wish execute to get all informations about files...
+        try {
+
+        # Bloc to execute if an System.Net.WebException is encountered...
+        } catch [System.Net.WebException] {
+
+            $errorType = $_.Exception.GetType().Name
+
+            $errorMessage = $_.Exception.Message
+
+            $errorStackTrace = $_.Exception.StackTrace
+
+            $this.error = [GitHubError]::new($errorType, $errorMessage, $errorStackTrace)
+        }
     }
 
     # File class constructor with all required parameters...
@@ -64,7 +81,7 @@ class File
         # Definition of the 'filesArray' array which will contain all files of the wished 'wishedRepositoryName' repo from the wished 'wishedUserLogin' user...
         $filesArray = [System.Collections.ArrayList]::new()
 
-        # Bloc we wish execute to get all informations about commits...
+        # Bloc we wish execute to get all informations about files...
         try {
 
             # Create an HTTP request to take all files of the GitHub repository identified by its name and its owner's login...
@@ -112,6 +129,12 @@ class File
     [string] getPath()
     {
         return $this.path
+    }
+
+    # 'error' attribute getter...
+    [GitHubError] getGitHubError()
+    {
+        return $this.error
     }
 
     # 'type' attribute getter...

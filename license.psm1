@@ -21,6 +21,8 @@ class License
     hidden [string]$implementation
     hidden [string]$chooseALicenseURL
 
+    hidden [GitHubError]$error
+
     # License class constructor with license key...
     License([string]$wishedKey)
     {
@@ -226,6 +228,12 @@ $githubLicenseRequestsContent
     [string] getName()
     {
         return $this.name
+    }
+
+    # 'error' attribute getter...
+    [GitHubError] getGitHubError()
+    {
+        return $this.error
     }
 
     # 'spdxID' attribute getter...
