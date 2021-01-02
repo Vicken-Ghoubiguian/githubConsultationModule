@@ -18,7 +18,34 @@ class Branch
         # Create an HTTP request to take the GitHub branch identified by the 'wishedLoginUser' user, the 'wishedReposName' repository and the 'wishedBranchName' wished key...
         $githubGetBranchURL = "https://api.github.com/repos/" + $wishedLoginUser + "/" + $wishedReposName + "/branches/" + $wishedBranchName
 
+        # Bloc we wish execute to get all informations about the wished commit...
+        try {
 
+            #
+            $githubBranchRequest = Invoke-WebRequest -Uri $githubGetBranchURL -Method Get
+            $githubBranchRequestsContent = $githubBranchRequest.Content
+            $githubBranchRequestsJSONContent = @"
+               
+$githubBranchRequestsContent
+"@
+            $githubBranchRequestsResult = ConvertFrom-Json -InputObject $githubBranchRequestsJSONContent
+
+            $this.name = $githubBranchRequestsResult.name
+            $this.lastCommitSha = $githubBranchRequestsResult.commit.sha
+            $this.lastCommitURL = $githubBranchRequestsResult.commit.url
+            $this.isProtected = $githubBranchRequestsResult.protected
+
+        # Bloc to execute if an System.Net.WebException is encountered...
+        } catch [System.Net.WebException] {
+
+            $errorType = $_.Exception.GetType().Name
+
+            $errorMessage = $_.Exception.Message
+
+            $errorStackTrace = $_.Exception.StackTrace
+
+            $this.error = [GitHubError]::new($errorType, $errorMessage, $errorStackTrace)
+        }
     }
 
     # Branch class constructor...
