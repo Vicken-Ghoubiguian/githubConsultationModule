@@ -10,6 +10,17 @@ class Branch
     hidden [string]$lastCommitURL
     hidden [bool]$isProtected
 
+    hidden [GitHubError]$error
+
+    # Branch class constructor from the GitHub API URL...
+    Branch([string]$wishedLoginUser, [string]$wishedReposName, [string]$wishedBranchName)
+    {
+        # Create an HTTP request to take the GitHub branch identified by the 'wishedLoginUser' user, the 'wishedReposName' repository and the 'wishedBranchName' wished key...
+        $githubGetBranchURL = "https://api.github.com/repos/" + $wishedLoginUser + "/" + $wishedReposName + "/branches/" + $wishedBranchName
+
+
+    }
+
     # Branch class constructor...
     Branch([string]$collectedName, [string]$collectedLastCommitSha, [string]$collectedLastCommitURL, [bool]$collectedIsProtected)
     {
@@ -91,5 +102,11 @@ class Branch
     [bool] getIsProtected()
     {
         return $this.isProtected
+    }
+
+    # 'error' attribute getter...
+    [GitHubError] getGitHubError()
+    {
+        return $this.error
     }
 }
