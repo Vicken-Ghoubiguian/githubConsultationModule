@@ -33,6 +33,23 @@ class File
         # Bloc we wish execute to get all informations about files...
         try {
 
+            #
+            $githubFileRequest = Invoke-WebRequest -Uri $githubGetFileURL -Method Get
+            $githubFileRequestsContent = $githubFileRequest.Content
+            $githubFileRequestsJSONContent = @"
+               
+$githubFileRequestsContent
+"@
+            $githubCommitRequestsResult = ConvertFrom-Json -InputObject $githubFileRequestsJSONContent
+
+            $this.sha = $githubCommitRequestsResult.sha
+            $this.filename = $githubCommitRequestsResult.name
+            $this.path = $githubCommitRequestsResult.path
+            $this.size = $githubCommitRequestsResult.size
+            $this.type = $githubCommitRequestsResult.type
+            $this.htmlURL = $githubCommitRequestsResult.html_url
+            $this.url = $githubCommitRequestsResult.url
+
         # Bloc to execute if an System.Net.WebException is encountered...
         } catch [System.Net.WebException] {
 
