@@ -42,13 +42,23 @@ $githubFileRequestsContent
 "@
             $githubCommitRequestsResult = ConvertFrom-Json -InputObject $githubFileRequestsJSONContent
 
-            $this.sha = $githubCommitRequestsResult.sha
-            $this.filename = $githubCommitRequestsResult.name
-            $this.path = $githubCommitRequestsResult.path
-            $this.size = $githubCommitRequestsResult.size
-            $this.type = $githubCommitRequestsResult.type
-            $this.htmlURL = $githubCommitRequestsResult.html_url
-            $this.url = $githubCommitRequestsResult.url
+            # If the "githubCommitRequestsResult.type" exists and is a "file"...
+            If ($githubCommitRequestsResult.type -eq "file"){
+
+                $this.sha = $githubCommitRequestsResult.sha
+                $this.filename = $githubCommitRequestsResult.name
+                $this.path = $githubCommitRequestsResult.path
+                $this.size = $githubCommitRequestsResult.size
+                $this.type = $githubCommitRequestsResult.type
+                $this.htmlURL = $githubCommitRequestsResult.html_url
+                $this.url = $githubCommitRequestsResult.url
+
+            # Else...
+            } Else {
+
+                # Implementation of a GitHubError to the 'error' attribute...
+                $this.error = [GitHubError]::new("File is dir Error", "The file you entered is a directory and so it contains many FILES...", "No StackTrace...")
+            }
 
         # Bloc to execute if an System.Net.WebException is encountered...
         } catch [System.Net.WebException] {
