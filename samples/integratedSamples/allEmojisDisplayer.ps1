@@ -1,4 +1,4 @@
-﻿Using module ..\..\emojis.psm1
+﻿Using module ..\..\usefulFunctions.psm1
 
 # Call of the famous function 'Get_All_GitHub_Icons'...
 $allEmojis = Get_All_GitHub_Icons
