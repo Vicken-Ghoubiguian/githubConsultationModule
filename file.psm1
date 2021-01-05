@@ -156,6 +156,24 @@ $githubFileRequestsContent
         return $filesArray
     }
 
+    #
+    [String] ToString()
+    {
+
+        # If no error occurs...
+        If(!$this.error) {
+
+             $returningString = ""
+
+        # Else (an error occurs)...
+        } Else {
+
+            $returningString = $this.error.ToString()
+        }
+
+        return $returningString
+    }
+
     # 'sha' attribute getter...
     [string] getSha()
     {

@@ -57,6 +57,24 @@ class Organization
         return @()
     }
 
+    #
+    [String] ToString()
+    {
+
+        # If no error occurs...
+        If(!$this.error) {
+
+             $returningString = ""
+
+        # Else (an error occurs)...
+        } Else {
+
+            $returningString = $this.error.ToString()
+        }
+
+        return $returningString
+    }
+
     # 'error' attribute getter...
     [GitHubError] getGitHubError()
     {
