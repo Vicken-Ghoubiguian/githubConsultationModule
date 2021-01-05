@@ -1,7 +1,7 @@
 ﻿Using module ..\..\usefulFunctions.psm1
 
-# Call of the famous function 'Get_All_GitHub_Icons'...
-$allEmojis = Get_All_GitHub_Icons
+# Call of the famous function 'Get_All_GitHub_Emojis'...
+$allEmojis = Get_All_GitHub_Emojis
 
 # Here a line break...
 Write-Host "`n"

@@ -5,7 +5,7 @@ Using module .\gitHubError.psm1
 Using module ..\repository.psm1
 
 # Definition of a function to get and return all emojis defined in GitHub in an associative array...
-function Get_All_GitHub_Icons {
+function Get_All_GitHub_Emojis {
 
     # Definition of the 'allEmojis' variable with the default value as 'null'...
     $allEmojis = $null
