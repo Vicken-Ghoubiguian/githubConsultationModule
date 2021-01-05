@@ -9,5 +9,5 @@ Write-Host "`n"
 # Browse the associative array containing all the emojis and displaing them...
 foreach($emoji in $allEmojis.GetEnumerator()) {
 
-    Write-Host "$($emoji.Name): $($emoji.Value)" + "`n"
+    Write-Host "$($emoji.Name): $($emoji.Value)", "`n"
 }
