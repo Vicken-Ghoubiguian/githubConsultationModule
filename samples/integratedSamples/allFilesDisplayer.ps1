@@ -8,4 +8,4 @@ param (
 )
 
 # Get all files from the whished repository owned by the user identified by its login and put them in the "filesArray" array...
-$filesArray = [File]::listAllFilesInRepos($ownerLogin.ToString(), $repositoryName.ToString())
+$filesArray = [File]::listAllFilesInRepos($ownerLogin.ToString(), $repositoryName.ToString(), $true)

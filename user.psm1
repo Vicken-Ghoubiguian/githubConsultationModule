@@ -31,7 +31,7 @@ class User
     hidden [System.Array]$events
 
     # User class constructor...
-    User([string]$wishedUserLogin)
+    User([string]$wishedUserLogin, [bool]$withRepos, [bool]$withBranches, [bool]$withLanguages)
     {
         # Extract all the data relating to the desired user from the received JSON ...
         $githubGetUserURL = "https://api.github.com/users/" + $wishedUserLogin
@@ -67,39 +67,8 @@ $githubUserRequestsContent
             $this.followingCount = $githubUserRequestsResult.following
             $this.twitter = $githubUserRequestsResult.twitter_username
 
-            # Implementation of a message box that asks a very specific question...
-            $repositoriesBoxResponse = [System.Windows.MessageBox]::Show("The constructor of the 'User' class now tries to get all repositories. Do you want them ?", "Confirmation", "YesNo", "info")
-
-            # If the response from previous message box is "Yes", all repositories from user will be get and put in an array...
-            If($repositoriesBoxResponse -eq "Yes") {
-
-                # Implementation of a message box that asks a very specific question...
-                $branchesBoxResponse = [System.Windows.MessageBox]::Show("The constructor of the 'User' class now tries to get all branches of the current repository. Do you want them ?", "Confirmation", "YesNo", "info")
-
-                # If the response from previous message box is "Yes", 'withBranches' variable is set at 'true"...
-                If($branchesBoxResponse -eq "Yes") {
-
-                    $withBranches = $true
-
-                # In the other case, 'withBranches' variable is set at 'false'...
-                } Else {
-
-                    $withBranches = $false
-                }
-
-                # Implementation of a message box that asks a very specific question...
-                $languagesBoxResponse = [System.Windows.MessageBox]::Show("The constructor of the 'User' class now tries to get its hands on all languages with details used in the current repository. Do you want them ?", "Confirmation", "YesNo", "info")
-
-                # If the response from previous message box is "Yes", 'withLanguages' variable is set at 'true"...
-                If($languagesBoxResponse -eq "Yes") {
-
-                    $withLanguages = $true
-
-                # In the other case, 'withLanguages' variable is set at 'false'...
-                } Else {
-
-                    $withLanguages = $false
-                }
+            # If "withRepos" parameter is "true"...
+            If($withRepos -eq $true) {
 
                 # Adding the repository to the 'repositories' class attribute which is an array...
                 $this.repositories = [Repository]::listAllRepositories($githubUserRequestsResult.login, $withBranches, $withLanguages)

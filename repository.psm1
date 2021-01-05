@@ -41,7 +41,7 @@ class Repository
     hidden [GitHubError]$error
 
     # Repository class constructor with user login and repository name...
-    Repository([string]$wishedUserLogin, [string]$wishedRepositoryName)
+    Repository([string]$wishedUserLogin, [string]$wishedRepositoryName, [bool]$withBranches, [bool]$withLanguages)
     {
         # Create an HTTP request to take the GitHub repository identified by its name and its owner's login...
         $githubGetReposURL = "https://api.github.com/repos/" + $wishedUserLogin + "/" + $wishedRepositoryName
@@ -72,21 +72,15 @@ $githubReposRequestsContent
             $this.isFork = $githubReposRequestsResult.fork
             $this.forksCount = $githubReposRequestsResult.forks_count
 
-            # Implementation of a message box that asks a very specific question...
-            $branchesBoxResponse = [System.Windows.MessageBox]::Show("The constructor of the 'Repository' class now tries to get all branches. Do you want them ?", "Confirmation", "YesNo", "info")
-
-            # If the response from previous message box is "Yes"...
-            If ($branchesBoxResponse -eq "Yes"){
+            # If "withBranches" parameter is "true"...
+            If ($withBranches -eq $true){
 
                 # Call of the static function 'listAllBranches' of the PowerShell class 'Branch' to obtain all the branches of the repo...
                 $this.branches = [Branch]::listAllBranches($this.ownerLogin, $this.name)
             }
 
-            # Implementation of a message box that asks a very specific question...
-            $languagesBoxResponse = [System.Windows.MessageBox]::Show("The constructor of the 'Repository' class now tries to get its hands on all languages with details. Do you want them ?", "Confirmation", "YesNo", "info")
-
-            # If the response from previous message box is "Yes"...
-            If ($languagesBoxResponse -eq "Yes"){
+            # If "withLanguages" parameter is "true"...
+            If ($withLanguages -eq $true){
 
                 # Call of the static function 'listAllLanguage' of the PowerShell class 'Language' to obtain all the languages with details of the repo...
                 $this.languages = [Language]::listAllLanguages($this.ownerLogin, $this.name)

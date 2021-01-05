@@ -103,7 +103,7 @@ $githubCommitRequestsContent
     }
 
     # Definition of a static function to put all commits from a user and a repository identified respectively by its login and its name inside an array...
-    static [System.Array] listAllCommits([string]$wishedUserLogin, [string]$wishedRepositoryName)
+    static [System.Array] listAllCommits([string]$wishedUserLogin, [string]$wishedRepositoryName, [bool]$withMissingDatas)
     {
         # Definition of the 'commitsArray' array which will contain all commits of the wished 'wishedRepositoryName' repo from the wished 'wishedUserLogin' user...
         $commitsArray = [System.Collections.ArrayList]::new()
@@ -117,9 +117,6 @@ $githubCommitRequestsContent
             # Retrieving and extracting all commits received from the URL...
             $githubCommitsReposRequest = Invoke-WebRequest -Uri $githubGetCommitsReposURL -Method Get
             $commitsJSONObj = ConvertFrom-Json $githubCommitsReposRequest.Content
-
-            # Implementation of a message box that asks a very specific question...
-            $commitsBoxResponse = [System.Windows.MessageBox]::Show("The static function 'listAllCommits' of the 'Commit' class tries to complete all missing datas. Do you want them ?", "Confirmation", "YesNo", "info")
 
             # Browse all the commits contained in the received JSON and create all the instances of the Powershell class 'Commit' from this data and add them to the array 'commitsArray'...
             foreach($commit in $commitsJSONObj) {
