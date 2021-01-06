@@ -189,7 +189,7 @@ $githubReposRequestsContent
         try {
 
             # Create an HTTP request to take all repositories informations from the GitHub user identified by its login...
-            $githubGetReposURL = "https://api.github.com/users/" + $userLogin + "/repos"
+            $githubGetReposURL = "https://api.github.com/users/" + $userLogin + "/repos?per_page=100"
 
             # Retrieving and extracting all repositories received from the URL...
             $githubReposRequest = Invoke-WebRequest -Uri $githubGetReposURL -Method Get

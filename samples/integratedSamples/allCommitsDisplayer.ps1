@@ -9,7 +9,7 @@ param (
 )
 
 # Get all commits with missing datas from the whished repository owned by the user identified by its login and put them in the "commitsArray" array...
-$commitsArray = [Commit]::listAllCommits($ownerLogin.ToString(), $repositoryName.ToString(), $withAllMissingDatas.ToBoolean())
+$commitsArray = [Commit]::listAllCommits($ownerLogin.ToString(), $repositoryName.ToString(), $withAllMissingDatas)
 
 # Browse the array implemented previously and display each commit...
 foreach($commit in $commitsArray) {

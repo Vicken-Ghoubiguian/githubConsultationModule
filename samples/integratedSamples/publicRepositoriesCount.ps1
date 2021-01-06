@@ -7,7 +7,7 @@ param (
 )
 
 #
-$reposCount = Get_Total_Number_Of_Public_Repos -ownerLogin "Vicken-Ghoubiguian"
+$reposCount = Get_Total_Number_Of_Public_Repos -ownerLogin $ownerLogin
 
 # Displaying repos count...
 Write-Host $reposCount

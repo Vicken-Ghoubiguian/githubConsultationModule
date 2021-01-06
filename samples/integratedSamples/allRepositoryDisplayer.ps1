@@ -9,7 +9,7 @@ param (
 )
 
 # Get all repositories from the whished user identified by its login, with all branches and languages if expected, and put them in the "repositoriesArray" array...
-$repositoriesArray = [Repository]::listAllRepositories($ownerLogin.ToString(), $branchesExpected.ToBoolean(), $languagesExpected.ToBoolean())
+$repositoriesArray = [Repository]::listAllRepositories($ownerLogin.ToString(), $branchesExpected, $languagesExpected)
 
 # Browse the array implemented previously and display each repos...
 foreach($repos in $repositoriesArray) {
