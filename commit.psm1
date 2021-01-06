@@ -37,11 +37,11 @@ class Commit
 
     hidden [GitHubError]$error
 
-    # Commit class constructor with user login, repository name and sha...
-    Commit([string]$wishedUserLogin, [string]$wishedRepositoryName, [string]$wishedSha)
+    # Commit class constructor with owner login (User or Organization), repository name and sha...
+    Commit([string]$wishedOwnerLogin, [string]$wishedRepositoryName, [string]$wishedSha)
     {
         # Extract all the data relating to the desired commit identified by the desired user login, the desired repository name and desired sha from the received JSON ...
-        $githubGetCommitURL = "https://api.github.com/repos/" + $wishedUserLogin + "/" + $wishedRepositoryName + "/commits/" + $wishedSha
+        $githubGetCommitURL = "https://api.github.com/repos/" + $wishedOwnerLogin + "/" + $wishedRepositoryName + "/commits/" + $wishedSha
 
         # Bloc we wish execute to get all informations about the wished commit...
         try {
@@ -102,8 +102,8 @@ $githubCommitRequestsContent
 
     }
 
-    # Definition of a static function to put all commits from a user and a repository identified respectively by its login and its name inside an array...
-    static [System.Array] listAllCommits([string]$wishedUserLogin, [string]$wishedRepositoryName, [bool]$withMissingDatas)
+    # Definition of a static function to put all commits from a owner (User or Organization) and a repository identified respectively by its login and its name inside an array...
+    static [System.Array] listAllCommits([string]$wishedOwnerLogin, [string]$wishedRepositoryName, [bool]$withMissingDatas)
     {
         # Definition of the 'commitsArray' array which will contain all commits of the wished 'wishedRepositoryName' repo from the wished 'wishedUserLogin' user...
         $commitsArray = [System.Collections.ArrayList]::new()
@@ -112,7 +112,7 @@ $githubCommitRequestsContent
         try {
 
             # Create an HTTP request to take all commits of the GitHub repository identified by its name and its owner's login...
-            $githubGetCommitsReposURL = "https://api.github.com/repos/" + $wishedUserLogin + "/" + $wishedRepositoryName + "/commits"
+            $githubGetCommitsReposURL = "https://api.github.com/repos/" + $wishedOwnerLogin + "/" + $wishedRepositoryName + "/commits"
 
             # Retrieving and extracting all commits received from the URL...
             $githubCommitsReposRequest = Invoke-WebRequest -Uri $githubGetCommitsReposURL -Method Get
