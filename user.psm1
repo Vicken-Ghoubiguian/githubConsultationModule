@@ -71,7 +71,7 @@ $githubUserRequestsContent
             If($withRepos -eq $true) {
 
                 # Adding the repository to the 'repositories' class attribute which is an array...
-                $this.repositories = [Repository]::listAllRepositories($githubUserRequestsResult.login, $withBranches, $withLanguages)
+                $this.repositories = [Repository]::listAllRepositories($githubUserRequestsResult.login, "users", $withBranches, $withLanguages)
             }
 
         # Bloc to execute if an System.Net.WebException is encountered...

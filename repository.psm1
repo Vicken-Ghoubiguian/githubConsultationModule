@@ -179,8 +179,8 @@ $githubReposRequestsContent
         }
     }
 
-    # Definition of a static function to put all repositories of a user identified by its login inside an array...
-    static [System.Array] listAllRepositories([string]$userLogin, [bool]$wantBranches, [bool]$wantLanguages)
+    # Definition of a static function to put all repositories of a owner identified by its login and with its type as diminutive inside an array...
+    static [System.Array] listAllRepositories([string]$ownerLogin, [string]$diminutiveType, [bool]$wantBranches, [bool]$wantLanguages)
     {
         # Definition of the 'repositoriesArray' array which will contain all repositories of the wished the wished 'userLogin' user...
         $repositoriesArray = [System.Collections.ArrayList]::new()
@@ -189,7 +189,7 @@ $githubReposRequestsContent
         try {
 
             # Create an HTTP request to take all repositories informations from the GitHub user identified by its login...
-            $githubGetReposURL = "https://api.github.com/users/" + $userLogin + "/repos?per_page=100"
+            $githubGetReposURL = "https://api.github.com/" + $diminutiveType + "/" + $ownerLogin + "/repos?per_page=100"
 
             # Retrieving and extracting all repositories received from the URL...
             $githubReposRequest = Invoke-WebRequest -Uri $githubGetReposURL -Method Get
