@@ -35,6 +35,15 @@ class Organization
         # Bloc we wish execute to get all informations about the wished organization...
         try {
 
+            #
+            $githubOrganizationRequest = Invoke-WebRequest -Uri $githubGetOrganizationURL -Method Get
+            $githubOrganizationRequestsContent = $githubOrganizationRequest.Content
+            $githubOrganizationRequestsJSONContent = @"
+                       
+$githubOrganizationRequestsContent
+"@
+            $githubOrganizationRequestsResult = ConvertFrom-Json -InputObject $githubOrganizationRequestsJSONContent
+
         # Bloc to execute if an System.Net.WebException is encountered...
         } catch [System.Net.WebException] {
 
@@ -51,10 +60,33 @@ class Organization
     # Definition of a static function to put all repositories of a user identified by its login inside an array...
     static [System.Array] listAllOrganization([string]$userLogin)
     {
-        # Create an HTTP request to take all organizations informations from the GitHub user identified by its login...
-        $githubGetOrgsURL = "https://api.github.com/users/" + $userLogin + "/orgs"
+        # Definition of the 'organizationsArray' array which will contain all organizations of the wished the wished 'userLogin' user...
+        $organizationsArray = [System.Collections.ArrayList]::new()
 
-        return @()
+        # Bloc we wish execute to get all informations about organizations...
+        try {
+
+            # Create an HTTP request to take all organizations informations from the GitHub user identified by its login...
+            $githubGetOrgsURL = "https://api.github.com/users/" + $userLogin + "/orgs"
+
+            #Retrieving and extracting all repositories received from the URL...
+            $githubOrgsRequest = Invoke-WebRequest -Uri $githubGetOrgsURL -Method Get
+            $orgsJSONObj = ConvertFrom-Json $githubOrgsRequest.Content
+
+        # Bloc to execute if an System.Net.WebException is encountered...
+        } catch [System.Net.WebException] {
+
+            $errorType = $_.Exception.GetType().Name
+
+            $errorMessage = $_.Exception.Message
+
+            $errorStackTrace = $_.Exception.StackTrace
+
+            $organizationsArray.Add([GitHubError]::new($errorType, $errorMessage, $errorStackTrace))
+        }
+
+        # Returning the '$organizationsArray' array...
+        return $organizationsArray
     }
 
     #
