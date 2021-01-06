@@ -185,55 +185,64 @@ $githubReposRequestsContent
         # Definition of the 'repositoriesArray' array which will contain all repositories of the wished the wished 'userLogin' user...
         $repositoriesArray = [System.Collections.ArrayList]::new()
 
-        # Bloc we wish execute to get all informations about repositories...
-        try {
+        #
+        If(($diminutiveType -eq "users") -or ($diminutiveType -eq "orgs")) {
 
-            # Create an HTTP request to take all repositories informations from the GitHub user identified by its login...
-            $githubGetReposURL = "https://api.github.com/" + $diminutiveType + "/" + $ownerLogin + "/repos?per_page=100"
+            # Bloc we wish execute to get all informations about repositories...
+            try {
 
-            # Retrieving and extracting all repositories received from the URL...
-            $githubReposRequest = Invoke-WebRequest -Uri $githubGetReposURL -Method Get
-            $reposJSONObj = ConvertFrom-Json $githubReposRequest.Content
+                # Create an HTTP request to take all repositories informations from the GitHub user identified by its login...
+                $githubGetReposURL = "https://api.github.com/" + $diminutiveType + "/" + $ownerLogin + "/repos?per_page=100"
 
-            # Browse all the repos contained in the received JSON and create all the instances of the Powershell class 'Repository' from this data and add them to the array 'repositoriesArray'...
-            foreach($repos in $reposJSONObj) {
+                # Retrieving and extracting all repositories received from the URL...
+                $githubReposRequest = Invoke-WebRequest -Uri $githubGetReposURL -Method Get
+                $reposJSONObj = ConvertFrom-Json $githubReposRequest.Content
 
-                $repositoriesArray.Add([Repository]::new($repos.id, 
-                                                         $repos.node_id,
-                                                         $repos.name, 
-                                                         $repos.full_name,
-                                                         $repos.private,
-                                                         $repos.owner.id,
-                                                         $repos.owner.login,
-                                                         $repos.owner.type,
-                                                         $repos.html_url,
-                                                         $repos.description,
-                                                         $repos.isFork,
-                                                         $repos.forksCount,
-                                                         [License]::new($repos.license.key, $repos.license.name, $repos.license.spdx_id, $repos.license.url, $repos.license.node_id),
-                                                         $repos.git_url,
-                                                         $repos.ssh_url,
-                                                         $repos.clone_url,
-                                                         $repos.svn_url,
-                                                         $repos.archive_url,
-                                                         $repos.homepage,
-                                                         $repos.archived,
-                                                         $repos.language,
-                                                         $wantBranches,
-                                                         $wantLanguages
-                                                         ))
+                # Browse all the repos contained in the received JSON and create all the instances of the Powershell class 'Repository' from this data and add them to the array 'repositoriesArray'...
+                foreach($repos in $reposJSONObj) {
+
+                    $repositoriesArray.Add([Repository]::new($repos.id, 
+                                                             $repos.node_id,
+                                                             $repos.name, 
+                                                             $repos.full_name,
+                                                             $repos.private,
+                                                             $repos.owner.id,
+                                                             $repos.owner.login,
+                                                             $repos.owner.type,
+                                                             $repos.html_url,
+                                                             $repos.description,
+                                                             $repos.isFork,
+                                                             $repos.forksCount,
+                                                             [License]::new($repos.license.key, $repos.license.name, $repos.license.spdx_id, $repos.license.url, $repos.license.node_id),
+                                                             $repos.git_url,
+                                                             $repos.ssh_url,
+                                                             $repos.clone_url,
+                                                             $repos.svn_url,
+                                                             $repos.archive_url,
+                                                             $repos.homepage,
+                                                             $repos.archived,
+                                                             $repos.language,
+                                                             $wantBranches,
+                                                             $wantLanguages
+                                                             ))
+                }
+
+            # Bloc to execute if an System.Net.WebException is encountered...
+            } catch [System.Net.WebException] {
+        
+                $errorType = $_.Exception.GetType().Name
+
+                $errorMessage = $_.Exception.Message
+
+                $errorStackTrace = $_.Exception.StackTrace
+
+                $repositoriesArray.Add([GitHubError]::new($errorType, $errorMessage, $errorStackTrace))
             }
 
-        # Bloc to execute if an System.Net.WebException is encountered...
-        } catch [System.Net.WebException] {
-        
-            $errorType = $_.Exception.GetType().Name
+        # In the contrary case...
+        } Else {
 
-            $errorMessage = $_.Exception.Message
-
-            $errorStackTrace = $_.Exception.StackTrace
-
-            $repositoriesArray.Add([GitHubError]::new($errorType, $errorMessage, $errorStackTrace))
+            $repositoriesArray.Add([GitHubError]::new("Type unknown", "The type entered in parameter is unknown...", "No stack trace available..."))
         }
 
         # Returning the '$repositoriesArray' array...
