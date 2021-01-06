@@ -47,16 +47,16 @@ function Get_All_GitHub_Emojis {
     return $allEmojis
 }
 
-# Definition of a function to get and return the total count of public repos posessed by the wished owner...
+# Definition of a function to get and return the total count of public repos posessed by the wished user...
 function Get_Total_Number_Of_Public_Repos {
 
-    # Definition of all parameters : '$ownerLogin' for the wished owner's name, '$branchesExpected' and '$languagesExpected' that are 2 boolean indicators to specifie if we want all branches and languages respectively or not...
+   # Definition of the only parameter : '$userLogin' for the wished owner's name...
     param (
-        [string]$ownerLogin
+        [string]$userLogin
     )
 
     # Creating the 'User' PowerShell class instance from it's own login...
-    $currentUser = [User]::new($ownerLogin.ToString())
+    $currentUser = [User]::new($userLogin.ToString())
 
     # Returning the exact number of public repos count...
     return $currentUser.getPublicReposCount()
@@ -65,8 +65,8 @@ function Get_Total_Number_Of_Public_Repos {
 #
 function Get_All_Languages_Used_By_User {
 
-    # Definition of the only parameter : '$ownerLogin' for the wished owner's name...
+    # Definition of the only parameter : '$userLogin' for the wished owner's name...
     param (
-        [string]$ownerLogin
+        [string]$userLogin
     )
 }
