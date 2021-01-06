@@ -61,3 +61,12 @@ function Get_Total_Number_Of_Public_Repos {
     # Returning the exact number of public repos count...
     return $currentUser.getPublicReposCount()
 }
+
+#
+function Get_All_Languages_Used_By_User {
+
+    # Definition of the only parameter : '$ownerLogin' for the wished owner's name...
+    param (
+        [string]$ownerLogin
+    )
+}
