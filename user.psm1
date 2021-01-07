@@ -114,13 +114,17 @@ $githubUserRequestsContent
                                "Followers count: " + $this.followersCount + "`n" +
                                "Following count: " + $this.followingCount + "`n"
 
-                               $returningString += "`n"
-                               $returningString += "Repositories:" + "`n"
-                               $returningString += "===============" + "`n"
+                               # If 'repositories' table is not empty (count != 0)...
+                               If($this.repositories.Count -ne 0) {
 
-                               foreach($repository in $this.repositories) {
+                                   $returningString += "`n"
+                                   $returningString += "Repositories:" + "`n"
+                                   $returningString += "===============" + "`n"
 
-                                    $returningString += $repository.ToString() 
+                                   foreach($repository in $this.repositories) {
+
+                                        $returningString += $repository.ToString() 
+                                   }
                                }
 
                                $returningString += ""
