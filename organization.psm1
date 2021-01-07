@@ -119,7 +119,34 @@ $githubOrganizationRequestsContent
         # If no error occurs...
         If(!$this.error) {
 
-             $returningString = ""
+            $returningString = "`n"
+            $returningString += "Presentation:" + "`n"
+            $returningString += "===============" + "`n"
+
+            $returningString += "Id: " + $this.id + "`n" +
+                               "Login: " + $this.login + "`n" +
+                               "NodeId: " + $this.nodeId + "`n" +
+                               "Avatar: " + $this.avatar + "`n" +
+                               "Email: " + $this.email + "`n" +
+                               "Type: " + $this.type + "`n" +
+                               "Name: " + $this.name + "`n" +
+                               "Blog: " +  $this.blog + "`n" +
+                               "Location: " +  $this.location + "`n" +
+                               "Company: " + $this.company + "`n" +
+                               "Public repos count: " + $this.publicReposCount + "`n" +
+                               "Followers count: " + $this.followersCount + "`n" +
+                               "Following count: " + $this.followingCount + "`n"
+
+                               $returningString += "`n"
+                               $returningString += "Repositories:" + "`n"
+                               $returningString += "===============" + "`n"
+
+                               foreach($repository in $this.repositories) {
+
+                                    $returningString += $repository.ToString() 
+                               }
+
+            $returningString += ""
 
         # Else (an error occurs)...
         } Else {
