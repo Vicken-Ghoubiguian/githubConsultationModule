@@ -15,8 +15,9 @@ class Organization
     hidden [string]$blog
     hidden [string]$location
     hidden [string]$email
-    hidden [string]$profile
     hidden [string]$type
+
+    hidden [System.Array]$repositories
 
     hidden [int]$followersCount
     hidden [int]$followingCount
@@ -24,10 +25,8 @@ class Organization
     hidden [string]$twitter
     hidden [GitHubError]$error
 
-    hidden [System.Array]$repositories 
-
-    # Repository class constructor with organization login...
-    Organization([string]$organizationLogin)
+    # Repository class constructor...
+    Organization([string]$organizationLogin, [bool]$withRepos, [bool]$withBranches, [bool]$withLanguages)
     {
         # Create an HTTP request to take the GitHub organization identified by its name and its owner's login...
         $githubGetOrganizationURL = "https://api.github.com/orgs/" + $organizationLogin
@@ -43,6 +42,29 @@ class Organization
 $githubOrganizationRequestsContent
 "@
             $githubOrganizationRequestsResult = ConvertFrom-Json -InputObject $githubOrganizationRequestsJSONContent
+
+            $this.login = $githubOrganizationRequestsResult.login
+            $this.id = $githubOrganizationRequestsResult.id
+            $this.nodeId = $githubOrganizationRequestsResult.node_id
+            $this.avatar = $githubOrganizationRequestsResult.avatar_url
+            $this.name = $githubOrganizationRequestsResult.name
+            $this.description = $githubOrganizationRequestsResult.description
+            $this.company = $githubOrganizationRequestsResult.company
+            $this.blog = $githubOrganizationRequestsResult.blog
+            $this.location = $githubOrganizationRequestsResult.location
+            $this.email = $githubOrganizationRequestsResult.email
+
+            $this.type = $githubOrganizationRequestsResult.type
+            $this.followersCount = $githubOrganizationRequestsResult.followers
+            $this.followingCount = $githubOrganizationRequestsResult.following
+            $this.twitter = $githubOrganizationRequestsResult.twitter_username
+
+            # If "withRepos" parameter is "true"...
+            If($withRepos -eq $true) {
+
+                # Adding the repository to the 'repositories' class attribute which is an array...
+                $this.repositories = [Repository]::listAllRepositories($githubOrganizationRequestsResult.login, "orgs", $withBranches, $withLanguages)
+            }
 
         # Bloc to execute if an System.Net.WebException is encountered...
         } catch [System.Net.WebException] {
