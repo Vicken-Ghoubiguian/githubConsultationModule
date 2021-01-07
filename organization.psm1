@@ -21,6 +21,7 @@ class Organization
 
     hidden [int]$followersCount
     hidden [int]$followingCount
+    hidden [int]$publicReposCount
     hidden [string]$type
     hidden [string]$twitter
     hidden [GitHubError]$error
@@ -57,6 +58,7 @@ $githubOrganizationRequestsContent
             $this.type = $githubOrganizationRequestsResult.type
             $this.followersCount = $githubOrganizationRequestsResult.followers
             $this.followingCount = $githubOrganizationRequestsResult.following
+            $this.publicReposCount = $githubOrganizationRequestsResult.public_repos
             $this.twitter = $githubOrganizationRequestsResult.twitter_username
 
             # If "withRepos" parameter is "true"...
@@ -126,6 +128,78 @@ $githubOrganizationRequestsContent
         }
 
         return $returningString
+    }
+
+     # 'id' attribute getter...
+    [int] getId()
+    {
+        return $this.id
+    }
+
+    # 'nodeId' attribute getter...
+    [string] getNodeId()
+    {
+        return $this.nodeId
+    }
+
+    # 'blogURL' attribute getter...
+    [string] getBlog()
+    {
+        return $this.blog
+    }
+
+    # 'name' attribute getter...
+    [string] getName()
+    {
+        return $this.name
+    }
+
+    # 'avatarURL' attribute getter...
+    [string] getAvatar()
+    {
+        return $this.avatar
+    }
+
+    # 'type' attribute getter...
+    [string] getType()
+    {
+        return $this.type
+    }
+
+    # 'location' attribute getter...
+    [string] getLocation()
+    {
+        return $this.location
+    }
+
+    # 'login' attribute getter...
+    [string] getLogin()
+    {
+        return $this.login
+    }
+
+    # 'repositories' attribute getter...
+    [System.Array] getRepositories()
+    {
+        return $this.repositories
+    }
+
+    # 'followingCount' attribute getter...
+    [int] getFollowingCount()
+    {
+        return $this.followingCount
+    }
+
+    # 'followersCount' attribute getter...
+    [int] getFollowersCount()
+    {
+        return $this.followersCount
+    }
+
+    # 'publicReposCount' attribute getter...
+    [int] getPublicReposCount()
+    {
+        return $this.publicReposCount
     }
 
     # 'error' attribute getter...
