@@ -80,6 +80,14 @@ $githubOrganizationRequestsContent
         }
     }
 
+    # Organization class constructor with all class attributes in parameter...
+    Organization([string]$organizationLogin, [string]$login, [string]$id, [string]$nodeId, [string]$avatar, [string]$name, [string]$description,
+                 [string]$company, [string]$blog, [string]$location, [string]$email, [string]$type, [int]$followers, [int]$following, [int]$reposCount, [string]$twitter,
+                 [bool]$withRepos, [bool]$withBranches, [bool]$withLanguages)
+    {
+
+    }
+
     # Definition of a static function to put all repositories of a user identified by its login inside an array...
     static [System.Array] listAllOrganization([string]$userLogin)
     {

@@ -4,8 +4,6 @@ using module .\language.psm1
 Using module .\commit.psm1
 Using module .\gitHubError.psm1
 
-Add-Type -AssemblyName PresentationFramework
-
 # Definition of the Repository Powershell class to define a repository from the GitHub API...
 class Repository
 {
