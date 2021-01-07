@@ -68,7 +68,7 @@ $githubUserRequestsContent
             $this.twitter = $githubUserRequestsResult.twitter_username
 
             # If "withRepos" parameter is "true"...
-            If($withRepos -eq $true) {
+            If($withRepos) {
 
                 # Adding the repository to the 'repositories' class attribute which is an array...
                 $this.repositories = [Repository]::listAllRepositories($githubUserRequestsResult.login, "users", $withBranches, $withLanguages)
