@@ -61,7 +61,7 @@ $githubOrganizationRequestsContent
             $this.twitter = $githubOrganizationRequestsResult.twitter_username
 
             # If "withRepos" parameter is "true"...
-            If($withRepos -eq $true) {
+            If($withRepos) {
 
                 # Adding the repository to the 'repositories' class attribute which is an array...
                 $this.repositories = [Repository]::listAllRepositories($githubOrganizationRequestsResult.login, "orgs", $withBranches, $withLanguages)
@@ -86,6 +86,12 @@ $githubOrganizationRequestsContent
                  [bool]$withRepos, [bool]$withBranches, [bool]$withLanguages)
     {
 
+        # If the 'withRepos' variable is 'true'...
+        If($withRepos) {
+
+            # Adding the repository to the 'repositories' class attribute which is an array...
+            $this.repositories = [Repository]::listAllRepositories($login, "orgs", $withBranches, $withLanguages)
+        }
     }
 
     # Definition of a static function to put all repositories of a user identified by its login inside an array...
