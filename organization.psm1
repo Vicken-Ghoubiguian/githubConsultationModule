@@ -114,7 +114,6 @@ $githubOrganizationRequestsContent
     #
     [String] ToString()
     {
-
         # If no error occurs...
         If(!$this.error) {
 
