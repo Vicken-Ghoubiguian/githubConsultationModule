@@ -22,7 +22,6 @@ class Organization
     hidden [int]$followersCount
     hidden [int]$followingCount
     hidden [int]$publicReposCount
-    hidden [string]$type
     hidden [string]$twitter
     hidden [GitHubError]$error
 
