@@ -180,6 +180,7 @@ $githubOrganizationRequestsContent
                                "Email: " + $this.email + "`n" +
                                "Type: " + $this.type + "`n" +
                                "Name: " + $this.name + "`n" +
+                               "Description: " + $this.description + "`n" +
                                "Blog: " +  $this.blog + "`n" +
                                "Location: " +  $this.location + "`n" +
                                "Company: " + $this.company + "`n" +
