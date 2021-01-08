@@ -127,7 +127,24 @@ $githubOrganizationRequestsContent
             # Browse all the organizations contained in the received JSON and create all the instances of the Powershell class 'Organization' from this data and add them to the array 'organizationsArray'...
             foreach($organization in $orgsJSONObj) {
 
-                $organizationsArray.Add([Organization]::new())
+                $organizationsArray.Add([Organization]::new($organization.login, 
+                                                            $organization.id, 
+                                                            $organization.node_id, 
+                                                            $organization.avatar_url, 
+                                                            $organization.name, 
+                                                            $organization.description, 
+                                                            $organization.company,
+                                                            $organization.blog,
+                                                            $organization.location,
+                                                            $organization.email,
+                                                            $organization.type,
+                                                            $organization.followers,
+                                                            $organization.following,
+                                                            $organization.public_repos,
+                                                            $organization.twitter_username,
+                                                            $wantRepos,
+                                                            $wantBranches,
+                                                            $wantLanguages))
             }
 
         # Bloc to execute if an System.Net.WebException is encountered...
