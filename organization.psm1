@@ -87,6 +87,7 @@ $githubOrganizationRequestsContent
     {
         $this.login = $login
         $this.id = $id
+        $this.nodeId = $nodeId
         $this.avatar = $avatar
         $this.name = $name
         $this.description = $description
