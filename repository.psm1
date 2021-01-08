@@ -271,27 +271,39 @@ $githubReposRequestsContent
 
                     "@@@@@@@@@@@@@@@@@@@@@@@@@@" + "`n" +
 
-                    "Main language: " + $this.mainLanguage + "`n" +
+                    "Main language: " + $this.mainLanguage + "`n"
                     
-                    "--------------------------" + "`n"
+                    # If the 'languages' attribute, which is an array, is null...
+                    If($this.languages -ne $null) {
 
-                    foreach($language in $this.languages) {
+                        $returningString += "--------------------------" + "`n"
 
-                        $returningString += $language.ToString()
+                        foreach($language in $this.languages) {
+
+                            $returningString += $language.ToString()
+                        }
                     }
 
-                    $returningString += "@@@@@@@@@@@@@@@@@@@@@@@@@@"
+                    # If the 'branches' attribute, which is an array, is null...
+                    If($this.branches -ne $null) {
 
-                    foreach($branch in $this.branches) {
+                        $returningString += "@@@@@@@@@@@@@@@@@@@@@@@@@@"
 
-                        $returningString += $branch.ToString()
+                        foreach($branch in $this.branches) {
+
+                            $returningString += $branch.ToString()
+                        }
                     }
 
-                    $returningString += "@@@@@@@@@@@@@@@@@@@@@@@@@@"
+                    # If the 'license' attribute, which is an array, is null...
+                    If($this.license -ne $null) {
 
-                    $returningString += $this.license.ToString()
+                        $returningString += "@@@@@@@@@@@@@@@@@@@@@@@@@@"
 
-                    $returningString += "`n"
+                        $returningString += $this.license.ToString()
+
+                        $returningString += "`n"
+                    }
 
                     "@@@@@@@@@@@@@@@@@@@@@@@@@@" + "`n" +
 
