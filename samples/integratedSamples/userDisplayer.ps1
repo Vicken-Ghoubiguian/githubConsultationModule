@@ -5,12 +5,13 @@ Using module ..\..\User.psm1
 param (
     [string]$userLogin,
     [bool]$withRepos,
+    [bool]$withOrganizations,
     [bool]$withBranches,
     [bool]$withLanguages
 )
 
 # Creation of an instance of the User Powershell class with all wished parameters...
-$currentUser = New-Object -TypeName User -ArgumentList $userLogin, $withRepos, $withBranches, $withLanguages
+$currentUser = New-Object -TypeName User -ArgumentList $userLogin, $withRepos, $withOrganizations, $withBranches, $withLanguages
 
 # Display all collected informations about the wished user in the Powershell console...
 $currentUser.ToString()

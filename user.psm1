@@ -1,4 +1,5 @@
 ﻿Using module .\Repository.psm1
+Using module .\Organization.psm1
 Using module .\gitHubError.psm1
 
 # Definition of the User Powershell class to define a user from the GitHub API...
@@ -31,7 +32,7 @@ class User
     hidden [System.Array]$events
 
     # User class constructor...
-    User([string]$wishedUserLogin, [bool]$withRepos, [bool]$withBranches, [bool]$withLanguages)
+    User([string]$wishedUserLogin, [bool]$withOrganizations, [bool]$withRepos, [bool]$withBranches, [bool]$withLanguages)
     {
         # Extract all the data relating to the desired user from the received JSON ...
         $githubGetUserURL = "https://api.github.com/users/" + $wishedUserLogin
@@ -70,8 +71,15 @@ $githubUserRequestsContent
             # If "withRepos" parameter is "true"...
             If($withRepos) {
 
-                # Adding the repository to the 'repositories' class attribute which is an array...
+                # Adding the repositories to the 'repositories' class attribute which is an array...
                 $this.repositories = [Repository]::listAllRepositories($githubUserRequestsResult.login, "users", $withBranches, $withLanguages)
+            }
+
+            # If "withOrganizations" parameter is "true"...
+            If($withOrganizations) {
+
+                # Adding the organizations to the 'organizations' class attribute which is an array...
+                $this.organizations = [Organization]::listAllOrganization($githubUserRequestsResult.login, $false, $false, $false)
             }
 
         # Bloc to execute if an System.Net.WebException is encountered...
@@ -124,6 +132,19 @@ $githubUserRequestsContent
                                    foreach($repository in $this.repositories) {
 
                                         $returningString += $repository.ToString() 
+                                   }
+                               }
+
+                               #
+                               If($this.organizations.Count -ne 0) {
+
+                                   $returningString += "`n"
+                                   $returningString += "Organizations:" + "`n"
+                                   $returningString += "===============" + "`n"
+
+                                   foreach($organization in $this.organizations) {
+
+                                        $returningString += $organization.ToString() 
                                    }
                                }
 
@@ -250,5 +271,11 @@ $githubUserRequestsContent
     [System.Array] getRepositories()
     {
         return $this.repositories
+    }
+
+    # 'organizations' attribute getter...
+    [System.Array] getOrganizations()
+    {
+        return $this.organizations
     }
 }
