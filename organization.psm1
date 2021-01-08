@@ -110,6 +110,12 @@ $githubOrganizationRequestsContent
             $githubOrgsRequest = Invoke-WebRequest -Uri $githubGetOrgsURL -Method Get
             $orgsJSONObj = ConvertFrom-Json $githubOrgsRequest.Content
 
+            # Browse all the organizations contained in the received JSON and create all the instances of the Powershell class 'Organization' from this data and add them to the array 'organizationsArray'...
+            foreach($organization in $orgsJSONObj) {
+
+                $organizationsArray.Add([Organization]::new())
+            }
+
         # Bloc to execute if an System.Net.WebException is encountered...
         } catch [System.Net.WebException] {
 
