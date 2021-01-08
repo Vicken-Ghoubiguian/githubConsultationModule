@@ -109,7 +109,7 @@ $githubOrganizationRequestsContent
     }
 
     # Definition of a static function to put all repositories of a user identified by its login inside an array...
-    static [System.Array] listAllOrganization([string]$userLogin)
+    static [System.Array] listAllOrganization([string]$userLogin, [bool]$wantRepos, [bool]$wantBranches, [bool]$wantLanguages)
     {
         # Definition of the 'organizationsArray' array which will contain all organizations of the wished the wished 'userLogin' user...
         $organizationsArray = [System.Collections.ArrayList]::new()
