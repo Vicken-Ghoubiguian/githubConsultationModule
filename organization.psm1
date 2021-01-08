@@ -81,10 +81,24 @@ $githubOrganizationRequestsContent
     }
 
     # Organization class constructor with all class attributes in parameter...
-    Organization([string]$organizationLogin, [string]$login, [string]$id, [string]$nodeId, [string]$avatar, [string]$name, [string]$description,
+    Organization([string]$login, [string]$id, [string]$nodeId, [string]$avatar, [string]$name, [string]$description,
                  [string]$company, [string]$blog, [string]$location, [string]$email, [string]$type, [int]$followers, [int]$following, [int]$reposCount, [string]$twitter,
                  [bool]$withRepos, [bool]$withBranches, [bool]$withLanguages)
     {
+        $this.login = $login
+        $this.id = $id
+        $this.avatar = $avatar
+        $this.name = $name
+        $this.description = $description
+        $this.company = $company
+        $this.blog = $blog
+        $this.location = $location
+        $this.email = $email
+        $this.type = $type
+        $this.followersCount = $followers
+        $this.followingCount = $following
+        $this.publicReposCount = $reposCount
+        $this.twitter = $twitter
 
         # If the 'withRepos' variable is 'true'...
         If($withRepos) {
