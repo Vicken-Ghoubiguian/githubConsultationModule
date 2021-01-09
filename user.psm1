@@ -82,6 +82,80 @@ $githubUserRequestsContent
                 $this.organizations = [Organization]::listAllOrganization($githubUserRequestsResult.login, $false, $false, $false)
             }
 
+            # If "withFollowing" parameter is "true"...
+            If($withFollowing) {
+
+                #
+                $followingArray = [System.Collections.ArrayList]::new()
+
+                #
+                $githubGetFollowingURL = "https://api.github.com/users/" + $wishedUserLogin + "/following"
+
+                #
+                $githubFollowingRequest = Invoke-WebRequest -Uri $githubGetFollowingURL -Method Get
+                $githubFollowingRequestsContent = $githubFollowingRequest.Content
+                $githubFollowingRequestsJSONContent = @"
+                       
+$githubFollowingRequestsContent
+"@
+                $githubFollowingRequestsResult = ConvertFrom-Json -InputObject $githubFollowingRequestsJSONContent
+
+                #
+                foreach($following in $githubFollowingRequestsResult) {
+
+                    #
+                    $followingAsArray = @()
+
+                    #
+                    $followingAsArray += $following.id
+                    $followingAsArray += $following.login
+                    $followingAsArray += $following.avatar_url
+
+                    #
+                    $followingArray.Add($followingAsArray)
+                }
+
+                #
+                $this.following = $followingArray
+            }
+
+            # If "withFollowers" parameter is "true"...
+            If($withFollowers) {
+
+                #
+                $followersArray = [System.Collections.ArrayList]::new()
+
+                #
+                $githubGetFollowersURL = "https://api.github.com/users/" + $wishedUserLogin + "/followers"
+
+                #
+                $githubFollowersRequest = Invoke-WebRequest -Uri $githubGetFollowersURL -Method Get
+                $githubFollowersRequestsContent = $githubFollowersRequest.Content
+                $githubFollowersRequestsJSONContent = @"
+                       
+$githubFollowersRequestsContent
+"@
+                $githubFollowersRequestsResult = ConvertFrom-Json -InputObject $githubFollowersRequestsJSONContent
+
+                #
+                foreach($followers in $githubFollowersRequestsResult) {
+
+                    #
+                    $followersAsArray = @()
+
+                    #
+                    $followersAsArray += $followers.id
+                    $followersAsArray += $followers.login
+                    $followersAsArray += $followers.avatar
+
+                    #
+                    $followersArray.Add($followersAsArray)
+                }
+
+                #
+                $this.followers = $followersArray
+            }
+
         # Bloc to execute if an System.Net.WebException is encountered...
         } catch [System.Net.WebException] {
 
@@ -135,7 +209,7 @@ $githubUserRequestsContent
                                    }
                                }
 
-                               #
+                               # If 'organizations' table is not empty (count != 0)...
                                If($this.organizations.Count -ne 0) {
 
                                    $returningString += "`n"
@@ -147,6 +221,17 @@ $githubUserRequestsContent
                                         $returningString += $organization.ToString() 
                                    }
                                }
+
+                               # If 'following' table is not empty (count != 0)...
+                               If($this.following.Count -ne 0) {
+
+                               }
+
+                               # If 'followers' table is not empty (count != 0)...
+                               If($this.followers.Count -ne 0) {
+
+                               }
+
 
                                $returningString += ""
 
