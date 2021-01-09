@@ -32,7 +32,7 @@ class User
     hidden [System.Array]$events
 
     # User class constructor...
-    User([string]$wishedUserLogin, [bool]$withOrganizations, [bool]$withRepos, [bool]$withBranches, [bool]$withLanguages)
+    User([string]$wishedUserLogin, [bool]$withOrganizations, [bool]$withRepos, [bool]$withBranches, [bool]$withLanguages, [bool]$withFollowing, [bool]$withFollowers)
     {
         # Extract all the data relating to the desired user from the received JSON ...
         $githubGetUserURL = "https://api.github.com/users/" + $wishedUserLogin
