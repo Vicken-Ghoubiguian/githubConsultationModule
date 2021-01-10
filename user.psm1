@@ -34,7 +34,7 @@ class User
     # User class constructor...
     User([string]$wishedUserLogin, [bool]$withOrganizations, [bool]$withRepos, [bool]$withBranches, [bool]$withLanguages, [bool]$withFollowing, [bool]$withFollowers)
     {
-        # Extract all the data relating to the desired user from the received JSON ...
+        # Definition of the 'githubGetUserURL' string which contain the URL to get all datas about the wished user identified by the 'wishedUserLogin' login...
         $githubGetUserURL = "https://api.github.com/users/" + $wishedUserLogin
 
         # Bloc we wish execute to get all informations about the wished repository...
@@ -85,10 +85,10 @@ $githubUserRequestsContent
             # If "withFollowing" parameter is "true"...
             If($withFollowing) {
 
-                #
+                # Definition of the 'followingArray' array which will contain all followings...
                 $followingArray = [System.Collections.ArrayList]::new()
 
-                #
+                # Definition of the 'githubGetFollowingURL' string which contain the URL to get all followings of the wished user identified by the 'wishedUserLogin' login...
                 $githubGetFollowingURL = "https://api.github.com/users/" + $wishedUserLogin + "/following"
 
                 #
@@ -103,29 +103,29 @@ $githubFollowingRequestsContent
                 #
                 foreach($following in $githubFollowingRequestsResult) {
 
-                    #
+                    # Definition of the 'followingAsArray' array to contain all datas about the 'following' following...
                     $followingAsArray = @()
 
-                    #
+                    # Adding all required datas (following's id, login and avatar) to the 'followingAsArray' array...
                     $followingAsArray += $following.id
                     $followingAsArray += $following.login
                     $followingAsArray += $following.avatar_url
 
-                    #
+                    # Adding the complete 'followingAsArray' array to the 'followingArray' array...
                     $followingArray.Add($followingAsArray)
                 }
 
-                #
+                # Affectation of the 'followingArray' array to the 'following' PowerShell class attribute...
                 $this.following = $followingArray
             }
 
             # If "withFollowers" parameter is "true"...
             If($withFollowers) {
 
-                #
+                # Definition of the 'followersArray' array which will contain all followers...
                 $followersArray = [System.Collections.ArrayList]::new()
 
-                #
+                # Definition of the 'githubGetFollowersURL' string which contain the URL to get all followers of the wished user identified by the 'wishedUserLogin' login...
                 $githubGetFollowersURL = "https://api.github.com/users/" + $wishedUserLogin + "/followers"
 
                 #
@@ -140,19 +140,19 @@ $githubFollowersRequestsContent
                 #
                 foreach($followers in $githubFollowersRequestsResult) {
 
-                    #
+                    # Definition of the 'followersAsArray' array to contain all datas about the 'followers' followers...
                     $followersAsArray = @()
 
-                    #
+                    # Adding all required datas (follower's id, login and avatar) to the 'followersAsArray' array...
                     $followersAsArray += $followers.id
                     $followersAsArray += $followers.login
                     $followersAsArray += $followers.avatar
 
-                    #
+                    # Adding the complete 'followersAsArray' array to the 'followersArray' array...
                     $followersArray.Add($followersAsArray)
                 }
 
-                #
+                # Affectation of the 'followersArray' array to the 'followers' PowerShell class attribute...
                 $this.followers = $followersArray
             }
 
