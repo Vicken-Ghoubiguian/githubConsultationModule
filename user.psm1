@@ -225,14 +225,31 @@ $githubFollowersRequestsContent
                                # If 'following' table is not empty (count != 0)...
                                If($this.following.Count -ne 0) {
 
+                                   $returningString += "`n"
+                                   $returningString += "Following:" + "`n"
+                                   $returningString += "===============" + "`n"
+
+                                   foreach($following in $this.following) {
+
+                                        $returningString += "(id: " + $following[0] + ", login: " + $following[1] + ", avatar: " + $following[2] + ")"
+                                   }
                                }
 
                                # If 'followers' table is not empty (count != 0)...
                                If($this.followers.Count -ne 0) {
 
+
+                                   $returningString += "`n"
+                                   $returningString += "Followers:" + "`n"
+                                   $returningString += "===============" + "`n"
+
+                                   foreach($followers in $this.followers) {
+
+                                        $returningString += "(id: " + $followers[0] + ", login: " + $followers[1] + ", avatar: " + $followers[2] + ")" + "`n"
+                                   }
                                }
 
-
+                               $returningString += "`n"
                                $returningString += ""
 
         # Else (an error occurs)...
