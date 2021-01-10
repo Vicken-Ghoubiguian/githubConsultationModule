@@ -262,6 +262,18 @@ $githubFollowersRequestsContent
         return $returningString
     }
 
+    # 'following' attribute getter...
+    [System.Array] getFollowing()
+    {
+        return $this.following
+    }
+
+    # 'followers' attribute getter...
+    [System.Array] getFollowers()
+    {
+        return $this.followers
+    }
+
     # 'followingCount' attribute getter...
     [int] getFollowingCount()
     {
