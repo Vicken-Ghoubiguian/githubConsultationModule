@@ -106,9 +106,10 @@ $githubFollowingRequestsContent
                     # Definition of the 'followingAsArray' array to contain all datas about the 'following' following...
                     $followingAsArray = @()
 
-                    # Adding all required datas (following's id, login and avatar) to the 'followingAsArray' array...
+                    # Adding all required datas (following's id, login, html URL and avatar) to the 'followingAsArray' array...
                     $followingAsArray += $following.id
                     $followingAsArray += $following.login
+                    $followingAsArray += $following.html_url
                     $followingAsArray += $following.avatar_url
 
                     # Adding the complete 'followingAsArray' array to the 'followingArray' array...
@@ -143,9 +144,10 @@ $githubFollowersRequestsContent
                     # Definition of the 'followersAsArray' array to contain all datas about the 'followers' followers...
                     $followersAsArray = @()
 
-                    # Adding all required datas (follower's id, login and avatar) to the 'followersAsArray' array...
+                    # Adding all required datas (follower's id, login, html URL and avatar) to the 'followersAsArray' array...
                     $followersAsArray += $followers.id
                     $followersAsArray += $followers.login
+                    $followersAsArray += $followers.html_url
                     $followersAsArray += $followers.avatar
 
                     # Adding the complete 'followersAsArray' array to the 'followersArray' array...
@@ -231,7 +233,7 @@ $githubFollowersRequestsContent
 
                                    foreach($following in $this.following) {
 
-                                        $returningString += "(id: " + $following[0] + ", login: " + $following[1] + ", avatar: " + $following[2] + ")," + "`n"
+                                        $returningString += "(id: " + $following[0] + ", login: " + $following[1] + ", GitHub url: " + $following[2] + ", avatar: " + $following[3] + ")," + "`n"
                                    }
                                }
 
@@ -245,7 +247,7 @@ $githubFollowersRequestsContent
 
                                    foreach($followers in $this.followers) {
 
-                                        $returningString += "(id: " + $followers[0] + ", login: " + $followers[1] + ", avatar: " + $followers[2] + ")," + "`n"
+                                        $returningString += "(id: " + $followers[0] + ", login: " + $followers[1] + ", GitHub url: " + $followers[2] + ", avatar: " + $followers[3] + ")," + "`n"
                                    }
                                }
 
