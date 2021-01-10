@@ -231,7 +231,7 @@ $githubFollowersRequestsContent
 
                                    foreach($following in $this.following) {
 
-                                        $returningString += "(id: " + $following[0] + ", login: " + $following[1] + ", avatar: " + $following[2] + ")"
+                                        $returningString += "(id: " + $following[0] + ", login: " + $following[1] + ", avatar: " + $following[2] + ")," + "`n"
                                    }
                                }
 
@@ -245,11 +245,10 @@ $githubFollowersRequestsContent
 
                                    foreach($followers in $this.followers) {
 
-                                        $returningString += "(id: " + $followers[0] + ", login: " + $followers[1] + ", avatar: " + $followers[2] + ")" + "`n"
+                                        $returningString += "(id: " + $followers[0] + ", login: " + $followers[1] + ", avatar: " + $followers[2] + ")," + "`n"
                                    }
                                }
 
-                               $returningString += "`n"
                                $returningString += ""
 
         # Else (an error occurs)...
