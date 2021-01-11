@@ -74,6 +74,9 @@ function Get_All_Languages_Used_By_User {
     # Definition of 'totalForAllRepos' variable to contain the total of value for the whole user...
     $totalForAllRepos = 0
 
+    # Definition of the 'languagesArray' to contain all languages as keys with their respective total value for the whole user as values...
+    $languagesArray = [System.Array]::new()
+
     # Creation of the current user from the 'User' PowerShell class and getting all of its repos and languages...
     $currentUser = [User]::new($userLogin, $false, $true, $false, $true, $false, $false)
 
