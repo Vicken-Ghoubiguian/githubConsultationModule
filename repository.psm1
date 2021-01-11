@@ -468,7 +468,7 @@ $githubReposRequestsContent
     }
 
     # 'allLanguages' attribute getter...
-    [System.Collections.Hashtable] getLanguages()
+    [System.Array] getLanguages()
     {
         return $this.languages
     }
