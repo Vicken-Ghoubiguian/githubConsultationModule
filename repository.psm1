@@ -323,6 +323,12 @@ $githubReposRequestsContent
           return $returningString
     }
 
+    # Returning the module's type as string...
+    [string] getModuleType()
+    {
+        return "Repository"
+    }
+
     # 'id' attribute getter...
     [int] getId()
     {

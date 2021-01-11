@@ -28,6 +28,12 @@ class GitHubError
         return $returningString
     }
 
+    # Returning the module's type as string...
+    [string] getModuleType()
+    {
+        return "GitHubError"
+    }
+
     # 'type' attribute getter
     [string] getType()
     {

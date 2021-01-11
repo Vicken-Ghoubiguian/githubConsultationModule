@@ -80,20 +80,30 @@ function Get_All_Languages_Used_By_User {
     #
     $reposArray = [Repository]::listAllRepositories($ownerLogin.ToString(), $diminutiveType.ToString(), $false, $true)
 
-    #
-    foreach($repos in $reposArray) {
+    # If the first element of the '$reposArray' array is of type "GitHubError" so...
+    If($reposArray[0].getModuleType() -ne "GitHubError") {
 
         #
-        $languagesOfRepos = $repos.getLanguages()
+        foreach($repos in $reposArray) {
 
-        #
-        $totalForAllRepos += $languagesOfRepos[0].getTotalValue()
+            #
+            $languagesOfRepos = $repos.getLanguages()
 
-        #
-        foreach($language in $languagesOfRepos) {
+            #
+            $totalForAllRepos += $languagesOfRepos[0].getTotalValue()
 
+            #
+            foreach($language in $languagesOfRepos) {
+
+            }
         }
-    }
 
-    Write-Host "The thing is..." $totalForAllRepos
+        Write-Host "The thing is..." $totalForAllRepos
+
+    # Else...
+    } Else {
+
+        # 
+        $reposArray[0].ToString()
+    }
 }
