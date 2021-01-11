@@ -69,4 +69,10 @@ function Get_All_Languages_Used_By_User {
     param (
         [string]$userLogin
     )
+
+    # Creation of the current user from the 'User' PowerShell class and getting all of its repos and languages...
+    $currentUser = [User]::new($userLogin, $false, $true, $false, $true, $false, $false)
+
+    #
+
 }
