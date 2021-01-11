@@ -57,7 +57,7 @@ function Get_Total_Number_Of_Public_Repos {
     )
 
     # Creating the 'User' PowerShell class instance from it's own login...
-    $currentUser = [User]::new($userLogin.ToString())
+    $currentUser = [User]::new($userLogin.ToString(), $false, $false, $false, $false, $false, $false)
 
     # Returning the exact number of public repos count...
     return $currentUser.getPublicReposCount()
@@ -75,10 +75,10 @@ function Get_All_Languages_Used_By_User {
     $totalForAllRepos = 0
 
     # Definition of the 'languagesArray' to contain all languages as keys with their respective total value for the whole user as values...
-    $languagesArray = [System.Array]::new()
+    $languagesArray = [System.Collections.ArrayList]::new()
 
     # Creation of the current user from the 'User' PowerShell class and getting all of its repos and languages...
-    $currentUser = [User]::new($userLogin, $false, $true, $false, $true, $false, $false)
+    $currentUser = [User]::new($userLogin.ToString(), $false, $true, $false, $true, $false, $false)
 
     # Get all repos from the 'currentUser' variable and put them all in the 'reposArray' array...
     $reposArray = $currentUser.getRepositories()
@@ -97,4 +97,6 @@ function Get_All_Languages_Used_By_User {
 
         }
     }
+
+    Write-Host "The thing is..." $totalForAllRepos
 }
