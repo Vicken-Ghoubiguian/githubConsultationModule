@@ -218,7 +218,13 @@ $githubOrganizationRequestsContent
         return $returningString
     }
 
-     # 'id' attribute getter...
+    # Returning the module's type as string...
+    [string] getModuleType()
+    {
+        return "Organization"
+    }
+
+    # 'id' attribute getter...
     [int] getId()
     {
         return $this.id

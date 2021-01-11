@@ -164,6 +164,12 @@ $githubCommitRequestsContent
         return $returningString
     }
 
+    # Returning the module's type as string...
+    [string] getModuleType()
+    {
+        return "Commit"
+    }
+
     # 'sha' attribute getter...
     [string] getSha()
     {

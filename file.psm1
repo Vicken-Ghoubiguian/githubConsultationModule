@@ -171,6 +171,12 @@ $githubFileRequestsContent
         return $returningString
     }
 
+    # Returning the module's type as string...
+    [string] getModuleType()
+    {
+        return "File"
+    }
+
     # 'sha' attribute getter...
     [string] getSha()
     {

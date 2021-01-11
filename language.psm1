@@ -75,6 +75,12 @@ class Language
         return $returningString
     }
 
+    # Returning the module's type as string...
+    [string] getModuleType()
+    {
+        return "Language"
+    }
+
     # 'name' attribute getter...
     [string] getName()
     {

@@ -227,6 +227,12 @@ $githubLicenseRequestsContent
         return $returningString
     }
 
+    # Returning the module's type as string...
+    [string] getModuleType()
+    {
+        return "License"
+    }
+
     # 'key' attribute getter...
     [string] getKey()
     {

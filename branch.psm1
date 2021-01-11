@@ -117,6 +117,12 @@ $githubBranchRequestsContent
         return $returningString
     }
 
+    # Returning the module's type as string...
+    [string] getModuleType()
+    {
+        return "Branch"
+    }
+
     # 'name' attribute getter...
     [string] getName()
     {

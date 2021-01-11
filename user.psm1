@@ -262,6 +262,12 @@ $githubFollowersRequestsContent
         return $returningString
     }
 
+    # Returning the module's type as string...
+    [string] getModuleType()
+    {
+        return "User"
+    }
+
     # 'following' attribute getter...
     [System.Array] getFollowing()
     {
