@@ -1,8 +1,7 @@
 ﻿# Importation of the 'GitHubError' module...
 Using module .\gitHubError.psm1
 
-# Importation of the 'User' module...
-Using module .\user.psm1
+# Importation of required modules...
 Using module .\repository.psm1
 
 # Definition of a function to get and return all emojis defined in GitHub in an associative array...
@@ -66,9 +65,10 @@ function Get_Total_Number_Of_Public_Repos {
 #
 function Get_All_Languages_Used_By_User {
 
-    # Definition of the only parameter : '$userLogin' for the wished owner's name...
+    # Definition of the only parameter : '$ownerLogin' for the wished owner's name and '$diminutiveType' for the type of owner...
     param (
-        [string]$userLogin
+        [string]$ownerLogin,
+        [string]$diminutiveType
     )
 
     # Definition of 'totalForAllRepos' variable to contain the total of value for the whole user...
@@ -77,11 +77,8 @@ function Get_All_Languages_Used_By_User {
     # Definition of the 'languagesArray' to contain all languages as keys with their respective total value for the whole user as values...
     $languagesArray = [System.Collections.ArrayList]::new()
 
-    # Creation of the current user from the 'User' PowerShell class and getting all of its repos and languages...
-    $currentUser = [User]::new($userLogin.ToString(), $false, $true, $false, $true, $false, $false)
-
-    # Get all repos from the 'currentUser' variable and put them all in the 'reposArray' array...
-    $reposArray = $currentUser.getRepositories()
+    #
+    $reposArray = [Repository]::listAllRepositories($ownerLogin.ToString(), $diminutiveType.ToString(), $false, $true)
 
     #
     foreach($repos in $reposArray) {
@@ -90,7 +87,7 @@ function Get_All_Languages_Used_By_User {
         $languagesOfRepos = $repos.getLanguages()
 
         #
-        $totalForAllRepos += $languagesOfRepos[0].totalValue
+        $totalForAllRepos += $languagesOfRepos[0].getTotalValue()
 
         #
         foreach($language in $languagesOfRepos) {
