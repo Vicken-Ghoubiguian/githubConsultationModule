@@ -3,6 +3,7 @@ Using module .\gitHubError.psm1
 
 # Importation of the 'User' module...
 Using module .\user.psm1
+Using module .\repository.psm1
 
 # Definition of a function to get and return all emojis defined in GitHub in an associative array...
 function Get_All_GitHub_Emojis {
@@ -70,9 +71,27 @@ function Get_All_Languages_Used_By_User {
         [string]$userLogin
     )
 
+    # Definition of 'totalForAllRepos' variable to contain the total of value for the whole user...
+    $totalForAllRepos = 0
+
     # Creation of the current user from the 'User' PowerShell class and getting all of its repos and languages...
     $currentUser = [User]::new($userLogin, $false, $true, $false, $true, $false, $false)
 
-    #
+    # Get all repos from the 'currentUser' variable and put them all in the 'reposArray' array...
+    $reposArray = $currentUser.getRepositories()
 
+    #
+    foreach($repos in $reposArray) {
+
+        #
+        $languagesOfRepos = $repos.getLanguages()
+
+        #
+        $totalForAllRepos += $languagesOfRepos[0].totalValue
+
+        #
+        foreach($language in $languagesOfRepos) {
+
+        }
+    }
 }
