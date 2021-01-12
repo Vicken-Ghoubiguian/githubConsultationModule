@@ -101,6 +101,10 @@ function Get_All_Languages_Used_By_User {
                     #
                     foreach($language in $languagesOfRepos) {
 
+                        #
+                        If($language -ne $null){
+
+                        }
                     }
 
                 # Else...
