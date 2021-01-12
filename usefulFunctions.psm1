@@ -89,10 +89,10 @@ function Get_All_Languages_Used_By_User {
             #
             $languagesOfRepos = $repos.getLanguages()
 
-            #
+            # If the first element of the '$languagesOfRepos' array is not a $null object, so...
             If($languagesOfRepos[0] -ne $null){
 
-                #
+                # If the first element of the '$languagesOfRepos' array is not a "GitHubError" object, so...
                 If($languagesOfRepos[0].getModuleType() -ne "GitHubError"){
 
                     #
@@ -101,7 +101,7 @@ function Get_All_Languages_Used_By_User {
                     #
                     foreach($language in $languagesOfRepos) {
 
-                        #
+                        # If the current language is not a "GitHubError" object, so...
                         If($language -ne $null){
 
                         }
@@ -110,7 +110,7 @@ function Get_All_Languages_Used_By_User {
                 # Else...
                 } Else {
 
-                    #
+                    # Returning the 'GitHubError' object as a string...
                     return $languagesOfRepos[0].ToString()
                 }
             }
