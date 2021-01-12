@@ -90,11 +90,25 @@ function Get_All_Languages_Used_By_User {
             $languagesOfRepos = $repos.getLanguages()
 
             #
-            $totalForAllRepos += $languagesOfRepos[0].getTotalValue()
+            If($languagesOfRepos[0] -ne $null){
 
-            #
-            foreach($language in $languagesOfRepos) {
+                #
+                If($languagesOfRepos[0].getModuleType() -ne "GitHubError"){
 
+                    #
+                    $totalForAllRepos += $languagesOfRepos[0].getTotalValue()
+
+                    #
+                    foreach($language in $languagesOfRepos) {
+
+                    }
+
+                # Else...
+                } Else {
+
+                    #
+                    return $languagesOfRepos[0].ToString()
+                }
             }
         }
 
