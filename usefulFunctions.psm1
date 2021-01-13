@@ -107,13 +107,13 @@ function Get_All_Languages_Used_By_User {
                             # If the hash table already contains the current language's name as key, so...
                             If($languagesHashTable.ContainsKey($language.getName())){
 
-                                # 
+                                # Adding the previous value by the value corresponding to the current language...
                                 $languagesHashTable[$language.getName()] += $language.getValue()
 
                             # Else...
                             } Else {
 
-                                #
+                                # Adding the value corresponding to the current language while creating a new key...
                                 $languagesHashTable[$language.getName()] = $language.getValue()
                             }
                         }
