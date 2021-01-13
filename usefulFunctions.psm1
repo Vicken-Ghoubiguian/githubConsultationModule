@@ -74,7 +74,7 @@ function Get_All_Languages_Used_By_User {
     # Definition of 'totalForAllRepos' variable to contain the total of value for the whole user...
     $totalForAllRepos = 0
 
-    # Definition of the 'languagesHashTable' to contain all languages as keys with their respective total value for the whole user as values...
+    # Definition of the 'languagesHashTable' hash table to contain all languages as keys with their respective total value for the whole user as values...
     $languagesHashTable = [System.Collections.Hashtable ]::new()
 
     #
@@ -99,11 +99,23 @@ function Get_All_Languages_Used_By_User {
                     $totalForAllRepos += $languagesOfRepos[0].getTotalValue()
 
                     #
-                    foreach($language in $languagesOfRepos) {
+                    foreach($language in $languagesOfRepos){
 
                         # If the current language is not a "GitHubError" object, so...
                         If($language -ne $null){
 
+                            # If the hash table 
+                            If($languagesHashTable.ContainsKey($language.getName())){
+
+                                #
+                                $languagesHashTable[$language.getName()] += $language.getValue()
+
+                            # Else...
+                            } Else {
+
+                                #
+                                $languagesHashTable[$language.getName()] = $language.getValue()
+                            }
                         }
                     }
 
