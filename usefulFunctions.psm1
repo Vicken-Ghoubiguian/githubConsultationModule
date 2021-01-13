@@ -77,7 +77,7 @@ function Get_All_Languages_Used_By_User {
     # Definition of the 'languagesHashTable' hash table to contain all languages as keys with their respective total value for the whole user as values...
     $languagesHashTable = [System.Collections.Hashtable ]::new()
 
-    #
+    # Getting all repos from the 'ownerLogin' owner which is a 'diminutiveType' (user or organization)...
     $reposArray = [Repository]::listAllRepositories($ownerLogin.ToString(), $diminutiveType.ToString(), $false, $true)
 
     # If the first element of the '$reposArray' array is of type "GitHubError" so...
@@ -86,7 +86,7 @@ function Get_All_Languages_Used_By_User {
         #
         foreach($repos in $reposArray) {
 
-            #
+            # Getting all languages from the current repos...
             $languagesOfRepos = $repos.getLanguages()
 
             # If the first element of the '$languagesOfRepos' array is not a $null object, so...
@@ -95,7 +95,7 @@ function Get_All_Languages_Used_By_User {
                 # If the first element of the '$languagesOfRepos' array is not a "GitHubError" object, so...
                 If($languagesOfRepos[0].getModuleType() -ne "GitHubError"){
 
-                    #
+                    # Calculating the total for all repos by adding the first language's one...
                     $totalForAllRepos += $languagesOfRepos[0].getTotalValue()
 
                     #
@@ -104,10 +104,10 @@ function Get_All_Languages_Used_By_User {
                         # If the current language is not a "GitHubError" object, so...
                         If($language -ne $null){
 
-                            # If the hash table 
+                            # If the hash table already contains the current language's name as key, so...
                             If($languagesHashTable.ContainsKey($language.getName())){
 
-                                #
+                                # 
                                 $languagesHashTable[$language.getName()] += $language.getValue()
 
                             # Else...
@@ -122,9 +122,9 @@ function Get_All_Languages_Used_By_User {
                     #
                     foreach($language in $languagesHashTable){
 
-                        #
-                        $languagesHashTable[$language.getName()] = ($languagesHashTable[$language.getName()] * 100)/$totalForAllRepos
-                        $languagesHashTable[$language.getName()] = [Math]::Round($languagesHashTable[$language.getName()], 1)
+                        # Calculating representing percentage for the current language and affectation to it as value...
+                        <#$languagesHashTable[$language.getName()] = ($languagesHashTable[$language.getName()] * 100)/$totalForAllRepos
+                        $languagesHashTable[$language.getName()] = [Math]::Round($languagesHashTable[$language.getName()], 1)#>
                     }
 
                 # Else...
