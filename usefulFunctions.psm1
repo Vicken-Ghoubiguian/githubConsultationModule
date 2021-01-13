@@ -74,8 +74,8 @@ function Get_All_Languages_Used_By_User {
     # Definition of 'totalForAllRepos' variable to contain the total of value for the whole user...
     $totalForAllRepos = 0
 
-    # Definition of the 'languagesArray' to contain all languages as keys with their respective total value for the whole user as values...
-    $languagesArray = [System.Collections.ArrayList]::new()
+    # Definition of the 'languagesHashTable' to contain all languages as keys with their respective total value for the whole user as values...
+    $languagesHashTable = [System.Collections.Hashtable ]::new()
 
     #
     $reposArray = [Repository]::listAllRepositories($ownerLogin.ToString(), $diminutiveType.ToString(), $false, $true)
@@ -110,18 +110,21 @@ function Get_All_Languages_Used_By_User {
                 # Else...
                 } Else {
 
-                    # Returning the 'GitHubError' object as a string...
-                    return $languagesOfRepos[0].ToString()
+                    # Returning the 'GitHubError' object...
+                    return $languagesOfRepos[0]
                 }
             }
         }
 
         Write-Host "The thing is..." $totalForAllRepos
 
+        # Returning the '$languagesHashTable' hash table
+        return $languagesHashTable
+
     # Else...
     } Else {
 
-        # 
-        $reposArray[0].ToString()
+        # Returning the 'GitHubError' object...
+        return $languagesOfRepos[0]
     }
 }
