@@ -137,6 +137,6 @@ function Get_All_Languages_Used_By_User {
     } Else {
 
         # Returning the 'GitHubError' object...
-        return $languagesOfRepos[0]
+        return $reposArray[0]
     }
 }
