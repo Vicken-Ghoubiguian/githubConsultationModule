@@ -77,6 +77,9 @@ function Get_All_Languages_Used_By_User {
     # Definition of the 'languagesHashTable' hash table to contain all languages as keys with their respective total value for the whole user as values...
     $languagesHashTable = [System.Collections.Hashtable ]::new()
 
+    # Definition of the 'returningLanguagesHashTable' hash table to contain all languages as keys with their respective percentage for the whole user as values...
+    $returningLanguagesHashTable = [System.Collections.Hashtable ]::new()
+
     # Getting all repos from the 'ownerLogin' owner which is a 'diminutiveType' (user or organization)...
     $reposArray = [Repository]::listAllRepositories($ownerLogin.ToString(), $diminutiveType.ToString(), $false, $true)
 
