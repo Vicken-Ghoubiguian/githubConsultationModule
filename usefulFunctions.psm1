@@ -137,13 +137,12 @@ function Get_All_Languages_Used_By_User {
             # Calculating representing percentage for the current language and affectation to it as value...
             $calculatedPercentage = ($languagesHashTable[$languageName] * 100)/$totalForAllRepos
 
-            Write-Host $languageName " : " $calculatedPercentage
+            #
+            $returningLanguagesHashTable[$languageName] = $calculatedPercentage
         }
 
-        Write-Host "The thing is..." $totalForAllRepos
-
-        # Returning the '$languagesHashTable' hash table
-        return $languagesHashTable
+        # Returning the '$returningLanguagesHashTable' hash table
+        return $returningLanguagesHashTable
 
     # Else...
     } Else {
