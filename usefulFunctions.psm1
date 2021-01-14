@@ -107,14 +107,8 @@ function Get_All_Languages_Used_By_User {
                             # If the hash table already contains the current language's name as key, so...
                             If($languagesHashTable.ContainsKey($language.getName())){
 
-                                #
-                                Write-Host "Contains" $language.getName()
-
                                 # Adding the previous value by the value corresponding to the current language...
                                 $languagesHashTable[$language.getName()] = $languagesHashTable[$language.getName()] + $language.getValue()
-
-                                #
-                                Write-Host "Value" $languagesHashTable[$language.getName()]
 
                             # Else...
                             } Else {
@@ -125,16 +119,6 @@ function Get_All_Languages_Used_By_User {
                         }
                     }
 
-                    #
-                    foreach($languageName in $languagesHashTable.Keys){
-
-                        # Calculating representing percentage for the current language and affectation to it as value...
-                        Write-Host $languageName " : " $languagesHashTable[$languageName]
-
-                        <#$calculatedPercentage = ($languagesHashTable[$languageName] * 100)/$totalForAllRepos
-                        $languagesHashTable[$languageName] = [Math]::Round($calculatedPercentage, 1)#>
-                    }
-
                 # Else...
                 } Else {
 
@@ -142,6 +126,16 @@ function Get_All_Languages_Used_By_User {
                     return $languagesOfRepos[0]
                 }
             }
+        }
+
+        #
+        foreach($languageName in $languagesHashTable.Keys){
+
+            # Calculating representing percentage for the current language and affectation to it as value...
+            Write-Host $languageName " : " $languagesHashTable[$languageName]
+
+            <#$calculatedPercentage = ($languagesHashTable[$languageName] * 100)/$totalForAllRepos
+            $languagesHashTable[$languageName] = [Math]::Round($calculatedPercentage, 1)#>
         }
 
         Write-Host "The thing is..." $totalForAllRepos
