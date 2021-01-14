@@ -141,8 +141,8 @@ function Get_All_Languages_Used_By_User {
             $returningLanguagesHashTable[$languageName] = $calculatedPercentage
         }
 
-        # Returning the '$returningLanguagesHashTable' hash table
-        return $returningLanguagesHashTable | Select-Object -Properties Language, "Percentage of use"
+        # Returning the '$returningLanguagesHashTable' hash table with respective column names...
+        return $returningLanguagesHashTable
 
     # Else...
     } Else {
