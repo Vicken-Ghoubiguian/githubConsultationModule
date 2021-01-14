@@ -18,8 +18,7 @@ class Language
         $this.totalValue = $totalValue
 
         #
-        $percentageResult = ($value * 100)/$totalValue
-        $this.percentage = [Math]::Round($percentageResult, 1)
+        $this.percentage = ($value * 100)/$totalValue
     }
 
     # Definition of a static function to put all languages from a user and a repository identified respectively by its login and its name inside an array...
@@ -70,7 +69,7 @@ class Language
     #
     [String] ToString()
     {
-        $returningString =  $this.name + ": " + $this.percentage + "%" + "`n"
+        $returningString =  $this.name + ": " + [Math]::Round($this.percentage, 1) + "%" + "`n"
 
         return $returningString
     }
