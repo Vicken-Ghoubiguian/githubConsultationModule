@@ -172,4 +172,27 @@ function Get_Main_Languages_Used_By_Owner {
 
     # Getting all repos from the 'ownerLogin' owner which is a 'diminutiveType' (user or organization)...
     $reposArray = [Repository]::listAllRepositories($ownerLogin.ToString(), $diminutiveType.ToString(), $false, $true)
+
+    #
+    foreach($repos in $reposArray) {
+
+        # If the 'repos' current repos is not a "GitHubError" object, so...
+        If($repos -ne $null){
+
+            # Incrementing the 'totalOfRepos' variable as the total count of repos for the whole owner...
+            $totalOfRepos += 1
+
+        # Else...
+        } Else {
+
+            # Returning the 'GitHubError' object...
+            return $repos
+        }
+    }
+
+    #
+
+
+    # Returning the '$returningLanguagesHashTable' hash table with respective column names...
+    return $returningLanguagesHashTable
 }
