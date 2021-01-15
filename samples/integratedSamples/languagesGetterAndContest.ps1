@@ -8,4 +8,7 @@ param (
 )
 
 # 
-Get_All_Languages_Used_By_Owner -ownerLogin $ownerLogin -diminutiveType $diminutiveType
+$allLanguagesUsedByOwnerHasTable = Get_All_Languages_Used_By_Owner -ownerLogin $ownerLogin -diminutiveType $diminutiveType
+
+#
+$allLanguagesUsedByOwnerHasTable.GetEnumerator() | Sort-Object -Property Value -Descending
