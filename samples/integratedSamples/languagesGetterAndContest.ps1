@@ -8,4 +8,4 @@ param (
 )
 
 # 
-Get_All_Languages_Used_By_User -ownerLogin $ownerLogin -diminutiveType $diminutiveType
+Get_All_Languages_Used_By_Owner -ownerLogin $ownerLogin -diminutiveType $diminutiveType

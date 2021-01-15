@@ -63,7 +63,7 @@ function Get_Total_Number_Of_Public_Repos {
 }
 
 #
-function Get_All_Languages_Used_By_User {
+function Get_All_Languages_Used_By_Owner {
 
     # Definition of the only parameter : '$ownerLogin' for the wished owner's name and '$diminutiveType' for the type of owner...
     param (
@@ -150,4 +150,9 @@ function Get_All_Languages_Used_By_User {
         # Returning the 'GitHubError' object...
         return $reposArray[0]
     }
+}
+
+#
+function Get_Main_Languages_Used_By_Owner {
+
 }
