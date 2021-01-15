@@ -75,10 +75,10 @@ function Get_All_Languages_Used_By_Owner {
     $totalForAllRepos = 0
 
     # Definition of the 'languagesHashTable' hash table to contain all languages as keys with their respective total value for the whole owner as values...
-    $languagesHashTable = [System.Collections.Hashtable ]::new()
+    $languagesHashTable = [System.Collections.Hashtable]::new()
 
     # Definition of the 'returningLanguagesHashTable' hash table to contain all languages as keys with their respective percentage for the whole ower as values...
-    $returningLanguagesHashTable = [System.Collections.Hashtable ]::new()
+    $returningLanguagesHashTable = [System.Collections.Hashtable]::new()
 
     # Getting all repos from the 'ownerLogin' owner which is a 'diminutiveType' (user or organization)...
     $reposArray = [Repository]::listAllRepositories($ownerLogin.ToString(), $diminutiveType.ToString(), $false, $true)
@@ -164,11 +164,11 @@ function Get_Main_Languages_Used_By_Owner {
     # Definition of 'totalOfRepos' variable to contain the total count of repos for the whole owner...
     $totalOfRepos = 0
 
-    # Definition of the 'languagesHashTable' hash table to contain all main languages of each project as keys with their respective total value for the whole owner as values...
-    $languagesHashTable = [System.Collections.Hashtable ]::new()
+    # Definition of the 'languagesArray' array to contain all main languages of each project as keys with their respective total value for the whole owner as values...
+    $languagesArray = [System.Array]::new()
 
     # Definition of the 'returningLanguagesHashTable' hash table to contain all main languages of each project as keys with their respective percentage for the whole owner as values...
-    $returningLanguagesHashTable = [System.Collections.Hashtable ]::new()
+    $returningLanguagesHashTable = [System.Collections.Hashtable]::new()
 
     # Getting all repos from the 'ownerLogin' owner which is a 'diminutiveType' (user or organization)...
     $reposArray = [Repository]::listAllRepositories($ownerLogin.ToString(), $diminutiveType.ToString(), $false, $true)
