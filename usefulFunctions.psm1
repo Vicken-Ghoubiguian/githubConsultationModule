@@ -185,6 +185,20 @@ function Get_Main_Languages_Used_By_Owner {
                 # Incrementing the 'totalOfRepos' variable as the total count of repos for the whole owner...
                 $totalOfRepos += 1
 
+                #
+                If($languagesHashTable.ContainsKey($repos.getMainLanguage())){
+
+                    #
+                    $languagesHashTable[$repos.getMainLanguage()] += $languagesHashTable[$repos.getMainLanguage()]
+
+                # Else...
+                } Else {
+
+                    #
+                    $languagesHashTable[$repos.getMainLanguage()] = 1
+
+                }
+
             # Else...
             } Else {
 
@@ -195,6 +209,8 @@ function Get_Main_Languages_Used_By_Owner {
     }
 
     Write-Host "Total of repos: " $totalOfRepos
+
+    $languagesHashTable
 
     # Returning the '$returningLanguagesHashTable' hash table with respective column names...
     return $returningLanguagesHashTable
