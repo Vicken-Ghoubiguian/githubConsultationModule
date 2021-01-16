@@ -173,7 +173,7 @@ function Get_Main_Languages_Used_By_Owner {
     # Getting all repos from the 'ownerLogin' owner which is a 'diminutiveType' (user or organization)...
     $reposArray = [Repository]::listAllRepositories($ownerLogin.ToString(), $diminutiveType.ToString(), $false, $true)
 
-    #
+    # Browse the "$reposArray" array to get and treat each element with a foreach loop...
     foreach($repos in $reposArray){
 
         # If the 'repos' current repos is not a "GitHubError" object, so...
@@ -185,18 +185,17 @@ function Get_Main_Languages_Used_By_Owner {
                 # Incrementing the 'totalOfRepos' variable as the total count of repos for the whole owner...
                 $totalOfRepos += 1
 
-                #
+                # If the hash table already contains the current main language's name as key, so...
                 If($languagesHashTable.ContainsKey($repos.getMainLanguage())){
 
-                    #
+                    # Adding the previous value by the value corresponding to the current main language...
                     $languagesHashTable[$repos.getMainLanguage()] += $languagesHashTable[$repos.getMainLanguage()]
 
                 # Else...
                 } Else {
 
-                    #
+                    # Adding 1 to the current main language while creating a new key...
                     $languagesHashTable[$repos.getMainLanguage()] = 1
-
                 }
 
             # Else...
