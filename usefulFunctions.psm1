@@ -62,7 +62,7 @@ function Get_Total_Number_Of_Public_Repos {
     return $currentUser.getPublicReposCount()
 }
 
-#
+# Definition of a function to get and return all languages used by a owner (user or organization) with their respective percentage of use calculated...
 function Get_All_Languages_Used_By_Owner {
 
     # Definition of the only parameter : '$ownerLogin' for the wished owner's name and '$diminutiveType' for the type of owner...
@@ -86,7 +86,7 @@ function Get_All_Languages_Used_By_Owner {
     # If the first element of the '$reposArray' array is of type "GitHubError" so...
     If($reposArray[0].getModuleType() -ne "GitHubError") {
 
-        #
+        # Browse the "$reposArray" array to get and treat each element with a foreach loop...
         foreach($repos in $reposArray) {
 
             # Getting all languages from the current repos...
@@ -101,7 +101,7 @@ function Get_All_Languages_Used_By_Owner {
                     # Calculating the total for all repos by adding the first language's one...
                     $totalForAllRepos += $languagesOfRepos[0].getTotalValue()
 
-                    #
+                    # Browse the "$languagesOfRepos" array to get and treat each element with a foreach loop...
                     foreach($language in $languagesOfRepos){
 
                         # If the current language is not a "GitHubError" object, so...
@@ -131,13 +131,13 @@ function Get_All_Languages_Used_By_Owner {
             }
         }
 
-        #
+        # Browse the whole keys of "$languagesHashTable" array to get and treat each element with a foreach loop...
         foreach($languageName in $languagesHashTable.Keys){
 
             # Calculating representing percentage for the current language and affectation to it as value...
             $calculatedPercentage = ($languagesHashTable[$languageName] * 100)/$totalForAllRepos
 
-            #
+            # Affectation of the "calculatedPercentage" value in the "returningLanguagesHashTable" hash table at the "languageName" key...
             $returningLanguagesHashTable[$languageName] = $calculatedPercentage
         }
 
@@ -152,7 +152,7 @@ function Get_All_Languages_Used_By_Owner {
     }
 }
 
-#
+# Definition of a function to get and return all main languages used by a owner (user or organization) with their respective percentage of use calculated...
 function Get_Main_Languages_Used_By_Owner {
 
     # Definition of the only parameter : '$ownerLogin' for the wished owner's name and '$diminutiveType' for the type of owner...

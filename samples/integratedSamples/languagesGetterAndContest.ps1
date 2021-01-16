@@ -7,8 +7,8 @@ param (
     [string]$diminutiveType
 )
 
-# 
+# Calling the "Get_All_Languages_Used_By_Owner" function and assigning the result (an hash table containing all languages used by owner with their respective percentage) to the "allLanguagesUsedByOwnerHasTable" variable...
 $allLanguagesUsedByOwnerHasTable = Get_All_Languages_Used_By_Owner -ownerLogin $ownerLogin -diminutiveType $diminutiveType
 
-#
+# Display of all the languages ​​used with their respective percentage in descending order...
 $allLanguagesUsedByOwnerHasTable.GetEnumerator() | Sort-Object -Property Value -Descending
