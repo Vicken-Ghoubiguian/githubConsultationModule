@@ -7,5 +7,5 @@ param (
     [string]$diminutiveType
 )
 
-# 
-Get_Main_Languages_Used_By_Owner -ownerLogin $ownerLogin -diminutiveType $diminutiveType
+# Calling the "Get_Main_Languages_Used_By_Owner" function and assigning the result (an hash table containing all main languages used by owner with their respective percentage) to the "allMainLanguagesUsedByOwnerHasTable" variable...
+$allMainLanguagesUsedByOwnerHasTable = Get_Main_Languages_Used_By_Owner -ownerLogin $ownerLogin -diminutiveType $diminutiveType
