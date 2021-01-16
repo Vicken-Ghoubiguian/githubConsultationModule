@@ -165,7 +165,7 @@ function Get_Main_Languages_Used_By_Owner {
     $totalOfRepos = 0
 
     # Definition of the 'languagesArray' array to contain all main languages of each project as keys with their respective total value for the whole owner as values...
-    $languagesArray = [System.Array]::new()
+    $languagesArray = @()
 
     # Definition of the 'returningLanguagesHashTable' hash table to contain all main languages of each project as keys with their respective percentage for the whole owner as values...
     $returningLanguagesHashTable = [System.Collections.Hashtable]::new()
@@ -174,24 +174,27 @@ function Get_Main_Languages_Used_By_Owner {
     $reposArray = [Repository]::listAllRepositories($ownerLogin.ToString(), $diminutiveType.ToString(), $false, $true)
 
     #
-    foreach($repos in $reposArray) {
+    foreach($repos in $reposArray){
 
         # If the 'repos' current repos is not a "GitHubError" object, so...
         If($repos -ne $null){
 
-            # Incrementing the 'totalOfRepos' variable as the total count of repos for the whole owner...
-            $totalOfRepos += 1
+            # If the current repos 'repos' is of type "GitHubError" (and the only element of the 'reposArray' array in this case), so...
+            If($repos.getModuleType() -ne "GitHubError"){
 
-        # Else...
-        } Else {
+                # Incrementing the 'totalOfRepos' variable as the total count of repos for the whole owner...
+                $totalOfRepos += 1
 
-            # Returning the 'GitHubError' object...
-            return $repos
+            # Else...
+            } Else {
+
+                # Returning the 'GitHubError' object...
+                return $repos
+            }
         }
     }
 
-    #
-
+    Write-Host "Total of repos: " $totalOfRepos
 
     # Returning the '$returningLanguagesHashTable' hash table with respective column names...
     return $returningLanguagesHashTable
