@@ -155,10 +155,11 @@ function Get_All_Languages_Used_By_Owner {
 # Definition of a function to get and return all main languages used by a owner (user or organization) with their respective percentage of use calculated...
 function Get_Main_Languages_Used_By_Owner {
 
-    # Definition of the only parameter : '$ownerLogin' for the wished owner's name and '$diminutiveType' for the type of owner...
+    # Definition of the only parameter : '$ownerLogin' for the wished owner's name, '$diminutiveType' for the type of owner and '$withPercentage' for determining which one the percentage value or the number of repos is expected...
     param (
         [string]$ownerLogin,
-        [string]$diminutiveType
+        [string]$diminutiveType,
+        [bool]$withPercentage
     )
 
     # Definition of 'totalOfRepos' variable to contain the total count of repos for the whole owner...
