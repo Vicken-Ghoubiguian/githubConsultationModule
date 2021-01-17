@@ -210,6 +210,20 @@ function Get_Main_Languages_Used_By_Owner {
 
     Write-Host "Total of repos: " $totalOfRepos
 
+    # If the '$withPercentage' is true, so...
+    If($withPercentage){
+
+        # Browse the whole keys of "$languagesHashTable" array to get and treat each element with a foreach loop...
+        foreach($language in $languagesHashTable){
+
+            # Calculating representing percentage for the current language and affectation to it as value...
+            $calculatedPercentage = ($languagesHashTable[$language] * 100)/$totalOfRepos
+
+            # Affectation of the "calculatedPercentage" value in the languagesHashTable" hash table at the "language" key...
+            $languagesHashTable[$language] = $calculatedPercentage
+        }
+    }
+
     $languagesHashTable
 
     # Returning the '$returningLanguagesHashTable' hash table with respective column names...
