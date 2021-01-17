@@ -189,7 +189,7 @@ function Get_Main_Languages_Used_By_Owner {
                 If($languagesHashTable.ContainsKey($repos.getMainLanguage())){
 
                     # Adding the previous value by the value corresponding to the current main language...
-                    $languagesHashTable[$repos.getMainLanguage()] += $languagesHashTable[$repos.getMainLanguage()]
+                    $languagesHashTable[$repos.getMainLanguage()] = $languagesHashTable[$repos.getMainLanguage()] + 1
 
                 # Else...
                 } Else {
