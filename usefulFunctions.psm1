@@ -186,6 +186,11 @@ function Get_Main_Languages_Used_By_Owner {
                 # Incrementing the 'totalOfRepos' variable as the total count of repos for the whole owner...
                 $totalOfRepos += 1
 
+                If($repos.getMainLanguage() -eq ""){
+
+                    Write-Host $repos.getName() " : " $repos.getMainLanguage()
+                }
+
                 # If the hash table already contains the current main language's name as key, so...
                 If($languagesHashTable.ContainsKey($repos.getMainLanguage())){
 
