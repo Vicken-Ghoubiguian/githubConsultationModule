@@ -189,16 +189,16 @@ function Get_Main_Languages_Used_By_Owner {
                 # Incrementing the 'totalOfRepos' variable as the total count of repos for the whole owner...
                 $totalOfRepos += 1
 
-                # 
+                # If the main language of the current repos is empty, so...
                 If($repos.getMainLanguage() -eq ""){
 
-                    #
+                    # Assignment of the character string "(unspecified main language)" in the variable "$checkingVariableForMainLanguage"...
                     $checkingVariableForMainLanguage = "(unspecified main language)"
 
                 # Else...
                 } Else {
 
-                    #
+                    # Assignment of the main language of the current repos in the variable "$checkingVariableForMainLanguage"...
                     $checkingVariableForMainLanguage = $repos.getMainLanguage()
                 }
 
