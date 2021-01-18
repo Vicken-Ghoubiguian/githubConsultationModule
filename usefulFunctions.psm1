@@ -165,6 +165,9 @@ function Get_Main_Languages_Used_By_Owner {
     # Definition of 'totalOfRepos' variable to contain the total count of repos for the whole owner...
     $totalOfRepos = 0
 
+    #
+    $checkingVariableForMainLanguage = ""
+
     # Definition of the 'languagesArray' hash table to contain all main languages of each project as keys with their respective total value for the whole owner as values...
     $languagesHashTable = [System.Collections.Hashtable]::new()
 
@@ -186,22 +189,30 @@ function Get_Main_Languages_Used_By_Owner {
                 # Incrementing the 'totalOfRepos' variable as the total count of repos for the whole owner...
                 $totalOfRepos += 1
 
+                # 
                 If($repos.getMainLanguage() -eq ""){
 
-                    Write-Host $repos.getName() " : " $repos.getMainLanguage()
+                    #
+                    $checkingVariableForMainLanguage = "(unspecified main language)"
+
+                # Else...
+                } Else {
+
+                    #
+                    $checkingVariableForMainLanguage = $repos.getMainLanguage()
                 }
 
-                # If the hash table already contains the current main language's name as key, so...
-                If($languagesHashTable.ContainsKey($repos.getMainLanguage())){
+                # If the hash table already contains the 'checkingVariableForMainLanguage' main language's name as key, so...
+                If($languagesHashTable.ContainsKey($checkingVariableForMainLanguage)){
 
-                    # Adding the previous value by the value corresponding to the current main language...
-                    $languagesHashTable[$repos.getMainLanguage()] = $languagesHashTable[$repos.getMainLanguage()] + 1
+                    # Adding the previous value by the value corresponding to the 'checkingVariableForMainLanguage' main language...
+                    $languagesHashTable[$checkingVariableForMainLanguage] = $languagesHashTable[$checkingVariableForMainLanguage] + 1
 
                 # Else...
                 } Else {
 
                     # Adding 1 to the current main language while creating a new key...
-                    $languagesHashTable[$repos.getMainLanguage()] = 1
+                    $languagesHashTable[$checkingVariableForMainLanguage] = 1
                 }
 
             # Else...
