@@ -164,7 +164,7 @@ $githubOrganizationRequestsContent
         return $organizationsArray
     }
 
-    #
+    # Returns the Organization current instance as String...
     [String] ToString()
     {
         # If no error occurs...

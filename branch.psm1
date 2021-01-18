@@ -95,7 +95,7 @@ $githubBranchRequestsContent
         return $branchesArray
     }
 
-    #
+    # String conversion function...
     [String] ToString()
     {
 

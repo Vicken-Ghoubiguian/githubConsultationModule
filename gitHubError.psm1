@@ -13,7 +13,7 @@ class GitHubError
         $this.stackTrace = $stackTrace
     }
 
-    #
+    # Returns the GitHubError current instance as String...
     [String] ToString()
     {
 

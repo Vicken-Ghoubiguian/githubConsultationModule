@@ -247,7 +247,7 @@ $githubReposRequestsContent
         return $repositoriesArray
     }
 
-    #
+    # Returns the Repository current instance as String...
     [String] ToString()
     {
         # If no error occurs...

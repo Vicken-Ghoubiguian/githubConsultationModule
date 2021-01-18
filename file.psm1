@@ -153,7 +153,7 @@ $githubFileRequestsContent
         return $filesArray
     }
 
-    #
+    # String conversion function...
     [String] ToString()
     {
 
@@ -171,7 +171,7 @@ $githubFileRequestsContent
         return $returningString
     }
 
-    # Returning the module's type as string...
+    # Returns the File current instance as String...
     [string] getModuleType()
     {
         return "File"

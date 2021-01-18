@@ -224,7 +224,7 @@ function Get_Main_Languages_Used_By_Owner {
     # Else...
     } Else {
 
-        #
+        # Affectation of the 'languagesHashTable' hash table to the 'returningLanguagesHashTable' hash table...
         $returningLanguagesHashTable = $languagesHashTable
     }
 

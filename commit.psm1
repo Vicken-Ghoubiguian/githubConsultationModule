@@ -146,7 +146,7 @@ $githubCommitRequestsContent
 
     }
 
-    #
+    # Returns the Commit current instance as String...
     [String] ToString()
     {
 

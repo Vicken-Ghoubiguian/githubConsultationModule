@@ -66,7 +66,7 @@ class Language
         return $languagesArray
     }
 
-    #
+    # Returns the Language current instance as String...
     [String] ToString()
     {
         $returningString =  $this.name + ": " + [Math]::Round($this.percentage, 1) + "%" + "`n"

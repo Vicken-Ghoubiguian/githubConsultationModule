@@ -144,7 +144,7 @@ $githubLicenseRequestsContent
         $this.chooseALicenseURL = $githubLicenseRequestsResult.html_url
     }
 
-    #
+    # Returns the License current instance as String...
     [String] ToString()
     {
         # If no error occurs...
