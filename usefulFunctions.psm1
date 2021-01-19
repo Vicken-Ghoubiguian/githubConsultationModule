@@ -204,10 +204,10 @@ function Get_Main_Languages_Used_By_Owner {
                 # If the main language of the current repos is empty, so...
                 If($repos.getMainLanguage() -eq ""){
 
-                    #
+                    # Taking all languages of the current repos and assign them in the '$languagesOfRepos' array...
                     $languagesOfRepos = [Language]::listAllLanguages($ownerLogin, $repos.getName())
 
-                    #
+                    # If the '$languagesOfRepos' array has 0 elements, so...
                     If($languagesOfRepos.Count -gt 0) {
 
                         Write-Host "Concerned repos: " $repos.getName()
