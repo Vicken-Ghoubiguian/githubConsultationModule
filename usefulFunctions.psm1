@@ -216,6 +216,20 @@ function Get_Main_Languages_Used_By_Owner {
                         # Definition of the 'mainLanguagevalue' variable which contains the main language's value...
                         $mainLanguagevalue = 0
 
+                        #
+                        foreach($language in $languagesOfRepos){
+
+                            #
+                            If($mainLanguagevalue -lt $language.getValue()){
+
+                                #
+                                $mainLanguageName = $language.getName()
+
+                                #
+                                $mainLanguagevalue = $language.getValue()
+                            }
+                        }
+
                         Write-Host "Concerned repos: " $repos.getName()
                         $checkingVariableForMainLanguage = "(unspecified main language)"
 
