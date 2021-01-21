@@ -177,7 +177,7 @@ function Get_Main_Languages_Used_By_Owner {
     # Definition of 'totalOfRepos' variable to contain the total count of repos for the whole owner...
     $totalOfRepos = 0
 
-    #
+    # Definition of the 'checkingVariableForMainLanguage' variable to lead some processes...
     $checkingVariableForMainLanguage = ""
 
     # Definition of the 'languagesArray' hash table to contain all main languages of each project as keys with their respective total value for the whole owner as values...
@@ -216,21 +216,21 @@ function Get_Main_Languages_Used_By_Owner {
                         # Definition of the 'mainLanguagevalue' variable which contains the main language's value...
                         $mainLanguagevalue = 0
 
-                        #
+                        # Browse the "$languagesOfRepos" array to get and treat each element with a foreach loop...
                         foreach($language in $languagesOfRepos){
 
-                            #
+                            # If the value contained in the 'mainLanguagevalue' variable is less than the current language's value, so...
                             If($mainLanguagevalue -lt $language.getValue()){
 
-                                #
+                                # Changing the 'mainLanguageName' value with the current language's name...
                                 $mainLanguageName = $language.getName()
 
-                                #
+                                # Changing the 'mainLanguagevalue' value with the current language's value...
                                 $mainLanguagevalue = $language.getValue()
                             }
                         }
 
-                        #
+                        # So the value contained in the 'mainLanguageName' variable is affected to the 'checkingVariableForMainLanguage' one...
                         $checkingVariableForMainLanguage = $mainLanguageName
 
                     # Else...
