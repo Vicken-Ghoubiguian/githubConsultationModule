@@ -210,6 +210,12 @@ function Get_Main_Languages_Used_By_Owner {
                     # If the '$languagesOfRepos' array has 0 elements, so...
                     If($languagesOfRepos.Count -gt 0) {
 
+                        # Definition of the 'mainLanguageName' variable which contains the main language's name...
+                        $mainLanguageName = ""
+
+                        # Definition of the 'mainLanguagevalue' variable which contains the main language's value...
+                        $mainLanguagevalue = 0
+
                         Write-Host "Concerned repos: " $repos.getName()
                         $checkingVariableForMainLanguage = "(unspecified main language)"
 
