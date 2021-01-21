@@ -230,7 +230,7 @@ function Get_Main_Languages_Used_By_Owner {
                             }
                         }
 
-                        Write-Host "Concerned repos: " $repos.getName()
+                        Write-Host "Concerned repos: " $repos.getName() " (" $mainLanguageName ")"
                         $checkingVariableForMainLanguage = "(unspecified main language)"
 
                     # Else...
