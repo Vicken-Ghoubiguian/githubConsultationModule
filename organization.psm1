@@ -68,10 +68,10 @@ $githubOrganizationRequestsContent
                 $this.repositories = [Repository]::listAllRepositories($githubOrganizationRequestsResult.login, "orgs", $withBranches, $withLanguages)
             }
 
-            #
+            # If the 'withMembers' variable is 'true'...
             If($withMembers) {
 
-                #
+                # Definition of the 'githubGetMembersURL' string which contain the URL to get all followers of the wished members of the organization identified by the 'organizationLogin' login...
                 $githubGetMembersURL = "https://api.github.com/orgs/" + $organizationLogin + "/members"
             }
 
@@ -116,10 +116,10 @@ $githubOrganizationRequestsContent
             $this.repositories = [Repository]::listAllRepositories($login, "orgs", $withBranches, $withLanguages)
         }
 
-        #
+        # If the 'withMembers' variable is 'true'...
         If($withMembers) {
 
-            #
+            # Definition of the 'githubGetMembersURL' string which contain the URL to get all followers of the wished members of the organization identified by the 'login' login...
             $githubGetMembersURL = "https://api.github.com/orgs/" + $login + "/members"
         }
     }
