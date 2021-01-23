@@ -218,9 +218,17 @@ $githubOrganizationRequestsContent
                                    }
                                }
 
-                               foreach($repository in $this.repositories) {
+                               #
+                               If($this.members.Count -ne 0) {
 
-                                    $returningString += $repository.ToString() 
+                                    $returningString += "`n"
+                                    $returningString += "Members:" + "`n"
+                                    $returningString += "===============" + "`n"
+
+                                    foreach($member in $this.members) {
+
+                                        <#$returningString += $repository.ToString() #>
+                                    }
                                }
 
             $returningString += ""
