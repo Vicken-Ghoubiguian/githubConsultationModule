@@ -218,7 +218,7 @@ $githubOrganizationRequestsContent
                                    }
                                }
 
-                               #
+                               # If 'members' table is not empty (count != 0)...
                                If($this.members.Count -ne 0) {
 
                                     $returningString += "`n"
