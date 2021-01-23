@@ -18,6 +18,7 @@ class Organization
     hidden [string]$type
 
     hidden [System.Array]$repositories
+    hidden [System.Collections.Hashtable]$members
 
     hidden [int]$followersCount
     hidden [int]$followingCount
@@ -276,6 +277,12 @@ $githubOrganizationRequestsContent
     [System.Array] getRepositories()
     {
         return $this.repositories
+    }
+
+    # 'members' attribute getter...
+    [System.Collections.Hashtable] getMembers()
+    {
+        return $this.members
     }
 
     # 'followingCount' attribute getter...
