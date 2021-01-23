@@ -6,11 +6,12 @@ param (
     [string]$userLogin,
     [bool]$reposExpected,
     [bool]$branchesExpected,
-    [bool]$languagesExpected
+    [bool]$languagesExpected,
+    [bool]$membersExpected
 )
 
 # Get all organizations from the whished user identified by its login, with all repos, branches and languages if expected, and put them in the "organizationsArray" array...
-$organizationsArray = [Organization]::listAllOrganization($userLogin.ToString(), $reposExpected, $branchesExpected, $languagesExpected)
+$organizationsArray = [Organization]::listAllOrganization($userLogin.ToString(), $reposExpected, $branchesExpected, $languagesExpected, $membersExpected)
 
 # Browse the array implemented previously and display each organization...
 foreach($organization in $organizationsArray) {

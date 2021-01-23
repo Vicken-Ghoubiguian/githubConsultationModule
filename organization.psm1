@@ -27,7 +27,7 @@ class Organization
     hidden [GitHubError]$error
 
     # Repository class constructor...
-    Organization([string]$organizationLogin, [bool]$withRepos, [bool]$withBranches, [bool]$withLanguages)
+    Organization([string]$organizationLogin, [bool]$withRepos, [bool]$withBranches, [bool]$withLanguages, [bool]$withMembers)
     {
         # Create an HTTP request to take the GitHub organization identified by its name and its owner's login...
         $githubGetOrganizationURL = "https://api.github.com/orgs/" + $organizationLogin
@@ -84,7 +84,7 @@ $githubOrganizationRequestsContent
     # Organization class constructor with all class attributes in parameter...
     Organization([string]$login, [string]$id, [string]$nodeId, [string]$avatar, [string]$name, [string]$description,
                  [string]$company, [string]$blog, [string]$location, [string]$email, [string]$type, [int]$followers, [int]$following, [int]$reposCount, [string]$twitter,
-                 [bool]$withRepos, [bool]$withBranches, [bool]$withLanguages)
+                 [bool]$withRepos, [bool]$withBranches, [bool]$withLanguages, [bool]$withMembers)
     {
         $this.login = $login
         $this.id = $id
@@ -111,7 +111,7 @@ $githubOrganizationRequestsContent
     }
 
     # Definition of a static function to put all repositories of a user identified by its login inside an array...
-    static [System.Array] listAllOrganization([string]$userLogin, [bool]$wantRepos, [bool]$wantBranches, [bool]$wantLanguages)
+    static [System.Array] listAllOrganization([string]$userLogin, [bool]$wantRepos, [bool]$wantBranches, [bool]$wantLanguages, [bool]$withMembers)
     {
         # Definition of the 'organizationsArray' array which will contain all organizations of the wished the wished 'userLogin' user...
         $organizationsArray = [System.Collections.ArrayList]::new()
@@ -146,7 +146,8 @@ $githubOrganizationRequestsContent
                                                             $organization.twitter_username,
                                                             $wantRepos,
                                                             $wantBranches,
-                                                            $wantLanguages))
+                                                            $wantLanguages,
+                                                            $withMembers))
             }
 
         # Bloc to execute if an System.Net.WebException is encountered...

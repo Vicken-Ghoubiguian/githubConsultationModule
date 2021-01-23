@@ -79,7 +79,7 @@ $githubUserRequestsContent
             If($withOrganizations) {
 
                 # Adding the organizations to the 'organizations' class attribute which is an array...
-                $this.organizations = [Organization]::listAllOrganization($githubUserRequestsResult.login, $false, $false, $false)
+                $this.organizations = [Organization]::listAllOrganization($githubUserRequestsResult.login, $false, $false, $false, $false)
             }
 
             # If "withFollowing" parameter is "true"...
