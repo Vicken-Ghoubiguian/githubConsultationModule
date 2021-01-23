@@ -68,6 +68,13 @@ $githubOrganizationRequestsContent
                 $this.repositories = [Repository]::listAllRepositories($githubOrganizationRequestsResult.login, "orgs", $withBranches, $withLanguages)
             }
 
+            #
+            If($withMembers) {
+
+                #
+                $githubGetMembersURL = "https://api.github.com/orgs/" + $organizationLogin + "/members"
+            }
+
         # Bloc to execute if an System.Net.WebException is encountered...
         } catch [System.Net.WebException] {
 
@@ -107,6 +114,13 @@ $githubOrganizationRequestsContent
 
             # Adding the repository to the 'repositories' class attribute which is an array...
             $this.repositories = [Repository]::listAllRepositories($login, "orgs", $withBranches, $withLanguages)
+        }
+
+        #
+        If($withMembers) {
+
+            #
+            $githubGetMembersURL = "https://api.github.com/orgs/" + $login + "/members"
         }
     }
 
