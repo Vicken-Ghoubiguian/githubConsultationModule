@@ -72,7 +72,7 @@ $githubOrganizationRequestsContent
             If($withMembers) {
 
                 #
-                $this.members = @()
+                $this.members = [System.Collections.ArrayList]::new()
 
                 # Definition of the 'githubGetMembersURL' string which contain the URL to get all followers of the wished members of the organization identified by the 'organizationLogin' login...
                 $githubGetMembersURL = "https://api.github.com/orgs/" + $organizationLogin + "/members"
@@ -85,7 +85,7 @@ $githubOrganizationRequestsContent
                 foreach($member in $membersJSONObj) {
 
                     #
-                    $memberArray = @()
+                    $memberArray = [System.Collections.ArrayList]::new()
 
                     #
                     $memberArray.Add($member.login)
@@ -99,7 +99,7 @@ $githubOrganizationRequestsContent
                     $memberArray.Add($member.site_admin)
 
                     #
-                    $this.members.Add($memberArray)
+                    $this.members += $memberArray
                 }
             }
 
@@ -148,7 +148,7 @@ $githubOrganizationRequestsContent
         If($withMembers) {
 
             #
-            $this.members = @()
+            $this.members = [System.Collections.ArrayList]::new()
 
             # Definition of the 'githubGetMembersURL' string which contain the URL to get all followers of the wished members of the organization identified by the 'login' login...
             $githubGetMembersURL = "https://api.github.com/orgs/" + $login + "/members"
@@ -161,7 +161,7 @@ $githubOrganizationRequestsContent
             foreach($member in $membersJSONObj) {
 
                     #
-                    $memberArray = @()
+                    $memberArray = [System.Collections.ArrayList]::new()
 
                     #
                     $memberArray.Add($member.login)
@@ -175,7 +175,7 @@ $githubOrganizationRequestsContent
                     $memberArray.Add($member.site_admin)
 
                     #
-                    $this.members.Add($memberArray)
+                    $this.members += $memberArray
             }
         }
     }
