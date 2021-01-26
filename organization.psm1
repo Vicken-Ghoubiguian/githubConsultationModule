@@ -73,6 +73,16 @@ $githubOrganizationRequestsContent
 
                 # Definition of the 'githubGetMembersURL' string which contain the URL to get all followers of the wished members of the organization identified by the 'organizationLogin' login...
                 $githubGetMembersURL = "https://api.github.com/orgs/" + $organizationLogin + "/members"
+
+                #
+                $githubMembersRequest = Invoke-WebRequest -Uri $githubGetMembersURL -Method Get
+                $membersJSONObj = ConvertFrom-Json -InputObject $githubMembersRequest.Content
+
+                #
+                foreach($member in $membersJSONObj) {
+
+                    
+                }
             }
 
         # Bloc to execute if an System.Net.WebException is encountered...
@@ -121,6 +131,16 @@ $githubOrganizationRequestsContent
 
             # Definition of the 'githubGetMembersURL' string which contain the URL to get all followers of the wished members of the organization identified by the 'login' login...
             $githubGetMembersURL = "https://api.github.com/orgs/" + $login + "/members"
+
+            #
+            $githubMembersRequest = Invoke-WebRequest -Uri $githubGetMembersURL -Method Get
+            $membersJSONObj = ConvertFrom-Json -InputObject $githubMembersRequest.Content
+
+            #
+            foreach($member in $membersJSONObj) {
+
+                    
+            }
         }
     }
 
