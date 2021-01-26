@@ -71,6 +71,9 @@ $githubOrganizationRequestsContent
             # If the 'withMembers' variable is 'true'...
             If($withMembers) {
 
+                #
+                $this.members = @()
+
                 # Definition of the 'githubGetMembersURL' string which contain the URL to get all followers of the wished members of the organization identified by the 'organizationLogin' login...
                 $githubGetMembersURL = "https://api.github.com/orgs/" + $organizationLogin + "/members"
 
@@ -81,7 +84,22 @@ $githubOrganizationRequestsContent
                 #
                 foreach($member in $membersJSONObj) {
 
-                    
+                    #
+                    $memberArray = @()
+
+                    #
+                    $memberArray.Add($member.login)
+                    $memberArray.Add($member.id)
+                    $memberArray.Add($member.node_id)
+                    $memberArray.Add($member.avatar_url)
+                    $memberArray.Add($member.html_url)
+                    $memberArray.Add($member.organizations_url)
+                    $memberArray.Add($member.repos_url)
+                    $memberArray.Add($member.type)
+                    $memberArray.Add($member.site_admin)
+
+                    #
+                    $this.members.Add($memberArray)
                 }
             }
 
@@ -129,6 +147,9 @@ $githubOrganizationRequestsContent
         # If the 'withMembers' variable is 'true'...
         If($withMembers) {
 
+            #
+            $this.members = @()
+
             # Definition of the 'githubGetMembersURL' string which contain the URL to get all followers of the wished members of the organization identified by the 'login' login...
             $githubGetMembersURL = "https://api.github.com/orgs/" + $login + "/members"
 
@@ -139,7 +160,22 @@ $githubOrganizationRequestsContent
             #
             foreach($member in $membersJSONObj) {
 
-                    
+                    #
+                    $memberArray = @()
+
+                    #
+                    $memberArray.Add($member.login)
+                    $memberArray.Add($member.id)
+                    $memberArray.Add($member.node_id)
+                    $memberArray.Add($member.avatar_url)
+                    $memberArray.Add($member.html_url)
+                    $memberArray.Add($member.organizations_url)
+                    $memberArray.Add($member.repos_url)
+                    $memberArray.Add($member.type)
+                    $memberArray.Add($member.site_admin)
+
+                    #
+                    $this.members.Add($memberArray)
             }
         }
     }
