@@ -18,7 +18,7 @@ class Organization
     hidden [string]$type
 
     hidden [System.Array]$repositories
-    hidden [System.Collections.Hashtable]$members
+    hidden [System.Array]$members
 
     hidden [int]$followersCount
     hidden [int]$followingCount
@@ -333,7 +333,7 @@ $githubOrganizationRequestsContent
     }
 
     # 'members' attribute getter...
-    [System.Collections.Hashtable] getMembers()
+    [System.Array] getMembers()
     {
         return $this.members
     }
