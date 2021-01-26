@@ -200,6 +200,16 @@ $githubOrganizationRequestsContent
         return $organizationsArray
     }
 
+    # Definition of a static function to put all repositories of a user identified by its login inside an array...
+    static [System.Array] listAllMembers([string]$organizationLogin) {
+
+        # Definition of the 'membersArray' array which will contain all members of the wished 'organizationLogin' organization...
+        $membersArray = [System.Collections.ArrayList]::new()
+
+        # Returning the '$membersArray' array...
+        return $membersArray
+    }
+
     # Returns the Organization current instance as String...
     [String] ToString()
     {
