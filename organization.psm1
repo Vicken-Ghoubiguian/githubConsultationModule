@@ -258,10 +258,47 @@ $githubOrganizationRequestsContent
     static [System.Array] listAllMembers([string]$organizationLogin) {
 
         # Definition of the 'membersArray' array which will contain all members of the wished 'organizationLogin' organization...
-        $membersArray = [System.Collections.ArrayList]::new()
+        $allMembersArray = [System.Collections.ArrayList]::new()
+
+        # Definition of the 'githubGetMembersURL' string which contain the URL to get all followers of the wished members of the organization identified by the 'login' login...
+        $githubGetMembersURL = "https://api.github.com/orgs/" + $login + "/members"
+
+        # Executing the get http request and put the result's content in the '$membersJSONObj' JSON variable...
+        $githubMembersRequest = Invoke-WebRequest -Uri $githubGetMembersURL -Method Get
+        $membersJSONObj = ConvertFrom-Json -InputObject $githubMembersRequest.Content
+
+        # Browse all the members contained in the received JSON...
+        foreach($member in $membersJSONObj) {
+
+            # Definition of the array (or 'System.Collections.ArrayList' more precisely) 'memberArray' which will contain all datas about current member...
+            $memberArray = [System.Collections.ArrayList]::new()
+
+            # Adding all datas about the current member in the '$memberArray' array...
+            $memberArray.Add($member.login)
+            $memberArray.Add($member.id)
+            $memberArray.Add($member.node_id)
+            $memberArray.Add($member.avatar_url)
+            $memberArray.Add($member.gravatar_id)
+            $memberArray.Add($member.url)
+            $memberArray.Add($member.html_url)
+            $memberArray.Add($member.followers_url)
+            $memberArray.Add($member.following_url)
+            $memberArray.Add($member.gists_url)
+            $memberArray.Add($member.starred_url)
+            $memberArray.Add($member.subscriptions_url)
+            $memberArray.Add($member.organizations_url)
+            $memberArray.Add($member.repos_url)
+            $memberArray.Add($member.events_url)
+            $memberArray.Add($member.received_events_url)
+            $memberArray.Add($member.type)
+            $memberArray.Add($member.site_admin)
+
+            # Adding the '$memberArray' array to the 'members' class attribute...
+            $allMembersArray += $memberArray
+        }
 
         # Returning the '$membersArray' array...
-        return $membersArray
+        return $allMembersArray
     }
 
     # Returns the Organization current instance as String...
