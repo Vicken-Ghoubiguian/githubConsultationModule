@@ -311,7 +311,10 @@ $githubOrganizationRequestsContent
 
                                     foreach($member in $this.members) {
 
-                                        $returningString += $member + "`n"
+                                        $returningString += "(" + $member[0] + ", "  + $member[1] + ","  + $member[2] + ", "  + $member[3] + ", "  + $member[4] + 
+                                                                  $member[5] + ", "  + $member[6] + ","  + $member[7] + ", "  + $member[8] + ", "  + $member[9] +
+                                                                  $member[10] + ", "  + $member[11] + ","  + $member[12] + ", "  + $member[13] + ", "  + $member[14] +
+                                                                  $member[15] + ", "  + $member[16] + ","  + $member[17] + ", "  + $member[18] + ", "  + ")" + "`n"
                                     }
                                }
 
