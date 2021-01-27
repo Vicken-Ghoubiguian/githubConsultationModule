@@ -71,23 +71,23 @@ $githubOrganizationRequestsContent
             # If the 'withMembers' variable is 'true'...
             If($withMembers) {
 
-                #
+                # Initialisation of 'members' class attribute...
                 $this.members = [System.Collections.ArrayList]::new()
 
                 # Definition of the 'githubGetMembersURL' string which contain the URL to get all followers of the wished members of the organization identified by the 'organizationLogin' login...
                 $githubGetMembersURL = "https://api.github.com/orgs/" + $organizationLogin + "/members"
 
-                #
+                # Executing the get http request and put the result's content in the '$membersJSONObj' JSON variable...
                 $githubMembersRequest = Invoke-WebRequest -Uri $githubGetMembersURL -Method Get
                 $membersJSONObj = ConvertFrom-Json -InputObject $githubMembersRequest.Content
 
-                #
+                # Browse all the members contained in the received JSON...
                 foreach($member in $membersJSONObj) {
 
-                    #
+                    # Definition of the array (or 'System.Collections.ArrayList' more precisely) 'memberArray' which will contain all datas about current member...
                     $memberArray = [System.Collections.ArrayList]::new()
 
-                    #
+                    # Adding all datas about the current member in the '$memberArray' array...
                     $memberArray.Add($member.login)
                     $memberArray.Add($member.id)
                     $memberArray.Add($member.node_id)
@@ -98,7 +98,7 @@ $githubOrganizationRequestsContent
                     $memberArray.Add($member.type)
                     $memberArray.Add($member.site_admin)
 
-                    #
+                    # Adding the '$memberArray' array to the 'members' class attribute...
                     $this.members += $memberArray
                 }
             }
@@ -147,23 +147,23 @@ $githubOrganizationRequestsContent
         # If the 'withMembers' variable is 'true'...
         If($withMembers) {
 
-            #
+            # Initialisation of 'members' class attribute...
             $this.members = [System.Collections.ArrayList]::new()
 
             # Definition of the 'githubGetMembersURL' string which contain the URL to get all followers of the wished members of the organization identified by the 'login' login...
             $githubGetMembersURL = "https://api.github.com/orgs/" + $login + "/members"
 
-            #
+            # Executing the get http request and put the result's content in the '$membersJSONObj' JSON variable...
             $githubMembersRequest = Invoke-WebRequest -Uri $githubGetMembersURL -Method Get
             $membersJSONObj = ConvertFrom-Json -InputObject $githubMembersRequest.Content
 
-            #
+            # Browse all the members contained in the received JSON...
             foreach($member in $membersJSONObj) {
 
-                    #
+                    # Definition of the array (or 'System.Collections.ArrayList' more precisely) 'memberArray' which will contain all datas about current member...
                     $memberArray = [System.Collections.ArrayList]::new()
 
-                    #
+                    # Adding all datas about the current member in the '$memberArray' array...
                     $memberArray.Add($member.login)
                     $memberArray.Add($member.id)
                     $memberArray.Add($member.node_id)
@@ -174,7 +174,7 @@ $githubOrganizationRequestsContent
                     $memberArray.Add($member.type)
                     $memberArray.Add($member.site_admin)
 
-                    #
+                    # Adding the '$memberArray' array to the 'members' class attribute...
                     $this.members += $memberArray
             }
         }
