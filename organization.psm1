@@ -200,6 +200,12 @@ $githubOrganizationRequestsContent
         }
     }
 
+    # Definition of a static function to get all repositories from an organization identified by its login...
+    static [System.Array] listAllReposFromOrganization([string]$login, [boolean]$withBranches, [boolean]$withLanguages)
+    {
+        return [Repository]::listAllRepositories($login, "orgs", $withBranches, $withLanguages)
+    }
+
     # Definition of a static function to put all repositories of a user identified by its login inside an array...
     static [System.Array] listAllOrganization([string]$userLogin, [bool]$wantRepos, [bool]$wantBranches, [bool]$wantLanguages, [bool]$withMembers)
     {

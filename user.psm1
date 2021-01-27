@@ -171,6 +171,12 @@ $githubFollowersRequestsContent
         }
     }
 
+    # Definition of a static function to get all repositories from a user identified by its login...
+    static [System.Array] listAllReposFromUser([string]$login, [boolean]$withBranches, [boolean]$withLanguages)
+    {
+        return [Repository]::listAllRepositories($login, "users", $withBranches, $withLanguages)
+    }
+
     # Returns the User current instance as String...
     [string] ToString()
     {
