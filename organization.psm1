@@ -311,7 +311,7 @@ $githubOrganizationRequestsContent
 
                                     foreach($member in $this.members) {
 
-                                        <#$returningString += $repository.ToString() #>
+                                        $returningString += $member + "`n"
                                     }
                                }
 
