@@ -297,7 +297,7 @@ $githubOrganizationRequestsContent
                                     }
                                }
 
-            $returningString += ""
+            $returningString += "`n"
 
         # Else (an error occurs)...
         } Else {
