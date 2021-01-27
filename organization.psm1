@@ -269,7 +269,7 @@ $githubOrganizationRequestsContent
         $allMembersArray = [System.Collections.ArrayList]::new()
 
         # Definition of the 'githubGetMembersURL' string which contain the URL to get all followers of the wished members of the organization identified by the 'login' login...
-        $githubGetMembersURL = "https://api.github.com/orgs/" + $login + "/members"
+        $githubGetMembersURL = "https://api.github.com/orgs/" + $organizationLogin + "/members"
 
         # Executing the get http request and put the result's content in the '$membersJSONObj' JSON variable...
         $githubMembersRequest = Invoke-WebRequest -Uri $githubGetMembersURL -Method Get
