@@ -19,6 +19,8 @@ class Organization
 
     hidden [System.Array]$repositories
     hidden [System.Array]$members
+    hidden [System.Array]$following
+    hidden [System.Array]$followers
 
     hidden [int]$followersCount
     hidden [int]$followingCount
@@ -430,6 +432,18 @@ $githubOrganizationRequestsContent
     [System.Array] getMembers()
     {
         return $this.members
+    }
+
+    # 'followers' attribute getter...
+    [System.Array] getFollowers()
+    {
+        return $this.followers
+    }
+
+    # 'following' attribute getter...
+    [System.Array] getFollowing()
+    {
+        return $this.following
     }
 
     # 'followingCount' attribute getter...
