@@ -29,6 +29,7 @@ class Organization
     hidden [int]$followingCount
     hidden [int]$publicReposCount
     hidden [string]$twitter
+
     hidden [GitHubError]$error
 
     # Repository class constructor...

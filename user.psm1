@@ -26,13 +26,16 @@ class User
     hidden [string]$email
     hidden [string]$bio
     hidden [string]$twitter
-    hidden [GitHubError]$error
+    hidden [string]$url
+    hidden [string]$html_url
 
     hidden [System.Array]$repositories
     hidden [System.Array]$following
     hidden [System.Array]$followers
     hidden [System.Array]$organizations
     hidden [System.Array]$events
+
+    hidden [GitHubError]$error
 
     # User class constructor...
     User([string]$wishedUserLogin, [bool]$withOrganizations, [bool]$withRepos, [bool]$withBranches, [bool]$withLanguages, [bool]$withFollowing, [bool]$withFollowers)
@@ -70,6 +73,8 @@ $githubUserRequestsContent
             $this.followersCount = $githubUserRequestsResult.followers
             $this.followingCount = $githubUserRequestsResult.following
             $this.twitter = $githubUserRequestsResult.twitter_username
+            $this.url = $githubUserRequestsResult.url
+            $this.html_url = $githubUserRequestsResult.html_url
 
             # If "withRepos" parameter is "true"...
             If($withRepos) {
@@ -203,6 +208,9 @@ $githubFollowersRequestsContent
                                "Location: " +  $this.location + "`n" +
                                "Is hireable ? " + $this.isHireable + "`n" +
                                "Company: " + $this.company + "`n" +
+                               "Twitter: " + $this.twitter + "`n" +
+                               "Url: " + $this.url + "`n" +
+                               "Html url: " + $this.html_url + "`n" +
                                "Public repos count: " + $this.publicReposCount + "`n" +
                                "Followers count: " + $this.followersCount + "`n" +
                                "Following count: " + $this.followingCount + "`n"
@@ -395,6 +403,18 @@ $githubFollowersRequestsContent
     [string] getTwitter()
     {
         return $this.twitter
+    }
+
+    # 'url' attribute getter...
+    [string] getUrl()
+    {
+        return $this.url
+    }
+
+    # 'html_url' attribute getter...
+    [string] getHtmlUrl()
+    {
+        return $this.html_url
     }
 
     # 'repositories' attribute getter...
