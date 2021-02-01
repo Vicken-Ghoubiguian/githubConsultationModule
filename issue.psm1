@@ -26,14 +26,92 @@ class Issue
     hidden [System.Array]$labels
     hidden [System.Array]$assignees
 
-    hidden [int]$id
-    hidden [string]$login
-    hidden [string]$node_id
-    hidden [string]$avatar
-    hidden [string]$url
-    hidden [string]$html_url
-    hidden [bool]$siteAdmin
-    hidden [string]$type
+    hidden [int]$userId
+    hidden [string]$userLogin
+    hidden [string]$userNode_id
+    hidden [string]$userAvatar
+    hidden [string]$userUrl
+    hidden [string]$userHtml_url
+    hidden [bool]$userSiteAdmin
+    hidden [string]$userType
 
     hidden [GitHubError]$error
+
+    # 'events' attribute getter...
+    [System.Array] getEvents()
+    {
+        return $this.events
+    }
+
+    # 'comments' attribute getter...
+    [System.Array] getComments()
+    {
+        return $this.comments
+    }
+
+    # 'labels' attribute getter...
+    [System.Array] getLabels()
+    {
+        return $this.labels
+    }
+
+    # 'assignees' attribute getter...
+    [System.Array] getAssignees()
+    {
+        return $this.assignees
+    }
+
+    # 'userId' attribute getter...
+    [string] getUserId()
+    {
+        return $this.userId
+    }
+
+    # 'userLogin' attribute getter...
+    [string] getUserLogin()
+    {
+        return $this.userLogin
+    }
+
+    # 'userNode_id' attribute getter...
+    [string] getUserNode_id()
+    {
+        return $this.userNode_id
+    }
+
+    # 'userAvatar' attribute getter...
+    [string] getUserAvatar()
+    {
+        return $this.userAvatar
+    }
+
+    # 'userUrl' attribute getter...
+    [string] getUserUrl()
+    {
+        return $this.userUrl
+    }
+
+    # 'userHtml_url' attribute getter...
+    [string] getUserHtml_url()
+    {
+        return $this.userHtml_url
+    }
+
+    # 'userType' attribute getter...
+    [string] getUserType()
+    {
+        return $this.userType
+    }
+
+    # 'userSiteAdmin' attribute getter...
+    [string] getUserSiteAdmin()
+    {
+        return $this.userSiteAdmin
+    }
+
+    # 'error' attribute getter...
+    [GitHubError] getGitHubError()
+    {
+        return $this.error
+    }
 }
