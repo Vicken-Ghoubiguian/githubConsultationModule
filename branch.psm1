@@ -1,4 +1,5 @@
-﻿Using module .\gitHubError.psm1
+﻿# Importation of the 'GitHubError' module...
+Using module .\gitHubError.psm1
 
 # Definition of the Branch Powershell class to define a repository's branch from the GitHub API...
 class Branch 

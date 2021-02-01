@@ -1,4 +1,5 @@
-﻿Using module .\gitHubError.psm1
+﻿# Importation of the 'GitHubError' module...
+Using module .\gitHubError.psm1
 
 # Definition of the License Powershell class to define a license from the GitHub API...
 class License

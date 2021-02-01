@@ -1,5 +1,8 @@
-﻿Using module .\Repository.psm1
+﻿# Importation of required modules...
+Using module .\Repository.psm1
 Using module .\Organization.psm1
+
+# Importation of the 'GitHubError' module...
 Using module .\gitHubError.psm1
 
 # Definition of the User Powershell class to define a user from the GitHub API...

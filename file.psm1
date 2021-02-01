@@ -1,4 +1,5 @@
-﻿Using module .\gitHubError.psm1
+﻿# Importation of the 'GitHubError' module...
+Using module .\gitHubError.psm1
 
 # Definition of the File Powershell class to define a file in a repository from the GitHub API...
 class File

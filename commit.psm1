@@ -1,4 +1,5 @@
-﻿Using module .\gitHubError.psm1
+﻿# Importation of the 'GitHubError' module...
+Using module .\gitHubError.psm1
 
 Add-Type -AssemblyName PresentationFramework
 

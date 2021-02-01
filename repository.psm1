@@ -1,7 +1,10 @@
-﻿Using module .\license.psm1
+﻿# Importation of required modules...
+Using module .\license.psm1
 Using module .\branch.psm1
 using module .\language.psm1
 Using module .\commit.psm1
+
+# Importation of the 'GitHubError' module...
 Using module .\gitHubError.psm1
 
 # Definition of the Repository Powershell class to define a repository from the GitHub API...
