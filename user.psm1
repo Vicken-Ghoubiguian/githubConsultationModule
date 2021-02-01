@@ -27,7 +27,7 @@ class User
     hidden [string]$bio
     hidden [string]$twitter
     hidden [string]$url
-    hidden [string]$html_url
+    hidden [string]$htmlUrl
 
     hidden [System.Array]$repositories
     hidden [System.Array]$following
@@ -74,7 +74,7 @@ $githubUserRequestsContent
             $this.followingCount = $githubUserRequestsResult.following
             $this.twitter = $githubUserRequestsResult.twitter_username
             $this.url = $githubUserRequestsResult.url
-            $this.html_url = $githubUserRequestsResult.html_url
+            $this.htmlUrl = $githubUserRequestsResult.html_url
 
             # If "withRepos" parameter is "true"...
             If($withRepos) {
@@ -411,10 +411,10 @@ $githubFollowersRequestsContent
         return $this.url
     }
 
-    # 'html_url' attribute getter...
+    # 'htmlUrl' attribute getter...
     [string] getHtmlUrl()
     {
-        return $this.html_url
+        return $this.htmlUrl
     }
 
     # 'repositories' attribute getter...
