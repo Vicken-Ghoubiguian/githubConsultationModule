@@ -1,8 +1,6 @@
 ﻿# Importation of the 'GitHubError' module...
 Using module .\gitHubError.psm1
 
-Add-Type -AssemblyName PresentationFramework
-
 # Definition of the Commit Powershell class to define a repository's commit from the GitHub API...
 class Commit
 {
