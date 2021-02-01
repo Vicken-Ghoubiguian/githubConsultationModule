@@ -37,6 +37,12 @@ class Issue
 
     hidden [GitHubError]$error
 
+    # Issue class constructor...
+    Issue([string]$wishedOwnerLogin, [string]$wishedReposName, [int]$wishedIssueNumber)
+    {
+        $referenceTestVariable = "https://api.github.com/repos/" + $wishedOwnerLogin + "/" + $wishedReposName + "/issues/" + $wishedIssueNumber
+    }
+
     # 'events' attribute getter...
     [System.Array] getEvents()
     {
