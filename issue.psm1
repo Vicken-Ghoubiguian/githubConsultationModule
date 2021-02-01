@@ -10,16 +10,16 @@ class Issue
     hidden [string]$nodeId
     hidden [string]$title
     hidden [string]$url
-    hidden [string]$html_url
+    hidden [string]$htmlUrl
     hidden [string]$state
     hidden [bool]$locked
     hidden [string]$assignee
     hidden [int]$commentsCount
-    hidden [dateTime]$creating_date
-    hidden [dateTime]$updating_date
-    hidden [dateTime]$closing_date
+    hidden [dateTime]$creatingDate
+    hidden [dateTime]$updatingDate
+    hidden [dateTime]$closingDate
     hidden [string]$body
-    hidden [string]$closed_by
+    hidden [string]$closedBy
 
     hidden [System.Array]$events
     hidden [System.Array]$comments
@@ -28,10 +28,10 @@ class Issue
 
     hidden [int]$userId
     hidden [string]$userLogin
-    hidden [string]$userNode_id
+    hidden [string]$userNodeId
     hidden [string]$userAvatar
     hidden [string]$userUrl
-    hidden [string]$userHtml_url
+    hidden [string]$userHtmlUrl
     hidden [bool]$userSiteAdmin
     hidden [string]$userType
 
@@ -74,9 +74,9 @@ class Issue
     }
 
     # 'userNode_id' attribute getter...
-    [string] getUserNode_id()
+    [string] getUserNodeId()
     {
-        return $this.userNode_id
+        return $this.userNodeId
     }
 
     # 'userAvatar' attribute getter...
@@ -91,10 +91,10 @@ class Issue
         return $this.userUrl
     }
 
-    # 'userHtml_url' attribute getter...
-    [string] getUserHtml_url()
+    # 'userHtmlUrl' attribute getter...
+    [string] getUserHtmlUrl()
     {
-        return $this.userHtml_url
+        return $this.userHtmlUrl
     }
 
     # 'userType' attribute getter...
