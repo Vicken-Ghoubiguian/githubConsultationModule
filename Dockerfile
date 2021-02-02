@@ -18,4 +18,4 @@ ENV execMode=$fromExecMode
 
 
 
-CMD [ "ping", "localhost", "-t" ]
+CMD [ "ls" ]
