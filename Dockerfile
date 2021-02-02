@@ -10,4 +10,12 @@ COPY . /githubConsultationModule
 #Change work directory for the githubConsultationModule one
 WORKDIR /githubConsultationModule
 
+#Define the Dockerfile argument 'fromExecMode' to specify if the githubConsultationModule will be installed in OS or not 
+ARG fromExecMode
+
+#Define the environment variable 'execMode' to take the 'fromExecMode' argument value and put it to run the app
+ENV execMode=$fromExecMode
+
+
+
 CMD [ "ping", "localhost", "-t" ]
