@@ -7,16 +7,20 @@ LABEL maintainer="ericghoubiguian@live.fr"
 #Copy all the files and directories in the newly created directory githubConsultationModule
 COPY . /githubConsultationModule
 
+#Define the Dockerfile argument 'wishedSample' to specify the wished sample
+ARG wishedSample
+
+#Define the environment variable 'envWishedSample' to take the 'wishedSample' argument value and put it to run all
+ENV envWishedSample=wishedSample
+
+#Define the Dockerfile argument 'wishedFolder' to specify the wished folder
+ARG wishedFolder
+
+#Define the environment variable 'envWishedFolder' to take the 'wishedFolder' argument value and put it to run all
+ENV envWishedFolder
+
 #Change work directory for the samples one the githubConsultationModule project
 WORKDIR /githubConsultationModule/samples
-
-#Define the Dockerfile argument 'fromExecMode' to specify if the githubConsultationModule will be installed in OS or not 
-ARG fromExecMode
-
-#Define the environment variable 'execMode' to take the 'fromExecMode' argument value and put it to run the app
-ENV execMode=$fromExecMode
-
-#
 
 #
 
