@@ -11,13 +11,13 @@ COPY . /githubConsultationModule
 ARG wishedSample
 
 #Define the environment variable 'envWishedSample' to take the 'wishedSample' argument value and put it to run all
-ENV envWishedSample=wishedSample
+ENV envWishedSample=$wishedSample
 
 #Define the Dockerfile argument 'wishedFolder' to specify the wished folder
 ARG wishedFolder
 
 #Define the environment variable 'envWishedFolder' to take the 'wishedFolder' argument value and put it to run all
-ENV envWishedFolder
+ENV envWishedFolder=$wishedFolder
 
 #Change work directory for the samples one the githubConsultationModule project
 WORKDIR /githubConsultationModule/samples
@@ -27,4 +27,4 @@ WORKDIR /githubConsultationModule/samples
 
 
 
-CMD [ "ls" ]
+CMD ls "${envWishedFolder}"
