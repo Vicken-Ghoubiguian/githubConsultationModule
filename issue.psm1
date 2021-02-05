@@ -43,6 +43,15 @@ class Issue
         $referenceTestVariable = "https://api.github.com/repos/" + $wishedOwnerLogin + "/" + $wishedReposName + "/issues/" + $wishedIssueNumber
     }
 
+    # Definition of a static function to get all issues from a repos identified by its name owned by a owner identified by its login...
+    static [System.Array] listAllIssues([string]$userLogin, [string]$wantRepos)
+    {
+        # Create an HTTP request to take all issues from the GitHub repos identified by its name owned by the GitHub user identified by its login...
+        $githubGetIssuesURL = "https://api.github.com/repos/" + $userLogin + "/" + $wantRepos + "/issues"
+
+        return @()
+    }
+
     # 'events' attribute getter...
     [System.Array] getEvents()
     {
