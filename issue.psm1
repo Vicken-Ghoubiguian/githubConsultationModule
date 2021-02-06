@@ -58,6 +58,12 @@ class Issue
         }
     }
 
+    #
+    Issue()
+    {
+
+    }
+
     # Definition of a static function to get all issues from a repos identified by its name owned by a owner identified by its login...
     static [System.Array] listAllIssues([string]$ownerLogin, [string]$wantRepos)
     {
