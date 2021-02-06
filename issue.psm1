@@ -37,7 +37,7 @@ class Issue
 
     hidden [GitHubError]$error
 
-    # Issue class constructor...
+    # Issue class constructor with the owner login, the repository name and the issue's number...
     Issue([string]$wishedOwnerLogin, [string]$wishedReposName, [int]$wishedIssueNumber)
     {
         $referenceTestVariable = "https://api.github.com/repos/" + $wishedOwnerLogin + "/" + $wishedReposName + "/issues/" + $wishedIssueNumber
@@ -58,7 +58,7 @@ class Issue
         }
     }
 
-    #
+    # Issue class constructor with all class attributes in parameter...
     Issue()
     {
 
