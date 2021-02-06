@@ -64,8 +64,23 @@ class Issue
         # Definition of the 'issuesArray' array which will contain all issues of the wished 'wantRepos' owned by the 'ownerLogin' owner...
         $issuesArray = [System.Collections.ArrayList]::new()
 
-        # Create an HTTP request to take all issues from the GitHub repos identified by its name owned by the GitHub user identified by its login...
-        $githubGetIssuesURL = "https://api.github.com/repos/" + $ownerLogin + "/" + $wantRepos + "/issues"
+        # Bloc we wish execute to get all informations about the wished issue...
+        try {
+
+            # Create an HTTP request to take all issues from the GitHub repos identified by its name owned by the GitHub user identified by its login...
+            $githubGetIssuesURL = "https://api.github.com/repos/" + $ownerLogin + "/" + $wantRepos + "/issues"
+
+        # Bloc to execute if an System.Net.WebException is encountered...
+        } catch [System.Net.WebException] {
+
+            $errorType = $_.Exception.GetType().Name
+
+            $errorMessage = $_.Exception.Message
+
+            $errorStackTrace = $_.Exception.StackTrace
+
+            $issuesArray.Add([GitHubError]::new($errorType, $errorMessage, $errorStackTrace))
+        }
 
         return $issuesArray
     }
