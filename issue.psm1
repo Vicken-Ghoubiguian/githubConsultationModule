@@ -59,9 +59,12 @@ class Issue
     }
 
     # Issue class constructor with all class attributes in parameter...
-    Issue()
+    Issue([int]$id, [int]$number, [string]$nodeId, [string]$title, [string]$url, [string]$htmlUrl, [string]$state, [bool]$locked, [string]$assignee, [int]$commentsCount,
+          [dateTime]$creatingDate, [dateTime]$updatingDate, [dateTime]$closingDate, [string]$body, [string]$closedBy, [System.Array]$events, [System.Array]$comments,
+          [System.Array]$labels, [System.Array]$assignees, [int]$userId, [string]$userLogin, [string]$userNodeId, [string]$userAvatar, [string]$userUrl, [string]$userHtmlUrl,
+          [bool]$userSiteAdmin, [string]$userType)
     {
-
+        
     }
 
     # Definition of a static function to get all issues from a repos identified by its name owned by a owner identified by its login...
