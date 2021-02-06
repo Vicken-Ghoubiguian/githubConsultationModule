@@ -64,7 +64,33 @@ class Issue
           [System.Array]$labels, [System.Array]$assignees, [int]$userId, [string]$userLogin, [string]$userNodeId, [string]$userAvatar, [string]$userUrl, [string]$userHtmlUrl,
           [bool]$userSiteAdmin, [string]$userType)
     {
-        
+        $this.id = $id
+        $this.number = $number
+        $this.nodeId = $nodeId
+        $this.title = $title
+        $this.url = $url
+        $this.htmlUrl = $htmlUrl
+        $this.state = $state
+        $this.locked = $locked
+        $this.assignee = $assignee
+        $this.commentsCount = $commentsCount
+        $this.creatingDate = $creatingDate
+        $this.updatingDate = $updatingDate
+        $this.closingDate = $closingDate
+        $this.body = $body
+        $this.closedBy = $closedBy
+        $this.events = $events
+        $this.comments = $comments
+        $this.labels = $labels
+        $this.assignees = $assignees
+        $this.userId = $userId
+        $this.userLogin = $userLogin
+        $this.userNodeId = $userNodeId
+        $this.userAvatar = $userAvatar
+        $this.userUrl = $userUrl
+        $this.userHtmlUrl = $userHtmlUrl
+        $this.userSiteAdmin = $userSiteAdmin
+        $this.userType = $userType
     }
 
     # Definition of a static function to get all issues from a repos identified by its name owned by a owner identified by its login...
