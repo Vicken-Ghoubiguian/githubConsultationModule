@@ -67,7 +67,7 @@ class Issue
         # Create an HTTP request to take all issues from the GitHub repos identified by its name owned by the GitHub user identified by its login...
         $githubGetIssuesURL = "https://api.github.com/repos/" + $ownerLogin + "/" + $wantRepos + "/issues"
 
-        return @()
+        return $issuesArray
     }
 
     # 'events' attribute getter...
