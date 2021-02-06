@@ -1,6 +1,7 @@
 ﻿# Definition of the GitHubError Powershell class to manage possible occured HTTP/HTTPS errors
 class GitHubError
 {
+    # All attributes of the GitHubError class...
     hidden [string]$type
     hidden [string]$message
     hidden [string]$stackTrace

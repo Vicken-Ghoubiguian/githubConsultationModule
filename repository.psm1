@@ -10,7 +10,6 @@ Using module .\gitHubError.psm1
 # Definition of the Repository Powershell class to define a repository from the GitHub API...
 class Repository
 {
-
     # All attributes of the Repository class...
     hidden [int]$id
     hidden [string]$nodeID
@@ -183,7 +182,7 @@ $githubReposRequestsContent
     # Definition of a static function to put all repositories of a owner identified by its login and with its type as diminutive inside an array...
     static [System.Array] listAllRepositories([string]$ownerLogin, [string]$diminutiveType, [bool]$wantBranches, [bool]$wantLanguages)
     {
-        # Definition of the 'repositoriesArray' array which will contain all repositories of the wished the wished 'userLogin' user...
+        # Definition of the 'repositoriesArray' array which will contain all repositories of the wished 'userLogin' user...
         $repositoriesArray = [System.Collections.ArrayList]::new()
 
         #

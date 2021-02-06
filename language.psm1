@@ -4,7 +4,6 @@ Using module .\gitHubError.psm1
 # Definition of the Language Powershell class to define the current language in a repository from the GitHub API...
 class Language
 {
-
     # All attributes of the Language class...
     hidden [string]$name
     hidden [int]$value

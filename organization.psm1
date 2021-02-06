@@ -7,7 +7,7 @@ Using module .\Repository.psm1
 # Definition of the User Powershell class to define a user from the GitHub API...
 class Organization 
 {
-
+    # All attributes of the Organization class...
     hidden [string]$login
     hidden [string]$id
     hidden [string]$nodeId

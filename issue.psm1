@@ -4,7 +4,7 @@ Using module .\gitHubError.psm1
 # Definition of the Issue Powershell class to define a issue from the GitHub API...
 class Issue
 {
-
+    # All attributes of the Issue class...
     hidden [int]$id
     hidden [int]$number
     hidden [string]$nodeId
@@ -41,13 +41,31 @@ class Issue
     Issue([string]$wishedOwnerLogin, [string]$wishedReposName, [int]$wishedIssueNumber)
     {
         $referenceTestVariable = "https://api.github.com/repos/" + $wishedOwnerLogin + "/" + $wishedReposName + "/issues/" + $wishedIssueNumber
+
+        # Bloc we wish execute to get all informations about the wished issue...
+        try {
+
+        # Bloc to execute if an System.Net.WebException is encountered...
+        } catch [System.Net.WebException] {
+
+            $errorType = $_.Exception.GetType().Name
+
+            $errorMessage = $_.Exception.Message
+
+            $errorStackTrace = $_.Exception.StackTrace
+
+            $this.error = [GitHubError]::new($errorType, $errorMessage, $errorStackTrace)
+        }
     }
 
     # Definition of a static function to get all issues from a repos identified by its name owned by a owner identified by its login...
-    static [System.Array] listAllIssues([string]$userLogin, [string]$wantRepos)
+    static [System.Array] listAllIssues([string]$ownerLogin, [string]$wantRepos)
     {
+        # Definition of the 'issuesArray' array which will contain all issues of the wished 'wantRepos' owned by the 'ownerLogin' owner...
+        $issuesArray = [System.Collections.ArrayList]::new()
+
         # Create an HTTP request to take all issues from the GitHub repos identified by its name owned by the GitHub user identified by its login...
-        $githubGetIssuesURL = "https://api.github.com/repos/" + $userLogin + "/" + $wantRepos + "/issues"
+        $githubGetIssuesURL = "https://api.github.com/repos/" + $ownerLogin + "/" + $wantRepos + "/issues"
 
         return @()
     }
