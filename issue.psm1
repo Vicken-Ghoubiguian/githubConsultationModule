@@ -40,7 +40,7 @@ class Issue
     # Issue class constructor with the owner login, the repository name and the issue's number...
     Issue([string]$wishedOwnerLogin, [string]$wishedReposName, [int]$wishedIssueNumber)
     {
-        $referenceTestVariable = "https://api.github.com/repos/" + $wishedOwnerLogin + "/" + $wishedReposName + "/issues/" + $wishedIssueNumber
+        $githubGetIssueURL = "https://api.github.com/repos/" + $wishedOwnerLogin + "/" + $wishedReposName + "/issues/" + $wishedIssueNumber
 
         # Bloc we wish execute to get all informations about the wished issue...
         try {
