@@ -55,6 +55,32 @@ $githubIssueRequestsContent
             $githubIssueRequestsResult = ConvertFrom-Json -InputObject $githubIssueRequestsJSONContent
 
             # Entering the values ​​for all the attributes of the Issue class...
+            $this.id = $githubIssueRequestsResult.id
+            $this.number = $githubIssueRequestsResult.number
+            $this.nodeId = $githubIssueRequestsResult.node_id
+            $this.title = $githubIssueRequestsResult.title
+            $this.url = $githubIssueRequestsResult.url
+            $this.htmlUrl = $githubIssueRequestsResult.html_url
+            $this.state = $githubIssueRequestsResult.state
+            $this.locked = $githubIssueRequestsResult.locked
+            $this.assignee = $githubIssueRequestsResult.assignee
+            $this.commentsCount = $githubIssueRequestsResult.comments
+            $this.creatingDate = [Datetime]::ParseExact($githubIssueRequestsResult.created_at, 'yyyy-MM-ddThh:mm:ssZ', $null)
+            $this.updatingDate = [Datetime]::ParseExact($githubIssueRequestsResult.updated_at, 'yyyy-MM-ddThh:mm:ssZ', $null)
+            $this.closingDate = [Datetime]::ParseExact($githubIssueRequestsResult.closed_at, 'yyyy-MM-ddThh:mm:ssZ', $null)
+            $this.body = $githubIssueRequestsResult.body
+            $this.closedBy = $githubIssueRequestsResult.closed_by
+
+
+
+            $this.userId = $githubIssueRequestsResult.user.id
+            $this.userLogin = $githubIssueRequestsResult.user.login
+            $this.userNodeId = $githubIssueRequestsResult.user.node_id
+            $this.userAvatar = $githubIssueRequestsResult.user.avatar_url
+            $this.userUrl = $githubIssueRequestsResult.user.url
+            $this.userHtmlUrl = $githubIssueRequestsResult.user.html_url
+            $this.userSiteAdmin = $githubIssueRequestsResult.user.site_admin
+            $this.userType = $githubIssueRequestsResult.user.type
 
         # Bloc to execute if an System.Net.WebException is encountered...
         } catch [System.Net.WebException] {
