@@ -160,6 +160,12 @@ $githubIssueRequestsContent
         return $issuesArray
     }
 
+    # Definition of a static function to get all specific issues from a repos identified by its name owned by a owner identified by its login...
+    static [System.Array] listAllSpecificIssues([string]$ownerLogin, [string]$wantRepos)
+    {
+        return @()
+    }
+
     # 'events' attribute getter...
     [System.Array] getEvents()
     {
