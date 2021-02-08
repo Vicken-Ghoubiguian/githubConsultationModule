@@ -45,6 +45,17 @@ class Issue
         # Bloc we wish execute to get all informations about the wished issue...
         try {
 
+            #
+            $githubIssueRequest = Invoke-WebRequest -Uri $githubGetIssueURL -Method Get
+            $githubIssueRequestsContent = $githubIssueRequest.Content
+            $githubIssueRequestsJSONContent = @"
+                       
+$githubIssueRequestsContent
+"@
+            $githubIssueRequestsResult = ConvertFrom-Json -InputObject $githubIssueRequestsJSONContent
+
+            # Entering the values ​​for all the attributes of the Issue class...
+
         # Bloc to execute if an System.Net.WebException is encountered...
         } catch [System.Net.WebException] {
 
