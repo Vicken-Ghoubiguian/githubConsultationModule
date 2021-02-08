@@ -21,10 +21,10 @@ class Issue
     hidden [string]$body
     hidden [string]$closedBy
 
-    hidden [System.Array]$events
-    hidden [System.Array]$comments
-    hidden [System.Array]$labels
-    hidden [System.Array]$assignees
+    hidden [System.Array]$events = [System.Collections.ArrayList]::new()
+    hidden [System.Array]$comments = [System.Collections.ArrayList]::new()
+    hidden [System.Array]$labels = [System.Collections.ArrayList]::new()
+    hidden [System.Array]$assignees = [System.Collections.ArrayList]::new()
 
     hidden [int]$userId
     hidden [string]$userLogin
@@ -71,7 +71,10 @@ $githubIssueRequestsContent
             $this.body = $githubIssueRequestsResult.body
             $this.closedBy = $githubIssueRequestsResult.closed_by
 
-
+            $this.events = 
+            $this.comments = 
+            $this.labels = 
+            $this.assignees = 
 
             $this.userId = $githubIssueRequestsResult.user.id
             $this.userLogin = $githubIssueRequestsResult.user.login
