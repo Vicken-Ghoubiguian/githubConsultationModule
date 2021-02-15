@@ -65,9 +65,10 @@ $githubIssueRequestsContent
             $this.locked = $githubIssueRequestsResult.locked
             $this.assignee = $githubIssueRequestsResult.assignee
             $this.commentsCount = $githubIssueRequestsResult.comments
-            $this.creatingDate = [Datetime]::ParseExact($githubIssueRequestsResult.created_at, 'yyyy-MM-ddThh:mm:ssZ', $null)
-            $this.updatingDate = [Datetime]::ParseExact($githubIssueRequestsResult.updated_at, 'yyyy-MM-ddThh:mm:ssZ', $null)
-            $this.closingDate = [Datetime]::ParseExact($githubIssueRequestsResult.closed_at, 'yyyy-MM-ddThh:mm:ssZ', $null)
+            $this.creatingDate = [Datetime]::Parse($githubIssueRequestsResult.created_at)
+            $this.updatingDate = [Datetime]::Parse($githubIssueRequestsResult.updated_at)
+            #$this.closingDate = [Datetime]::Parse($githubIssueRequestsResult.closed_at)
+            $this.closingDate = [Datetime]::Now
             $this.body = $githubIssueRequestsResult.body
             $this.closedBy = $githubIssueRequestsResult.closed_by
 
@@ -162,12 +163,10 @@ $githubIssueRequestsContent
                                               $issue.locked,
                                               $issue.assignee,
                                               $issue.comments,
-                                              #[Datetime]::ParseExact($issue.created_at, 'yyyy-MM-ddThh:mm:ssZ', $null),
-                                              #[Datetime]::ParseExact($issue.updated_at, 'yyyy-MM-ddThh:mm:ssZ', $null),
-                                              #[Datetime]::ParseExact($issue.closed_at, 'yyyy-MM-ddThh:mm:ssZ', $null),
-                                              [DateTime]::Now,
-                                              [DateTime]::Now,
-                                              [DateTime]::Now,
+                                              [Datetime]::Parse($issue.created_at),
+                                              [Datetime]::Parse($issue.updated_at),
+                                              #[Datetime]::Parse($issue.closed_at),
+                                              [Datetime]::Now,
                                               $issue.body,
                                               "not specified",
                                               @(),
