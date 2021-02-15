@@ -71,10 +71,10 @@ $githubIssueRequestsContent
             $this.body = $githubIssueRequestsResult.body
             $this.closedBy = $githubIssueRequestsResult.closed_by
 
-            $this.events = 
-            $this.comments = 
-            $this.labels = 
-            $this.assignees = 
+            $this.events = @()
+            $this.comments = @()
+            $this.labels = @()
+            $this.assignees = @()
 
             $this.userId = $githubIssueRequestsResult.user.id
             $this.userLogin = $githubIssueRequestsResult.user.login
@@ -144,6 +144,16 @@ $githubIssueRequestsContent
 
             # Create an HTTP request to take all issues from the GitHub repos identified by its name owned by the GitHub user identified by its login...
             $githubGetIssuesURL = "https://api.github.com/repos/" + $ownerLogin + "/" + $wantRepos + "/issues"
+
+            # Retrieving and extracting all repositories received from the URL...
+            $githubIssuesRequest = Invoke-WebRequest -Uri $githubGetIssuesURL -Method Get
+            $issuesJSONObj = ConvertFrom-Json $githubIssuesRequest.Content
+
+            # Browse all the issues contained in the received JSON and create all the instances of the Powershell class 'Issue' from this data and add them to the array 'issuesArray'...
+            foreach($issue in $issuesJSONObj) {
+
+                $issuesArray.Add([Issue]::new())
+            }
 
         # Bloc to execute if an System.Net.WebException is encountered...
         } catch [System.Net.WebException] {
