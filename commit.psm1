@@ -62,7 +62,7 @@ $githubCommitRequestsContent
             $this.idAuthor = $githubCommitRequestsResult.author.id
             $this.nameAuthor = $githubCommitRequestsResult.commit.author.name
             $this.emailAuthor = $githubCommitRequestsResult.commit.author.email
-            $this.dateAuthor = [Datetime]::ParseExact($githubCommitRequestsResult.commit.author.date, 'yyyy-MM-ddThh:mm:ssZ', $null)
+            $this.dateAuthor = [Datetime]::Parse($githubCommitRequestsResult.commit.author.date)
             $this.nodeIdAuthor = $githubCommitRequestsResult.author.node_id
             $this.avatarAuthor = $githubCommitRequestsResult.author.avatar_url
             $this.profileAuthor = $githubCommitRequestsResult.author.html_url
@@ -72,7 +72,7 @@ $githubCommitRequestsContent
             $this.idCommitter = $githubCommitRequestsResult.committer.id
             $this.nameCommitter = $githubCommitRequestsResult.commit.committer.name
             $this.emailCommiter = $githubCommitRequestsResult.commit.committer.email
-            $this.dateCommitter = [Datetime]::ParseExact($githubCommitRequestsResult.commit.committer.date, 'yyyy-MM-ddThh:mm:ssZ', $null)
+            $this.dateCommitter = [Datetime]::Parse($githubCommitRequestsResult.commit.committer.date)
             $this.nodeIdCommitter = $githubCommitRequestsResult.committer.node_id
             $this.avatarCommitter = $githubCommitRequestsResult.committer.avatar_url
             $this.profileCommitter = $githubCommitRequestsResult.committer.html_url
