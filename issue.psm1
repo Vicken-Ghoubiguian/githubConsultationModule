@@ -152,7 +152,34 @@ $githubIssueRequestsContent
             # Browse all the issues contained in the received JSON and create all the instances of the Powershell class 'Issue' from this data and add them to the array 'issuesArray'...
             foreach($issue in $issuesJSONObj) {
 
-                $issuesArray.Add([Issue]::new())
+                $issuesArray.Add([Issue]::new($issue.id,
+                                              $issue.number,
+                                              $issue.node_id,
+                                              $issue.title,
+                                              $issue.url,
+                                              $issue.html_url,
+                                              $issue.state,
+                                              $issue.locked,
+                                              $issue.assignee,
+                                              $issue.comments,
+                                              [Datetime]::ParseExact($issue.created_at, 'yyyy-MM-ddThh:mm:ssZ', $null),
+                                              [Datetime]::ParseExact($issue.updated_at, 'yyyy-MM-ddThh:mm:ssZ', $null),
+                                              [Datetime]::ParseExact($issue.closed_at, 'yyyy-MM-ddThh:mm:ssZ', $null),
+                                              $issue.body,
+                                              "not specified",
+                                              @(),
+                                              @(),
+                                              @(),
+                                              @(),
+                                              $issue.user.id,
+                                              $issue.user.login,
+                                              $issue.user.node_id,
+                                              $issue.user.avatar_url,
+                                              $issue.user.url,
+                                              $issue.user.html_url,
+                                              $issue.user.site_admin,
+                                              $issue.user.type
+                                              ))
             }
 
         # Bloc to execute if an System.Net.WebException is encountered...
