@@ -17,7 +17,7 @@ class Issue
     hidden [int]$commentsCount
     hidden [dateTime]$creatingDate
     hidden [dateTime]$updatingDate
-    hidden [dateTime]$closingDate
+    hidden [Nullable[DateTime]]$closingDate
     hidden [string]$body
     hidden [string]$closedBy
 
@@ -67,8 +67,18 @@ $githubIssueRequestsContent
             $this.commentsCount = $githubIssueRequestsResult.comments
             $this.creatingDate = [Datetime]::Parse($githubIssueRequestsResult.created_at)
             $this.updatingDate = [Datetime]::Parse($githubIssueRequestsResult.updated_at)
-            #$this.closingDate = [Datetime]::Parse($githubIssueRequestsResult.closed_at)
-            $this.closingDate = [Datetime]::Now
+
+            # If the 'close_at' field is not '$null' (also known as 'null'), so...
+           # If($githubIssueRequestsResult.closed_at -ne $null){
+
+            #    $this.closingDate = [Datetime]::Parse($githubIssueRequestsResult.closed_at)
+
+            # Else (case when  is '$null' also known as 'null'), so...
+           # } Else {
+
+            #    $this.closingDate = $null
+           # }
+
             $this.body = $githubIssueRequestsResult.body
             $this.closedBy = $githubIssueRequestsResult.closed_by
 
@@ -101,7 +111,7 @@ $githubIssueRequestsContent
 
     # Issue class constructor with all class attributes in parameter...
     Issue([int]$id, [int]$number, [string]$nodeId, [string]$title, [string]$url, [string]$htmlUrl, [string]$state, [bool]$locked, [string]$assignee, [int]$commentsCount,
-          [dateTime]$creatingDate, [dateTime]$updatingDate, [dateTime]$closingDate, [string]$body, [string]$closedBy, [System.Array]$events, [System.Array]$comments,
+          [dateTime]$creatingDate, [dateTime]$updatingDate, [Nullable[DateTime]]$closingDate, [string]$body, [string]$closedBy, [System.Array]$events, [System.Array]$comments,
           [System.Array]$labels, [System.Array]$assignees, [int]$userId, [string]$userLogin, [string]$userNodeId, [string]$userAvatar, [string]$userUrl, [string]$userHtmlUrl,
           [bool]$userSiteAdmin, [string]$userType)
     {
@@ -153,6 +163,19 @@ $githubIssueRequestsContent
             # Browse all the issues contained in the received JSON and create all the instances of the Powershell class 'Issue' from this data and add them to the array 'issuesArray'...
             foreach($issue in $issuesJSONObj) {
 
+                # $issueClosingDate = [Datetime]::Now
+
+                # If the 'close_at' field of the current issue is not '$null' (also known as 'null'), so...
+                If($issue.closed_at -ne $null){
+
+                    $issueClosingDate = [Nullable[DateTime]]::Parse($issue.closed_at)
+
+                # Else (case when  is '$null' also known as 'null'), so...
+                } Else {
+
+                    $issueClosingDate = [Nullable[DateTime]]$null
+                }
+
                 $issuesArray.Add([Issue]::new($issue.id,
                                               $issue.number,
                                               $issue.node_id,
@@ -165,8 +188,8 @@ $githubIssueRequestsContent
                                               $issue.comments,
                                               [Datetime]::Parse($issue.created_at),
                                               [Datetime]::Parse($issue.updated_at),
-                                              #[Datetime]::Parse($issue.closed_at),
-                                              [Datetime]::Now,
+                                              [Nullable[DateTime]]$null,
+                                              #[Datetime]::Now,
                                               $issue.body,
                                               "not specified",
                                               @(),
