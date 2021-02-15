@@ -8,4 +8,4 @@ param (
 )
 
 # Get all issues from the whished repository owned by the user identified by its login and put them in the "issuesArray" array...
-$issuesArray = [Issue]::listAllIssues("Screenly", "screenly-ose")
+$issuesArray = [Issue]::listAllIssues($ownerLogin.ToString(), $repositoryName.ToString())
