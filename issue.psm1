@@ -69,15 +69,15 @@ $githubIssueRequestsContent
             $this.updatingDate = [Datetime]::Parse($githubIssueRequestsResult.updated_at)
 
             # If the 'close_at' field is not '$null' (also known as 'null'), so...
-           # If($githubIssueRequestsResult.closed_at -ne $null){
+            If($githubIssueRequestsResult.closed_at -ne $null){
 
-            #    $this.closingDate = [Datetime]::Parse($githubIssueRequestsResult.closed_at)
+                 $this.closingDate = [Nullable[DateTime]]::Parse($githubIssueRequestsResult.closed_at)
 
             # Else (case when  is '$null' also known as 'null'), so...
-           # } Else {
+            } Else {
 
-            #    $this.closingDate = $null
-           # }
+                 $this.closingDate = [Nullable[DateTime]]$null
+            }
 
             $this.body = $githubIssueRequestsResult.body
             $this.closedBy = $githubIssueRequestsResult.closed_by
@@ -163,8 +163,6 @@ $githubIssueRequestsContent
             # Browse all the issues contained in the received JSON and create all the instances of the Powershell class 'Issue' from this data and add them to the array 'issuesArray'...
             foreach($issue in $issuesJSONObj) {
 
-                # $issueClosingDate = [Datetime]::Now
-
                 # If the 'close_at' field of the current issue is not '$null' (also known as 'null'), so...
                 If($issue.closed_at -ne $null){
 
@@ -188,8 +186,7 @@ $githubIssueRequestsContent
                                               $issue.comments,
                                               [Datetime]::Parse($issue.created_at),
                                               [Datetime]::Parse($issue.updated_at),
-                                              [Nullable[DateTime]]$null,
-                                              #[Datetime]::Now,
+                                              [Nullable[DateTime]]$issueClosingDate,
                                               $issue.body,
                                               "not specified",
                                               @(),
