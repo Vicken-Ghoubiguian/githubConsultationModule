@@ -228,7 +228,9 @@ $githubIssueRequestsContent
     # Returns the Issue current instance as String...
     [String] ToString()
     {
-        return ""
+        $returningString = ""
+
+        return $returningString
     }
 
     # 'id' attribute getter...
