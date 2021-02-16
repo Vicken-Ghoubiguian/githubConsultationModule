@@ -225,10 +225,18 @@ $githubIssueRequestsContent
         return @()
     }
 
+    # Returning the module's type as string...
+    [string] getModuleType()
+    {
+        return "Issue"
+    }
+
     # Returns the Issue current instance as String...
     [String] ToString()
     {
         $returningString = ""
+
+
 
         return $returningString
     }
