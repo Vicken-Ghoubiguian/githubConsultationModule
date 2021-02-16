@@ -231,6 +231,102 @@ $githubIssueRequestsContent
         return ""
     }
 
+    # 'id' attribute getter...
+    [int] getId()
+    {
+        return $this.id
+    }
+
+    # 'number' attribute getter...
+    [int] getNumber()
+    {
+        return $this.number
+    }
+
+    # 'nodeId' attribute getter...
+    [string] getNodeId()
+    {
+        return $this.nodeId
+    }
+
+    # 'title' attribute getter...
+    [string] getTitle()
+    {
+        return $this.title
+    }
+
+    # 'url' attribute getter...
+    [string] getUrl()
+    {
+        return $this.url
+    }
+
+    # 'htmlUrl' attribute getter...
+    [string] getHtmlUrl()
+    {
+        return $this.htmlUrl
+    }
+
+    # 'state' attribute getter...
+    [string] getState()
+    {
+        return $this.state
+    }
+
+    # 'locked' attribute getter...
+    [bool] getLocked()
+    {
+        return $this.locked
+    }
+
+    # 'assignee' attribute getter...
+    [string] getAssignee()
+    {
+        return $this.assignee
+    }
+
+    # 'commentsCount' attribute getter...
+    [int] getCommentsCount()
+    {
+        return $this.commentsCount
+    }
+
+    # 'creatingDate' attribute getter...
+    [dateTime] getCreatingDate()
+    {
+        return $this.creatingDate
+    }
+
+    # 'updatingDate' attribute getter...
+    [dateTime] getUpdatingDate()
+    {
+        return $this.updatingDate
+    }
+
+    # 'closingDate' attribute getter...
+    [Nullable[DateTime]] getClosingDate()
+    {
+        return $this.closingDate
+    }
+
+    # 'body' attribute getter...
+    [string] getBody()
+    {
+        return $this.body
+    }
+
+    # 'body' attribute getter...
+    [string] getBody()
+    {
+        return $this.body
+    }
+
+    # 'closedBy' attribute getter...
+    [string] getClosedBy()
+    {
+        return $this.closedBy
+    }
+
     # 'events' attribute getter...
     [System.Array] getEvents()
     {
