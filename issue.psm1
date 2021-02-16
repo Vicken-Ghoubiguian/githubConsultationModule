@@ -225,6 +225,12 @@ $githubIssueRequestsContent
         return @()
     }
 
+    # Returns the Issue current instance as String...
+    [String] ToString()
+    {
+        return ""
+    }
+
     # 'events' attribute getter...
     [System.Array] getEvents()
     {
