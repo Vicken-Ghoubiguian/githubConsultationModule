@@ -236,8 +236,6 @@ $githubIssueRequestsContent
     {
         $returningString = ""
 
-
-
         return $returningString
     }
 
