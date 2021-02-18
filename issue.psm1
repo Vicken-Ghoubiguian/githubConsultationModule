@@ -245,7 +245,7 @@ $githubIssueRequestsContent
                            "Locked ? " + $this.locked + "`n" +
                            "Assignee: " + $this.assignee + "`n" +
                            "Comments count: " + $this.commentsCount + "`n" +
-
+                           "`n" + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + "`n" +
 
 
                            "`n" + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + "`n" +
