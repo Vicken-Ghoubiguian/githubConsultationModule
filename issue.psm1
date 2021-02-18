@@ -246,7 +246,17 @@ $githubIssueRequestsContent
                            "Assignee: " + $this.assignee + "`n" +
                            "Comments count: " + $this.commentsCount + "`n" +
 
-                           "`n"
+
+
+                           "`n" + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + "`n" +
+                           "User's id: " + $this.userId + "`n" +
+                           "User's login: " + $this.userLogin + "`n" +
+                           "User's Node id: " + $this.userNodeId + "`n" +
+                           "User's avatar Url: " + $this.userAvatar + "`n" +
+                           "User's Url: " + $this.userUrl + "`n" +
+                           "User's HTML Url: " + $this.userHtmlUrl + "`n" +
+                           "Does is the user admin of site ?" + $this.userSiteAdmin + "`n" +
+                           "User's type: " + $this.userType + "`n"
 
         return $returningString
     }
