@@ -243,12 +243,19 @@ $githubIssueRequestsContent
                            "Url: " + $this.url + "`n" +
                            "HTML Url: " + $this.htmlUrl + "`n" +
                            "State: " + $this.state + "`n" +
-                           "Locked ? " + $this.locked + "`n" +
+                           "Is this issue locked ? " + $this.locked + "`n" +
                            "Assignee: " + $this.assignee + "`n" +
                            "Comments count: " + $this.commentsCount + "`n" +
                            "`n" + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + "`n" +
+                           "Creating date: " + $this.creatingDate + "`n" +
+                           "Updating date: " + $this.updatingDate + "`n"
 
-                           "`n" + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + "`n" +
+                           If($this.closingDate -ne [Nullable[DateTime]]$null) {
+
+                                $returningString += "Closing date: " + $this.closingDate + "`n"
+                           }
+
+        $returningString += "`n" + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + "`n" +
 
                            "`n" + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + "`n" +
                            "User's id: " + $this.userId + "`n" +
