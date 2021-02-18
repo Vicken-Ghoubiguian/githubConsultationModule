@@ -239,6 +239,7 @@ $githubIssueRequestsContent
                            "Number: " + $this.number + "`n" +
                            "Node Id: " + $this.nodeId + "`n" +
                            "Title: " + $this.title + "`n" +
+                           "Body: " + $this.body + "`n" +
                            "Url: " + $this.url + "`n" +
                            "HTML Url: " + $this.htmlUrl + "`n" +
                            "State: " + $this.state + "`n" +
@@ -247,6 +248,7 @@ $githubIssueRequestsContent
                            "Comments count: " + $this.commentsCount + "`n" +
                            "`n" + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + "`n" +
 
+                           "`n" + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + "`n" +
 
                            "`n" + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + "`n" +
                            "User's id: " + $this.userId + "`n" +
