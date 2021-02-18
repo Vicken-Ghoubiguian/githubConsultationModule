@@ -234,7 +234,19 @@ $githubIssueRequestsContent
     # Returns the Issue current instance as String...
     [String] ToString()
     {
-        $returningString = ""
+        $returningString = "`n" + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + "`n" +
+                           "Id: " + $this.id + "`n" +
+                           "Number: " + $this.number + "`n" +
+                           "Node Id: " + $this.nodeId + "`n" +
+                           "Title: " + $this.title + "`n" +
+                           "Url: " + $this.url + "`n" +
+                           "HTML Url: " + $this.htmlUrl + "`n" +
+                           "State: " + $this.state + "`n" +
+                           "Locked ? " + $this.locked + "`n" +
+                           "Assignee: " + $this.assignee + "`n" +
+                           "Comments count: " + $this.commentsCount + "`n" +
+
+                           "`n"
 
         return $returningString
     }
