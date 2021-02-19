@@ -359,12 +359,6 @@ $githubIssueRequestsContent
         return $this.body
     }
 
-    # 'body' attribute getter...
-    [string] getBody()
-    {
-        return $this.body
-    }
-
     # 'closedBy' attribute getter...
     [string] getClosedBy()
     {
