@@ -3,6 +3,7 @@ Using module .\license.psm1
 Using module .\branch.psm1
 using module .\language.psm1
 Using module .\commit.psm1
+Using module .\issue.psm1
 
 # Importation of the 'GitHubError' module...
 Using module .\gitHubError.psm1
@@ -28,6 +29,7 @@ class Repository
     hidden [System.Array]$subscribers
     hidden [System.Array]$branches
     hidden [System.Array]$commits
+    hidden [System.Array]$issues
     hidden [License]$license
     hidden [string]$gitURL
     hidden [string]$sshURL
@@ -491,6 +493,12 @@ $githubReposRequestsContent
     [System.Array] getCommits()
     {
         return $this.commits
+    }
+
+    # 'issues' attribute getter...
+    [System.Array] getIssues()
+    {
+        return $this.issues
     }
 
     # 'error' attribute getter...
