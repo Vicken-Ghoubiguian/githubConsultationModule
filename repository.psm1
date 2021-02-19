@@ -90,6 +90,9 @@ $githubReposRequestsContent
 
             #
             $this.commits = @()
+
+            #
+            $this.issues = @()
             
             #
             $this.forks = @()
@@ -165,6 +168,8 @@ $githubReposRequestsContent
         $this.homePage = $homePage
         $this.isArchived = $isArchived
         $this.mainLanguage = $mainLanguage
+
+        $this.issues = @()
 
         # If the 'wantBranches' variable is 'true'...
         If($wantBranches) {
