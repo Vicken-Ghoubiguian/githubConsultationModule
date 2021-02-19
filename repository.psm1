@@ -146,7 +146,8 @@ $githubReposRequestsContent
     # Repository class constructor with all class attributes in parameter...
     Repository([int]$id, [string]$nodeID, [string]$name, [string]$fullName, [bool]$isPrivate, [string]$ownerID, [string]$ownerLogin, [string]$ownerType, 
                [string]$page, [string]$description, [bool]$isFork, [int]$forksCount, [License]$license, [string]$gitURL, [string]$sshURL, 
-               [string]$cloneURL, [string]$svnURL, [string]$archiveURL, [string]$homePage, [bool]$isArchived, [string]$mainLanguage, [bool]$wantBranches, [bool]$wantLanguages)
+               [string]$cloneURL, [string]$svnURL, [string]$archiveURL, [string]$homePage, [bool]$isArchived, [string]$mainLanguage, [bool]$wantBranches, [bool]$wantLanguages,
+               [bool]$wantIssues)
     {
         $this.id = $id
         $this.nodeID = $nodeID
@@ -173,7 +174,12 @@ $githubReposRequestsContent
         $this.isArchived = $isArchived
         $this.mainLanguage = $mainLanguage
 
-        $this.issues = @()
+        # If the 'wantIssues' variable is 'true'...
+        If($wantIssues) {
+
+            # We will get all issues used in the repos in the 'issues' class attribute...
+            $this.issues = [Issue]::listAllIssues($ownerLogin, $name)
+        }
 
         # If the 'wantBranches' variable is 'true'...
         If($wantBranches) {
@@ -234,7 +240,8 @@ $githubReposRequestsContent
                                                              $repos.archived,
                                                              $repos.language,
                                                              $wantBranches,
-                                                             $wantLanguages
+                                                             $wantLanguages,
+                                                             $wantIssues
                                                              ))
                 }
 
