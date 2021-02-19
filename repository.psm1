@@ -315,6 +315,17 @@ $githubReposRequestsContent
                         }
                     }
 
+                    # If the 'issues' attribute, which is an array, is null...
+                    If($this.issues -ne $null) {
+
+                        $returningString += "@@@@@@@@@@@@@@@@@@@@@@@@@@"
+
+                        foreach($issue in $this.issues) {
+
+                             $returningString += $issue.ToString()
+                        }
+                    }
+
                     # If the 'license' attribute, which is an array, is null...
                     If($this.license -ne $null) {
 
