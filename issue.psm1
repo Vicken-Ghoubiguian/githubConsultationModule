@@ -225,12 +225,6 @@ $githubIssueRequestsContent
         return @()
     }
 
-    # Returning the module's type as string...
-    [string] getModuleType()
-    {
-        return "Issue"
-    }
-
     # Returns the Issue current instance as String...
     [String] ToString()
     {
@@ -255,6 +249,11 @@ $githubIssueRequestsContent
                                 $returningString += "Closing date: " + $this.closingDate + "`n"
                            }
 
+                           If($this.closedBy -ne $null) {
+
+                                $returningString += "Closed by: " + $this.closedBy + "`n"
+                           }
+
         $returningString += "`n" + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + "`n" +
 
                            "`n" + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + "`n" +
@@ -268,6 +267,12 @@ $githubIssueRequestsContent
                            "User's type: " + $this.userType + "`n"
 
         return $returningString
+    }
+
+    # Returning the module's type as string...
+    [string] getModuleType()
+    {
+        return "Issue"
     }
 
     # 'id' attribute getter...
