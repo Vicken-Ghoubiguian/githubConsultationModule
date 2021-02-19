@@ -71,7 +71,7 @@ $githubOrganizationRequestsContent
             If($withRepos) {
 
                 # Adding the repository to the 'repositories' class attribute which is an array...
-                $this.repositories = [Repository]::listAllRepositories($githubOrganizationRequestsResult.login, "orgs", $withBranches, $withLanguages)
+                $this.repositories = [Repository]::listAllRepositories($githubOrganizationRequestsResult.login, "orgs", $withBranches, $withLanguages, $false)
             }
 
             # If the 'withMembers' variable is 'true'...
@@ -156,7 +156,7 @@ $githubOrganizationRequestsContent
         If($withRepos) {
 
             # Adding the repository to the 'repositories' class attribute which is an array...
-            $this.repositories = [Repository]::listAllRepositories($login, "orgs", $withBranches, $withLanguages)
+            $this.repositories = [Repository]::listAllRepositories($login, "orgs", $withBranches, $withLanguages, $false)
         }
 
         # If the 'withMembers' variable is 'true'...
@@ -207,7 +207,7 @@ $githubOrganizationRequestsContent
     # Definition of a static function to get all repositories from an organization identified by its login...
     static [System.Array] listAllReposFromOrganization([string]$login, [boolean]$withBranches, [boolean]$withLanguages)
     {
-        return [Repository]::listAllRepositories($login, "orgs", $withBranches, $withLanguages)
+        return [Repository]::listAllRepositories($login, "orgs", $withBranches, $withLanguages, $false)
     }
 
     # Definition of a static function to put all repositories of a user identified by its login inside an array...

@@ -80,7 +80,7 @@ $githubUserRequestsContent
             If($withRepos) {
 
                 # Adding the repositories to the 'repositories' class attribute which is an array...
-                $this.repositories = [Repository]::listAllRepositories($githubUserRequestsResult.login, "users", $withBranches, $withLanguages)
+                $this.repositories = [Repository]::listAllRepositories($githubUserRequestsResult.login, "users", $withBranches, $withLanguages, $false)
             }
 
             # If "withOrganizations" parameter is "true"...
@@ -182,7 +182,7 @@ $githubFollowersRequestsContent
     # Definition of a static function to get all repositories from a user identified by its login...
     static [System.Array] listAllReposFromUser([string]$login, [boolean]$withBranches, [boolean]$withLanguages)
     {
-        return [Repository]::listAllRepositories($login, "users", $withBranches, $withLanguages)
+        return [Repository]::listAllRepositories($login, "users", $withBranches, $withLanguages, $false)
     }
 
     # Returns the User current instance as String...

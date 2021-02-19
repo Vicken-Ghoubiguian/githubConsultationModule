@@ -83,7 +83,7 @@ function Get_All_Languages_Used_By_Owner {
     $returningLanguagesHashTable = [System.Collections.Hashtable]::new()
 
     # Getting all repos from the 'ownerLogin' owner which is a 'diminutiveType' (user or organization)...
-    $reposArray = [Repository]::listAllRepositories($ownerLogin.ToString(), $diminutiveType.ToString(), $false, $true)
+    $reposArray = [Repository]::listAllRepositories($ownerLogin.ToString(), $diminutiveType.ToString(), $false, $true, $false)
 
     # If the first element of the '$reposArray' array is of type "GitHubError" so...
     If($reposArray[0].getModuleType() -ne "GitHubError") {
@@ -187,7 +187,7 @@ function Get_Main_Languages_Used_By_Owner {
     $returningLanguagesHashTable = [System.Collections.Hashtable]::new()
 
     # Getting all repos from the 'ownerLogin' owner which is a 'diminutiveType' (user or organization)...
-    $reposArray = [Repository]::listAllRepositories($ownerLogin.ToString(), $diminutiveType.ToString(), $false, $false)
+    $reposArray = [Repository]::listAllRepositories($ownerLogin.ToString(), $diminutiveType.ToString(), $false, $false, $false)
 
     # Browse the "$reposArray" array to get and treat each element with a foreach loop...
     foreach($repos in $reposArray){

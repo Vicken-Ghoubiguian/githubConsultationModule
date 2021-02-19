@@ -191,7 +191,7 @@ $githubReposRequestsContent
     }
 
     # Definition of a static function to put all repositories of a owner identified by its login and with its type as diminutive inside an array...
-    static [System.Array] listAllRepositories([string]$ownerLogin, [string]$diminutiveType, [bool]$wantBranches, [bool]$wantLanguages)
+    static [System.Array] listAllRepositories([string]$ownerLogin, [string]$diminutiveType, [bool]$wantBranches, [bool]$wantLanguages, [bool]$wantIssues)
     {
         # Definition of the 'repositoriesArray' array which will contain all repositories of the wished 'userLogin' user...
         $repositoriesArray = [System.Collections.ArrayList]::new()
