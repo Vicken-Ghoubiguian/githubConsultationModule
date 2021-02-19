@@ -6,11 +6,12 @@ param (
     [string]$ownerLogin,
     [string]$repositoryName,
     [bool]$branchesExpected,
-    [bool]$languagesExpected
+    [bool]$languagesExpected,
+    [bool]$issuesExpected
 )
 
 # Creation of an instance of the Repository Powershell class with all wished parameters...
-$currentRepository = New-Object -TypeName Repository -ArgumentList $ownerLogin, $repositoryName, $branchesExpected, $languagesExpected
+$currentRepository = New-Object -TypeName Repository -ArgumentList $ownerLogin, $repositoryName, $branchesExpected, $languagesExpected, $issuesExpected 
 
 # Display all collected informations about the wished repository in the Powershell console...
 $currentRepository.ToString()

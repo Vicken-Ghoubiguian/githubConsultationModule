@@ -43,7 +43,7 @@ class Repository
     hidden [GitHubError]$error
 
     # Repository class constructor with user login and repository name...
-    Repository([string]$wishedUserLogin, [string]$wishedRepositoryName, [bool]$withBranches, [bool]$withLanguages)
+    Repository([string]$wishedUserLogin, [string]$wishedRepositoryName, [bool]$withBranches, [bool]$withLanguages, [bool]$withIssues)
     {
         # Create an HTTP request to take the GitHub repository identified by its name and its owner's login...
         $githubGetReposURL = "https://api.github.com/repos/" + $wishedUserLogin + "/" + $wishedRepositoryName
@@ -88,11 +88,15 @@ $githubReposRequestsContent
                 $this.languages = [Language]::listAllLanguages($this.ownerLogin, $this.name)
             }
 
-            #
-            $this.commits = @()
+            # If "withIssues" parameter is "true"...
+            If ($withIssues -eq $true){
+
+                # Call of the static function 'listAllIssues' of the PowerShell class 'Issue' to obtain all the issues with details of the repo...
+                $this.issues = [Issue]::listAllIssues($this.ownerLogin, $this.name)
+            }
 
             #
-            $this.issues = @()
+            $this.commits = @()
             
             #
             $this.forks = @()
