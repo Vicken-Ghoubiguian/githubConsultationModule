@@ -25,9 +25,9 @@ class Comment
     hidden [string]$authorAssociation
     hidden [string]$body
 
-    # Comment class constructor...
-    Comment()
+    # Comment class constructor with the owner login, the repository name and the issue's number...
+    Comment([string]$wishedOwnerLogin, [string]$wishedReposName, [int]$wishedCommentNumber)
     {
-        $githubGetCommentURL = "https://api.github.com/repos/Screenly/Screenly-OSE/issues/comments/7364581"
+        $githubGetCommentURL = "https://api.github.com/repos/" + $wishedOwnerLogin + "/" + $wishedReposName + "/issues/comments/" + $wishedCommentNumber
     }
 }
