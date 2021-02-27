@@ -1,6 +1,9 @@
 ﻿# Importation of the 'GitHubError' module...
 Using module .\gitHubError.psm1
 
+# Importation of required modules...
+Using module .\comment.psm1
+
 # Definition of the Issue Powershell class to define a issue from the GitHub API...
 class Issue
 {
