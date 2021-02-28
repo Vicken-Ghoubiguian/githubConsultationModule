@@ -9,7 +9,7 @@ class Comment
     hidden [string]$nodeId
     hidden [string]$htmlUrl
     hidden [string]$issueUrl
-    hidden [string]$Url
+    hidden [string]$url
 
     hidden [int]$userId
     hidden [string]$userLogin
@@ -43,5 +43,49 @@ class Comment
     [string] getModuleType()
     {
         return "Comment"
+    }
+
+    # 'id' attribute getter...
+    [int] getId()
+    {
+        return $this.id
+    }
+
+    # 'nodeId' attribute getter...
+    [string] getNodeId()
+    {
+        return $this.nodeId
+    }
+
+    # 'htmlUrl' attribute getter...
+    [string] getHtmlUrl()
+    {
+        return $this.htmlUrl
+    }
+
+    # 'issueUrl' attribute getter...
+    [string] getIssueUrl()
+    {
+        return $this.issueUrl
+    }
+
+    # 'url' attribute getter...
+    [string] getUrl()
+    {
+        return $this.url
+    }
+
+
+
+    # 'body' attribute getter...
+    [string] getBody()
+    {
+        return $this.body
+    }
+
+    # 'error' attribute getter...
+    [GitHubError] getGitHubError()
+    {
+        return $this.error
     }
 }
