@@ -25,6 +25,8 @@ class Comment
     hidden [string]$authorAssociation
     hidden [string]$body
 
+    hidden [GitHubError]$error
+
     # Comment class constructor with the owner login, the repository name and the issue's number...
     Comment([string]$wishedOwnerLogin, [string]$wishedReposName, [int]$wishedCommentNumber)
     {
