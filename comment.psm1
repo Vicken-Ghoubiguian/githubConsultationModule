@@ -38,4 +38,10 @@ class Comment
     {
         return @()
     }
+
+    # Returning the module's type as string...
+    [string] getModuleType()
+    {
+        return "Comment"
+    }
 }
