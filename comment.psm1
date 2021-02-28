@@ -39,6 +39,12 @@ class Comment
         return @()
     }
 
+    # Returns the User current instance as String...
+    [string] ToString()
+    {
+        return ""
+    }
+
     # Returning the module's type as string...
     [string] getModuleType()
     {
