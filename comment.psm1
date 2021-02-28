@@ -83,6 +83,24 @@ class Comment
 
 
 
+    # 'creatingDate' attribute getter...
+    [dateTime] getCreatingDate()
+    {
+        return $this.creatingDate
+    }
+
+    # 'updatingDate' attribute getter...
+    [dateTime] getUpdatingDate()
+    {
+        return $this.updatingDate
+    }
+
+    # 'authorAssociation' attribute getter...
+    [string] getAuthorAssociation()
+    {
+        return $this.authorAssociation
+    }
+
     # 'body' attribute getter...
     [string] getBody()
     {
