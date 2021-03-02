@@ -31,6 +31,48 @@ class Comment
     Comment([string]$wishedOwnerLogin, [string]$wishedReposName, [int]$wishedCommentNumber)
     {
         $githubGetCommentURL = "https://api.github.com/repos/" + $wishedOwnerLogin + "/" + $wishedReposName + "/issues/comments/" + $wishedCommentNumber
+
+        # Bloc we wish execute to get all informations about the wished comment...
+        try {
+
+            #
+            $githubCommentRequest = Invoke-WebRequest -Uri $githubGetCommentURL -Method Get
+            $githubCommentRequestsContent = $githubCommentRequest.Content
+            $githubCommentRequestsJSONContent = @"
+               
+$githubCommentRequestsContent
+"@
+            $githubCommentRequestsResult = ConvertFrom-Json -InputObject $githubCommentRequestsJSONContent
+
+            $this.id = $githubCommentRequestsResult.id
+            $this.nodeId = $githubCommentRequestsResult.node_id
+            $this.htmlUrl = $githubCommentRequestsResult.html_url
+            $this.issueUrl = $githubCommentRequestsResult.issue_url
+            $this.url = $githubCommentRequestsResult.url
+            $this.userId = $githubCommentRequestsResult.user.id
+            $this.userLogin = $githubCommentRequestsResult.user.login
+            $this.userNodeId = $githubCommentRequestsResult.user.node_id
+            $this.userAvatar = $githubCommentRequestsResult.user.avatar_url
+            $this.userUrl = $githubCommentRequestsResult.user.url
+            $this.userHtmlUrl = $githubCommentRequestsResult.user.html_url
+            $this.userSiteAdmin = $githubCommentRequestsResult.user.site_admin
+            $this.userType = $githubCommentRequestsResult.user.type
+            $this.creatingDate = [Datetime]::Parse($githubCommentRequestsResult.created_at)
+            $this.updatingDate = [Datetime]::Parse($githubCommentRequestsResult.updated_at)
+            $this.authorAssociation = $githubCommentRequestsResult.author_association
+            $this.body = $githubCommentRequestsResult.body
+
+        # Bloc to execute if an System.Net.WebException is encountered...
+        } catch [System.Net.WebException] {
+
+            $errorType = $_.Exception.GetType().Name
+
+            $errorMessage = $_.Exception.Message
+
+            $errorStackTrace = $_.Exception.StackTrace
+
+            $this.error = [GitHubError]::new($errorType, $errorMessage, $errorStackTrace)
+        }
     }
 
     # Definition of a static function to get all comments for all issues from a repos identified by its name owned by a owner identified by its login...
