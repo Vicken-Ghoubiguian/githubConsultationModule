@@ -171,7 +171,53 @@ $githubCommentRequestsContent
         return $this.url
     }
 
+    # 'userId' attribute getter...
+    [int] getUserId()
+    {
+        return $this.userId
+    }
 
+    # 'userLogin' attribute getter...
+    [string] getUserLogin()
+    {
+        return $this.userLogin
+    }
+
+    # 'userNodeId' attribute getter...
+    [string] getUserNodeId()
+    {
+        return $this.userNodeId
+    }
+
+    # 'userAvatar' attribute getter...
+    [string] getUserAvatar()
+    {
+        return $this.userAvatar
+    }
+
+    # 'userUrl' attribute getter...
+    [string] getUserUrl()
+    {
+        return $this.userUrl
+    }
+
+    # 'userHtmlUrl' attribute getter...
+    [string] getUserHtmlUrl()
+    {
+        return $this.userHtmlUrl
+    }
+
+    # 'userSiteAdmin' attribute getter...
+    [bool] getUserSiteAdmin()
+    {
+        return $this.userSiteAdmin
+    }
+
+    # 'userType' attribute getter...
+    [string] getUserType()
+    {
+        return $this.userType
+    }
 
     # 'creatingDate' attribute getter...
     [dateTime] getCreatingDate()
