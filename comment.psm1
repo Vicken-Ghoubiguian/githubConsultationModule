@@ -81,6 +81,14 @@ $githubCommentRequestsContent
         return @()
     }
 
+    # Definition of a static function to get all comments for all issues from an issue identified by its number from a repos identified by its name owned by a owner identified by its login...
+    static [System.Array] listAllComments([string]$ownerLogin, [string]$wantRepos, [int]$wantNumberIssue)
+    {
+        $githubGetCommentsURL = "https://api.github.com/repos/" + $ownerLogin + "/" + $wantRepos + "/issues/" + $wantNumberIssue + "/comments"
+
+        return @()
+    }
+
     # Returns the User current instance as String...
     [string] ToString()
     {
