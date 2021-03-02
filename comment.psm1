@@ -78,17 +78,55 @@ $githubCommentRequestsContent
     # Definition of a static function to get all comments for all issues from a repos identified by its name owned by a owner identified by its login...
     static [System.Array] listAllComments([string]$ownerLogin, [string]$wantRepos)
     {
-        $githubGetCommentsURL = "https://api.github.com/repos/" + $ownerLogin + "/" + $wantRepos + "/issues/comments"
+        # Definition of the 'branchesArray' array which will contain all comments of the wished repos identified by its name owned by the owner identified by its login...
+        $commentsArray = [System.Collections.ArrayList]::new()
 
-        return @()
+        # Bloc we wish execute to get all informations about comments...
+        try {
+
+            $githubGetCommentsURL = "https://api.github.com/repos/" + $ownerLogin + "/" + $wantRepos + "/issues/comments"
+
+        # Bloc to execute if an System.Net.WebException is encountered...
+        } catch [System.Net.WebException] {
+        
+            $errorType = $_.Exception.GetType().Name
+
+            $errorMessage = $_.Exception.Message
+
+            $errorStackTrace = $_.Exception.StackTrace
+
+            $commentsArray.Add([GitHubError]::new($errorType, $errorMessage, $errorStackTrace))
+        }
+
+        # Returning the '$branchesArray' array...
+        return $commentsArray
     }
 
-    # Definition of a static function to get all comments for all issues from an issue identified by its number from a repos identified by its name owned by a owner identified by its login...
+    # Definition of a static function to get all comments for all issues from an issue identified by its number, from a repos identified by its name owned by a owner identified by its login...
     static [System.Array] listAllComments([string]$ownerLogin, [string]$wantRepos, [int]$wantNumberIssue)
     {
-        $githubGetCommentsURL = "https://api.github.com/repos/" + $ownerLogin + "/" + $wantRepos + "/issues/" + $wantNumberIssue + "/comments"
+        # Definition of the 'branchesArray' array which will contain all comments of the wished issue identified by its number, the wished repos identified by its name owned by the owner identified by its login...
+        $commentsArray = [System.Collections.ArrayList]::new()
 
-        return @()
+        # Bloc we wish execute to get all informations about comments...
+        try {
+
+            $githubGetCommentsURL = "https://api.github.com/repos/" + $ownerLogin + "/" + $wantRepos + "/issues/" + $wantNumberIssue + "/comments"
+
+        # Bloc to execute if an System.Net.WebException is encountered...
+        } catch [System.Net.WebException] {
+        
+            $errorType = $_.Exception.GetType().Name
+
+            $errorMessage = $_.Exception.Message
+
+            $errorStackTrace = $_.Exception.StackTrace
+
+            $commentsArray.Add([GitHubError]::new($errorType, $errorMessage, $errorStackTrace))
+        }
+
+        # Returning the '$branchesArray' array...
+        return $commentsArray
     }
 
     # Returns the User current instance as String...
