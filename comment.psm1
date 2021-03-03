@@ -86,6 +86,16 @@ $githubCommentRequestsContent
 
             $githubGetCommentsURL = "https://api.github.com/repos/" + $ownerLogin + "/" + $wantRepos + "/issues/comments"
 
+            # Retrieving and extracting all comments received from the URL...
+            $githubCommentsRequest = Invoke-WebRequest -Uri $githubGetCommentsURL -Method Get
+            $commentsJSONObj = ConvertFrom-Json $githubCommentsRequest.Content
+
+            # Browse all the comments contained in the received JSON and create all the instances of the Powershell class 'Comment' from this data and add them to the array 'commentsArray'...
+            foreach($comment in $commentsJSONObj) {
+
+                #$branchesArray.Add([Branch]::new($branch.name, $branch.commit.sha, $branch.commit.url, $branch.protected))
+            }
+
         # Bloc to execute if an System.Net.WebException is encountered...
         } catch [System.Net.WebException] {
         
@@ -112,6 +122,16 @@ $githubCommentRequestsContent
         try {
 
             $githubGetCommentsURL = "https://api.github.com/repos/" + $ownerLogin + "/" + $wantRepos + "/issues/" + $wantNumberIssue + "/comments"
+
+            # Retrieving and extracting all comments received from the URL...
+            $githubCommentsRequest = Invoke-WebRequest -Uri $githubGetCommentsURL -Method Get
+            $commentsJSONObj = ConvertFrom-Json $githubCommentsRequest.Content
+
+            # Browse all the comments contained in the received JSON and create all the instances of the Powershell class 'Comment' from this data and add them to the array 'commentsArray'...
+            foreach($comment in $commentsJSONObj) {
+
+                #$branchesArray.Add([Branch]::new($branch.name, $branch.commit.sha, $branch.commit.url, $branch.protected))
+            }
 
         # Bloc to execute if an System.Net.WebException is encountered...
         } catch [System.Net.WebException] {
