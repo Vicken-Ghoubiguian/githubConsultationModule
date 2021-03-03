@@ -76,9 +76,26 @@ $githubCommentRequestsContent
     }
 
     # Comment class constructor with all class attributes in parameter...
-    Comment()
+    Comment([int]$id, [string]$nodeId, [string]$htmlUrl, [string]$issueUrl, [string]$url, [int]$userId, [string]$userLogin, [string]$userNodeId, [string]$userAvatar, 
+    [string]$userUrl, [string]$userHtmlUrl, [bool]$userSiteAdmin, [string]$userType, [dateTime]$creatingDate, [dateTime]$updatingDate, [string]$authorAssociation, [string]$body)
     {
-
+        $this.id = $id
+        $this.nodeId = $nodeId
+        $this.htmlUrl = $htmlUrl
+        $this.issueUrl = $issueUrl
+        $this.url = $url
+        $this.userId = $userId
+        $this.userLogin = $userLogin
+        $this.userNodeId = $userNodeId
+        $this.userAvatar = $userAvatar
+        $this.userUrl = $userUrl
+        $this.userHtmlUrl = $userHtmlUrl
+        $this.userSiteAdmin = $userSiteAdmin
+        $this.userType = $userType
+        $this.creatingDate = $creatingDate
+        $this.updatingDate = $updatingDate
+        $this.authorAssociation = $authorAssociation
+        $this.body = $body
     }
 
     # Definition of a static function to get all comments for all issues from a repos identified by its name owned by a owner identified by its login...
