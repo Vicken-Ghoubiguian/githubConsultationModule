@@ -153,7 +153,8 @@ $githubCommentRequestsContent
             # Browse all the comments contained in the received JSON and create all the instances of the Powershell class 'Comment' from this data and add them to the array 'commentsArray'...
             foreach($comment in $commentsJSONObj) {
 
-                #$branchesArray.Add([Branch]::new($branch.name, $branch.commit.sha, $branch.commit.url, $branch.protected))
+                $commentsArray.Add([Comment]::new($comment.id, $comment.node_id, $comment.html_url, $comment.issue_url, $comment.url, $comment.user.id, $comment.user.login, $comment.user.node_id, $comment.user.avatar_url,
+                                                  $comment.user.url, $comment.user.html_url, $comment.user.site_admin, $comment.user.type, [Datetime]::Parse($comment.user.created_at), [Datetime]::Parse($comment.user.updated_at), $comment.author_association, $comment.body))
             }
 
         # Bloc to execute if an System.Net.WebException is encountered...
