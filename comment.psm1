@@ -177,7 +177,16 @@ $githubCommentRequestsContent
     # Returns the User current instance as String...
     [string] ToString()
     {
-        return ""
+        # If no error occurs...
+        If(!$this.error) {
+
+            return ""
+
+        # Else (an error occurs)...
+        } Else {
+
+            return $this.error.ToString()
+        }
     }
 
     # Returning the module's type as string...
