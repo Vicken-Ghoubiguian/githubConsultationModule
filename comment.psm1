@@ -180,13 +180,32 @@ $githubCommentRequestsContent
         # If no error occurs...
         If(!$this.error) {
 
-            $returningString = "`n" + ",,,,,,,,,,,,,,,,,,,,,,,,,,," + "`n" + 
+            $returningString = "`n" + ",,,,,,,,,,,,,,,,,,,,,,,,,,," + "`n" +
+                                "Id: " + $this.id + "`n" +
+                                "Node Id: " + $this.nodeId + "`n" +
+                                "HTML URL: " + $this.htmlUrl + "`n" +
+                                "Issue URL: " + $this.issueUrl + "`n" +
+                                "URL: " + $this.url + "`n" +
 
-                               ",,,,,,,,,,,,,,,,,,,,,,,,,,," + "`n" +
+                                ",,,,,,,,,,,,,,,,,,,,,,,,,,," + "`n" +
 
-                               ",,,,,,,,,,,,,,,,,,,,,,,,,,," + "`n" +
+                                "User's id: " + $this.userId + "`n" +
+                                "User's login: " + $this.userLogin + "`n" +
+                                "User's node id: " + $this.userNodeId + "`n" +
+                                "User's avatar: " + $this.userAvatar + "`n" +
+                                "User's URL: " + $this.userUrl + "`n" +
+                                "User's HTML URL: " + $this.userHtmlUrl + "`n" +
+                                "Is site admin ? " + $this.userSiteAdmin + "`n" +
+                                "User's type: " + $this.userType + "`n" +
 
-                               ",,,,,,,,,,,,,,,,,,,,,,,,,,,"
+                                ",,,,,,,,,,,,,,,,,,,,,,,,,,," + "`n" +
+
+                                "Creating date: " + $this.creatingDate + "`n" +
+                                "Updating date: " + $this.updatingDate + "`n" +
+                                "Author association: " + $this.authorAssociation + "`n" +
+                                "Body: " + $this.body + "`n" +
+
+                                ",,,,,,,,,,,,,,,,,,,,,,,,,,,"
 
         # Else (an error occurs)...
         } Else {
