@@ -180,13 +180,15 @@ $githubCommentRequestsContent
         # If no error occurs...
         If(!$this.error) {
 
-            return ""
+            $returningString = ""
 
         # Else (an error occurs)...
         } Else {
 
-            return $this.error.ToString()
+            $returningString = $this.error.ToString()
         }
+
+        return $returningString
     }
 
     # Returning the module's type as string...
