@@ -180,7 +180,13 @@ $githubCommentRequestsContent
         # If no error occurs...
         If(!$this.error) {
 
-            $returningString = "`n"
+            $returningString = "`n" + ",,,,,,,,,,,,,,,,,,,,,,,,,,," + "`n" + 
+
+                               ",,,,,,,,,,,,,,,,,,,,,,,,,,," + "`n" +
+
+                               ",,,,,,,,,,,,,,,,,,,,,,,,,,," + "`n" +
+
+                               ",,,,,,,,,,,,,,,,,,,,,,,,,,,"
 
         # Else (an error occurs)...
         } Else {
