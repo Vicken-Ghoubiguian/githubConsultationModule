@@ -180,7 +180,7 @@ $githubCommentRequestsContent
         # If no error occurs...
         If(!$this.error) {
 
-            $returningString = ""
+            $returningString = "`n"
 
         # Else (an error occurs)...
         } Else {
