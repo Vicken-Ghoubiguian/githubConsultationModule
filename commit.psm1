@@ -140,6 +140,17 @@ $githubCommitRequestsContent
     }
 
     #
+    static [System.Array] listAllCommits([string]$wishedOwnerLogin, [string]$wishedRepositoryName, [bool]$withMissingDatas, [DateTime]$sinceDate, [DateTime]$untilDate)
+    {
+
+        #
+        $githubGetCommitsReposURL = "https://api.github.com/repos/Vicken-Ghoubiguian/githubConsultationModule/commits?since=2016-11-01T00:00:00Z&until=2016-11-01T23:59:59Z"
+
+        #
+        return @()
+    }
+
+    #
     [void] completeAllDatas()
     {
 
