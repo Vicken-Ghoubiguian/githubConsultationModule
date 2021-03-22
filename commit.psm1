@@ -144,7 +144,7 @@ $githubCommitRequestsContent
     {
 
         #
-        $githubGetCommitsReposURL = "https://api.github.com/repos/Vicken-Ghoubiguian/githubConsultationModule/commits?since=2016-11-01T00:00:00Z&until=2016-11-01T23:59:59Z"
+        $githubGetCommitsReposURL = "https://api.github.com/repos/" + $wishedOwnerLogin + "/" + $wishedRepositoryName + "/commits?since=" + $sinceDate + "&until=" + $untilDate
 
         #
         return @()
