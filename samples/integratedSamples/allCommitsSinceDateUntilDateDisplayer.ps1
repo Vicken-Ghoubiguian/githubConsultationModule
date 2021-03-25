@@ -1,0 +1,20 @@
+﻿# Importation of the 'Commit' module...
+Using module ..\..\commit.psm1
+
+# Definition of all parameters : '$ownerLogin' for the wished owner's name and '$repositoryName' for the repository name...
+param (
+    [string]$ownerLogin,
+    [string]$repositoryName,
+    [bool]$withAllMissingDatas,
+    [DateTime]$sinceDate,
+    [DateTime]$untilDate
+)
+
+# Get all commits with missing datas from the whished repository owned by the owner (User or Organization) identified by its login and put them in the "commitsArray" array...
+$commitsArray = [Commit]::listAllCommits($ownerLogin.ToString(), $repositoryName.ToString(), $withAllMissingDatas, $sinceDate, $untilDate)
+
+# Browse the array implemented previously and display each commit...
+foreach($commit in $commitsArray) {
+
+    $commit.ToString()
+}
