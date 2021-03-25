@@ -139,15 +139,42 @@ $githubCommitRequestsContent
         return $commitsArray
     }
 
-    #
+    # Definition of a static function to put all commits from a owner (User or Organization) and a repository identified respectively by its login and its name inside an array since a date until another date...
     static [System.Array] listAllCommits([string]$wishedOwnerLogin, [string]$wishedRepositoryName, [bool]$withMissingDatas, [DateTime]$sinceDate, [DateTime]$untilDate)
     {
+        # Definition of the 'commitsArray' array which will contain all commits of the wished 'wishedRepositoryName' repo from the wished 'wishedUserLogin' user...
+        $commitsArray = [System.Collections.ArrayList]::new()
 
-        #
-        $githubGetCommitsReposURL = "https://api.github.com/repos/" + $wishedOwnerLogin + "/" + $wishedRepositoryName + "/commits?since=" + $sinceDate + "&until=" + $untilDate
+        # Bloc we wish execute to get all informations about commits...
+        try {
 
-        #
-        return @()
+            #
+            $githubGetCommitsReposURL = "https://api.github.com/repos/" + $wishedOwnerLogin + "/" + $wishedRepositoryName + "/commits?since=" + $sinceDate + "&until=" + $untilDate
+
+            # Retrieving and extracting all commits received from the URL...
+            $githubCommitsReposRequest = Invoke-WebRequest -Uri $githubGetCommitsReposURL -Method Get
+            $commitsJSONObj = ConvertFrom-Json $githubCommitsReposRequest.Content
+
+            # Browse all the commits contained in the received JSON and create all the instances of the Powershell class 'Commit' from this data and add them to the array 'commitsArray'...
+            foreach($commit in $commitsJSONObj) {
+
+                $commitsArray.Add([Commit]::new())
+            }
+
+        # Bloc to execute if an System.Net.WebException is encountered...
+        } catch [System.Net.WebException] {
+
+            $errorType = $_.Exception.GetType().Name
+
+            $errorMessage = $_.Exception.Message
+
+            $errorStackTrace = $_.Exception.StackTrace
+
+            $commitsArray.Add([GitHubError]::new($errorType, $errorMessage, $errorStackTrace))
+        }
+
+        # Returning the '$commitsArray' array...
+        return $commitsArray
     }
 
     #
