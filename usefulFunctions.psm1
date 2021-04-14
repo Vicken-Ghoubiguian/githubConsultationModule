@@ -292,3 +292,18 @@ function Get_Main_Languages_Used_By_Owner {
     # Returning the '$returningLanguagesHashTable' hash table with respective column names...
     return $returningLanguagesHashTable
 }
+
+#
+function countAllCommitsForSpecificRepository {
+
+    # Definition of all parameters :
+    param (
+        [string]$ownerLogin,
+        [string]$reposName
+    )
+
+    #
+    $participationHTTPRequest = "https://api.github.com/repos/Vicken-Ghoubiguian/weathermodule_v2/stats/participation"
+
+
+}
