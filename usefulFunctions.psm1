@@ -303,13 +303,23 @@ function countAllCommitsForSpecificRepository {
     )
 
     # Create an HTTP request to take the participation for the GitHub repository identified by its name and its owner's login...
-    $participationHTTPRequest = "https://api.github.com/repos/" + $ownerLogin + "/" + $reposName + "/stats/participation"
+    $githubParticipationURL = "https://api.github.com/repos/" + $ownerLogin + "/" + $reposName + "/stats/participation"
 
     # Bloc we wish execute to get all results about the defined HTTP request...
     try {
         
         # Definition of the 'allCommitsCount' variable to get all commits' count...
         $allCommitsCount = 0;
+
+        <#
+        #
+        $githubReposRequest = Invoke-WebRequest -Uri $githubGetReposURL -Method Get
+        $githubReposRequestsContent = $githubReposRequest.Content
+        $githubReposRequestsJSONContent = @"
+               
+$githubReposRequestsContent
+"@
+        $githubReposRequestsResult = ConvertFrom-Json -InputObject $githubReposRequestsJSONContent #>
 
         # Return the 'allCommitsCount' variable's value...
         return $allCommitsCount
