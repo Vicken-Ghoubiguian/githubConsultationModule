@@ -346,3 +346,8 @@ $githubParticipationRequestsContent
         return [GitHubError]::new($errorType, $errorMessage, $errorStackTrace)
     }
 }
+
+#
+function Get_licenses_used_by_owner {
+
+}
