@@ -267,6 +267,13 @@ $githubReposRequestsContent
         return $repositoriesArray
     }
 
+    # Returns all commits count of the current repository...
+    [int] allCommitsCount()
+    {
+
+        return 0
+    }
+
     # Returns the Repository current instance as String...
     [String] ToString()
     {
