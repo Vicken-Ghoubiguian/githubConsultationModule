@@ -294,7 +294,7 @@ function Get_Main_Languages_Used_By_Owner {
 }
 
 # Definition of a function to count all commits in a repos specified by its name and its owner's login...
-function countAllCommitsForSpecificRepository {
+function CountAllCommitsForSpecificRepository {
 
     #  Definition of the all parameter: '$ownerLogin' for the wished owner's login and '$reposName' for the repository's name...
     param (
@@ -320,7 +320,17 @@ $githubParticipationRequestsContent
 "@
         $githubParticipationRequestsResult = ConvertFrom-Json -InputObject $githubParticipationRequestsJSONContent
 
-        # Return the 'allCommitsCount' variable's value...
+        <# # Return the 'allCommitsCount' variable's value...
+        return $allCommitsCount #>
+
+        #
+        foreach($numberOfCommits in $githubParticipationRequestsResult.all){
+
+            #
+            $allCommitsCount = $allCommitsCount + $numberOfCommits
+        }
+
+        #
         return $allCommitsCount
 
     # Bloc to execute if an System.Net.WebException is encountered...
