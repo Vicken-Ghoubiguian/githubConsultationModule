@@ -305,5 +305,25 @@ function countAllCommitsForSpecificRepository {
     #
     $participationHTTPRequest = "https://api.github.com/repos/" + $ownerLogin + "/" + $reposName + "/stats/participation"
 
+    # Bloc we wish execute to get all results about the defined HTTP request...
+    try {
+        
+        #
+        $allCommitsCount = 0;
 
+        #
+        return $allCommitsCount
+
+    # Bloc to execute if an System.Net.WebException is encountered...
+    } catch [System.Net.WebException] {
+
+        $errorType = $_.Exception.GetType().Name
+
+        $errorMessage = $_.Exception.Message
+
+        $errorStackTrace = $_.Exception.StackTrace
+
+        # Return the newly created GitHubError instance...
+        return [GitHubError]::new($errorType, $errorMessage, $errorStackTrace)
+    }
 }
