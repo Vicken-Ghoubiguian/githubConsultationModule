@@ -296,7 +296,7 @@ function Get_Main_Languages_Used_By_Owner {
 # Definition of a function to count all commits in a repos specified by its name and its owner's login...
 function countAllCommitsForSpecificRepository {
 
-    # Definition of all parameters :
+    #  Definition of the all parameter: '$ownerLogin' for the wished owner's login and '$reposName' for the repository's name...
     param (
         [string]$ownerLogin,
         [string]$reposName
