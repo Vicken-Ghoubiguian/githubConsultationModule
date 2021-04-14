@@ -293,7 +293,7 @@ function Get_Main_Languages_Used_By_Owner {
     return $returningLanguagesHashTable
 }
 
-#
+# Definition of a function to count all commits in a repos specified by its name and its owner's login...
 function countAllCommitsForSpecificRepository {
 
     # Definition of all parameters :
@@ -302,16 +302,16 @@ function countAllCommitsForSpecificRepository {
         [string]$reposName
     )
 
-    #
+    # Create an HTTP request to take the participation for the GitHub repository identified by its name and its owner's login...
     $participationHTTPRequest = "https://api.github.com/repos/" + $ownerLogin + "/" + $reposName + "/stats/participation"
 
     # Bloc we wish execute to get all results about the defined HTTP request...
     try {
         
-        #
+        # Definition of the 'allCommitsCount' variable to get all commits' count...
         $allCommitsCount = 0;
 
-        #
+        # Return the 'allCommitsCount' variable's value...
         return $allCommitsCount
 
     # Bloc to execute if an System.Net.WebException is encountered...
