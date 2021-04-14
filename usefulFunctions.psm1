@@ -311,15 +311,14 @@ function countAllCommitsForSpecificRepository {
         # Definition of the 'allCommitsCount' variable to get all commits' count...
         $allCommitsCount = 0;
 
-        <#
         #
-        $githubReposRequest = Invoke-WebRequest -Uri $githubGetReposURL -Method Get
-        $githubReposRequestsContent = $githubReposRequest.Content
-        $githubReposRequestsJSONContent = @"
+        $githubParticipationRequest = Invoke-WebRequest -Uri $githubParticipationURL -Method Get
+        $githubParticipationRequestsContent = $githubParticipationRequest.Content
+        $githubParticipationRequestsJSONContent = @"
                
-$githubReposRequestsContent
+$githubParticipationRequestsContent
 "@
-        $githubReposRequestsResult = ConvertFrom-Json -InputObject $githubReposRequestsJSONContent #>
+        $githubParticipationRequestsResult = ConvertFrom-Json -InputObject $githubParticipationRequestsJSONContent
 
         # Return the 'allCommitsCount' variable's value...
         return $allCommitsCount
