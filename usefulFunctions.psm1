@@ -303,7 +303,7 @@ function countAllCommitsForSpecificRepository {
     )
 
     #
-    $participationHTTPRequest = "https://api.github.com/repos/Vicken-Ghoubiguian/weathermodule_v2/stats/participation"
+    $participationHTTPRequest = "https://api.github.com/repos/" + $ownerLogin + "/" + $reposName + "/stats/participation"
 
 
 }
