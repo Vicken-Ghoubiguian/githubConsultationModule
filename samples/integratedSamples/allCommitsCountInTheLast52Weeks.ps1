@@ -8,7 +8,7 @@ param (
 )
 
 #
-$allCommitsCount = CountAllCommitsForSpecificRepositoryInTheLast52Weeks -ownerLogin $ownerLogin -reposName $reposName
+$allCommitsCount = Count_All_Commits_For_Specific_Repository_In_The_Last_52_Weeks -ownerLogin $ownerLogin -reposName $reposName
 
 #
 Write-Host $allCommitsCount

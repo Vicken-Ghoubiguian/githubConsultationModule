@@ -294,7 +294,7 @@ function Get_Main_Languages_Used_By_Owner {
 }
 
 # Definition of a function to count all commits in the last 52 weeks from a repos specified by its name and its owner's login...
-function CountAllCommitsForSpecificRepositoryInTheLast52Weeks {
+function Count_All_Commits_For_Specific_Repository_In_The_Last_52_Weeks {
 
     #  Definition of the all parameter: '$ownerLogin' for the wished owner's login and '$reposName' for the repository's name...
     param (
@@ -319,9 +319,6 @@ function CountAllCommitsForSpecificRepositoryInTheLast52Weeks {
 $githubParticipationRequestsContent
 "@
         $githubParticipationRequestsResult = ConvertFrom-Json -InputObject $githubParticipationRequestsJSONContent
-
-        <# # Return the 'allCommitsCount' variable's value...
-        return $allCommitsCount #>
 
         #
         foreach($numberOfCommits in $githubParticipationRequestsResult.all){
