@@ -293,8 +293,8 @@ function Get_Main_Languages_Used_By_Owner {
     return $returningLanguagesHashTable
 }
 
-# Definition of a function to count all commits in a repos specified by its name and its owner's login...
-function CountAllCommitsForSpecificRepository {
+# Definition of a function to count all commits in the last 52 weeks from a repos specified by its name and its owner's login...
+function CountAllCommitsForSpecificRepositoryInTheLast52Weeks {
 
     #  Definition of the all parameter: '$ownerLogin' for the wished owner's login and '$reposName' for the repository's name...
     param (

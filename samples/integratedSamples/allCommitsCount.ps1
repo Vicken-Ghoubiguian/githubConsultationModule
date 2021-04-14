@@ -8,7 +8,7 @@ param (
 )
 
 #
-$allCommitsCount = CountAllCommitsForSpecificRepository -ownerLogin "Vicken-Ghoubiguian" -reposName "fonctions_mathematiques_utiles"
+$allCommitsCount = CountAllCommitsForSpecificRepositoryInTheLast52Weeks -ownerLogin "Vicken-Ghoubiguian" -reposName "fonctions_mathematiques_utiles"
 
 #
 Write-Host $allCommitsCount
