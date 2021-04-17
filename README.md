@@ -1,6 +1,11 @@
 # githubConsultationModule
 PowerShell module for in-depth research and consultation of GitHub.
 
+## Contents
+
+1. [Manually install the cloned module on your system](#manually_install_the_cloned_module_on_your_system)
+
+<a name="manually_install_the_cloned_module_on_your_system"></a>
 ### Manually install the cloned module on your system
 
 You can install this Powershell module on your windows system, so that you will just need to import this module with the command bellow when opening Powershell :
