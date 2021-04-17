@@ -285,6 +285,38 @@ $githubCommitRequestsContent
 
                                 "%%%%%%%%%%%%%%%%%%%%%%%%%%" + "`n"
 
+                                #
+                                If($this.total -ne $null) {
+
+                                    $returningString += "%%%%%%%%%%%%%%%%%%%%%%%%%%" + "`n"
+
+                                    $returningString += "Total: " + $this.total + "`n"
+                                }
+
+                                #
+                                If($this.additions -ne $null) {
+
+                                    $returningString += "%%%%%%%%%%%%%%%%%%%%%%%%%%" + "`n"
+
+                                    $returningString += "Additions: " + $this.additions + "`n"
+                                }
+
+                                #
+                                If($this.deletions -ne $null) {
+
+                                    $returningString += "%%%%%%%%%%%%%%%%%%%%%%%%%%" + "`n"
+
+                                    $returningString += "Deletions: " + $this.deletions + "`n"
+                                }
+
+                                #
+                                <#If() {
+
+                                    $returningString += "%%%%%%%%%%%%%%%%%%%%%%%%%%" + "`n"
+
+
+                                }#>
+
                                 $returningString += ""
 
         # Else (an error occurs)...
