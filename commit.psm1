@@ -96,10 +96,34 @@ $githubCommitRequestsContent
     }
 
     # Commit class constructor with all class attributes in parameter...
-    Commit()
+    Commit([string]$sha, [string]$nodeId, [string]$message, [string]$loginAuthor, [string]$idAuthor, [string]$nameAuthor, [string]$emailAuthor, [datetime]$dateAuthor,
+           [string]$nodeIdAuthor, [string]$avatarAuthor, [string]$profileAuthor, [string]$typeAuthor, [string]$loginCommitter, [string]$idCommitter, [string]$nameCommitter, [string]$emailCommiter, 
+           [datetime]$dateCommitter, [string]$nodeIdCommitter, [string]$avatarCommitter, [string]$profileCommitter, [string]$typeCommitter)
     {
-
+        $this.sha = $sha
+        $this.nodeId = $nodeId
+        $this.message = $message
+        $this.loginAuthor = $loginAuthor
+        $this.idAuthor = $idAuthor
+        $this.nameAuthor = $nameAuthor
+        $this.emailAuthor = $emailAuthor
+        $this.dateAuthor = $dateAuthor
+        $this.nodeIdAuthor = $nodeIdAuthor
+        $this.avatarAuthor = $avatarAuthor
+        $this.profileAuthor = $profileAuthor
+        $this.typeAuthor = $typeAuthor
+        $this.loginCommitter = $loginCommitter
+        $this.idCommitter = $idCommitter
+        $this.nameCommitter = $nameCommitter
+        $this.emailCommiter = $emailCommiter
+        $this.dateCommitter = $dateCommitter
+        $this.nodeIdCommitter = $nodeIdCommitter
+        $this.avatarCommitter = $avatarCommitter
+        $this.profileCommitter = $profileCommitter
+        $this.typeCommitter = $typeCommitter
     }
+
+    Commit(){}
 
     # Definition of a static function to put all commits from a owner (User or Organization) and a repository identified respectively by its login and its name inside an array...
     static [System.Array] listAllCommits([string]$wishedOwnerLogin, [string]$wishedRepositoryName, [bool]$withMissingDatas)
