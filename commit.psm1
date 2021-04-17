@@ -144,7 +144,28 @@ $githubCommitRequestsContent
             # Browse all the commits contained in the received JSON and create all the instances of the Powershell class 'Commit' from this data and add them to the array 'commitsArray'...
             foreach($commit in $commitsJSONObj) {
 
-                $commitsArray.Add([Commit]::new())
+                $commitsArray.Add([Commit]::new($commit.sha,
+                                                $commit.node_id,
+                                                $commit.commit.message,
+                                                $commit.author.login,
+                                                $commit.author.id,
+                                                $commit.commit.author.name,
+                                                $commit.commit.author.email,
+                                                [Datetime]::Parse($commit.commit.author.date),
+                                                $commit.author.node_id,
+                                                $commit.author.avatar_url,
+                                                $commit.author.html_url,
+                                                $commit.author.type,
+                                                $commit.committer.login,
+                                                $commit.committer.id,
+                                                $commit.commit.committer.name,
+                                                $commit.commit.committer.email,
+                                                [Datetime]::Parse($commit.commit.committer.date),
+                                                $commit.committer.node_id,
+                                                $commit.committer.avatar_url,
+                                                $commit.committer.html_url,
+                                                $commit.committer.type
+                                                ))
             }
 
         # Bloc to execute if an System.Net.WebException is encountered...
