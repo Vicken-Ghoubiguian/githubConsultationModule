@@ -123,8 +123,6 @@ $githubCommitRequestsContent
         $this.typeCommitter = $typeCommitter
     }
 
-    Commit(){}
-
     # Definition of a static function to put all commits from a owner (User or Organization) and a repository identified respectively by its login and its name inside an array...
     static [System.Array] listAllCommits([string]$wishedOwnerLogin, [string]$wishedRepositoryName, [bool]$withMissingDatas)
     {
