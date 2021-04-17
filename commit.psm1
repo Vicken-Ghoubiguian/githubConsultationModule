@@ -254,7 +254,38 @@ $githubCommitRequestsContent
         # If no error occurs...
         If(!$this.error) {
 
-             $returningString = ""
+             $returningString = "`n" + "%%%%%%%%%%%%%%%%%%%%%%%%%%" + "`n" +
+                                "Id: " + $this.sha + "`n" +
+                                "NodeId: " + $this.nodeId + "`n" +
+                                "Message: " + $this.message + "`n" +
+
+                                "%%%%%%%%%%%%%%%%%%%%%%%%%%" + "`n" +
+
+                                "Author's login: " + $this.loginAuthor + "`n" +
+                                "Author's id: " + $this.idAuthor + "`n" +
+                                "Author's name: " + $this.nameAuthor + "`n" +
+                                "Author's email: " + $this.emailAuthor + "`n" +
+                                "Author's date: " + $this.dateAuthor + "`n" +
+                                "Author's nodeId: " + $this.nodeIdAuthor + "`n" +
+                                "Author's avatar: " + $this.avatarAuthor + "`n" +
+                                "Author's profile: " + $this.profileAuthor + "`n" +
+                                "Author's type: " + $this.typeAuthor + "`n" +
+
+                                "%%%%%%%%%%%%%%%%%%%%%%%%%%" + "`n" +
+
+                                "Committer's login: " + $this.loginCommitter + "`n" +
+                                "Committer's id: " + $this.idCommitter + "`n" +
+                                "Committer's name: " + $this.nameCommitter + "`n" +
+                                "Committer's email: " + $this.emailCommiter + "`n" +
+                                "Committer's date: " + $this.dateCommitter + "`n" +
+                                "Committer's nodeId: " + $this.nodeIdCommitter + "`n" +
+                                "Committer's avatar: " + $this.avatarCommitter + "`n" +
+                                "Committer's profile: " + $this.profileCommitter + "`n" +
+                                "Committer's type: " + $this.typeCommitter + "`n" +
+
+                                "%%%%%%%%%%%%%%%%%%%%%%%%%%" + "`n"
+
+                                $returningString += ""
 
         # Else (an error occurs)...
         } Else {
