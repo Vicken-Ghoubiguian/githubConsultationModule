@@ -1,5 +1,5 @@
 # githubConsultationModule
-PowerShell module for in-depth research and consultation of GitHub.
+This project consists to develop a PowerShell module for in-depth research and consultation of GitHub.
 
 ## Contents
 
